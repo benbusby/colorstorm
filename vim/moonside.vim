@@ -79,6 +79,9 @@ syn match    cCustomParen    "(" contains=cParen,cCppParen
 syn match    cCustomFunc     "\w\+\s*(" contains=cCustomParen
 syn match    cCustomScope    "::"
 syn match    cCustomClass    "\w\+\s*::" contains=cCustomScope
+syn match    cCustomProp     "\.\w\+\s*."
+
+hi cCustomProp gui=italic
 
 hi cCustomFunc guifg=#5e9aff guibg=#000000 gui=bold "hi def cCustomFunc link cCustomFunc  Function
 " hi def link cCustomClass Function
