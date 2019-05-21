@@ -80,5 +80,5 @@ syn match    cCustomProp     "\.\w\+\s*."
 
 hi cCustomProp gui=italic
 
-hi cCustomFunc guifg=#ffffff guibg=#303454 gui=bold "hi def cCustomFunc link cCustomFunc  Function
+hi cCustomFunc guifg=#F89070 guibg=#303454 gui=bold "hi def cCustomFunc link cCustomFunc  Function
 " hi def link cCustomClass Function

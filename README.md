@@ -1,1 +1,1 @@
-# earthbound-themes
+![Earthbound Themes](images/earthbound_themes.png)
