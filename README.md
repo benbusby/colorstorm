@@ -7,9 +7,10 @@ ___
 - Earthbound
 - Moonside
 - Threed
+- Pyramid
+- Fire Spring
 - Magicant (Light Theme)
 - Cave of the Past (Monochromatic Theme)
-- ...more coming soon!
 
 Each theme is modeled after an iconic location in the game, and all color themes follow the AA/AAA color accessibility guidelines for all font sizes.
 
@@ -22,4 +23,4 @@ Each theme is modeled after an iconic location in the game, and all color themes
 - Micro
 
 ### Contributing
-Contributions are highly encouraged, as there are plenty of editors out there that I don't use but would like to support with these themes. 
+Contributions are highly encouraged, as there are plenty of editors out there that I don't use but would like to support with these themes. There are also plenty of other locations in the game that could make for a good color scheme, so feel free to submit your own ideas as well!
