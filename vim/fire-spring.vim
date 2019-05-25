@@ -5,28 +5,13 @@ if exists("syntax_on")
 endif
 let g:colors_name = 'fire-spring'
 
-"Background: #181020
-"Foreground: #ffffca
-"Color 1: #d9c400
-"Color 2: #d992ff
-"Color 3: #eeeeee (for less common uses like numbers, possibly)
-"Color 4: #f0e500
-"Color 5: #ff7e7e (strings? maybe a really light grey would be better)
-"Color 6: #a99ade
-"Color 7: #ff7f3d (need to check this against the other colors)
-
-
 hi Cursor	guifg=#FFFFFF guibg=#d9c400
 hi lCursor	guifg=#FFFFFF guibg=#d9c400
 hi CursorLine	guifg=#FFFFFF guibg=#181020 gui=underline
 hi CursorIM	guifg=#FFFFFF guibg=#d9c400
 hi Directory	guifg=#d9c400 guibg=#181020 gui=bold
-"hi DiffAdd	guifg=#d9c400 guibg=#ffffca gui=none
-"hi DiffChange	guifg=#d9c400 guibg=#ffffca gui=none
-"hi DiffDelete	guifg=#223322 guibg=#223322 gui=none
-"hi DiffText	guifg=#d9c400 guibg=#448844 gui=bold
 hi ErrorMsg	guifg=#ee1111 guibg=#181020
-hi VertSplit	guifg=#543858 guibg=#543858 " fg is bg
+hi VertSplit	guifg=#181020 guibg=#543858 " fg is bg
 hi Folded	guifg=#cccccc guibg=#181020
 hi FoldColumn	guifg=#ffffff guibg=#102010
 hi IncSearch	guifg=#ffffff guibg=#543858 gui=none

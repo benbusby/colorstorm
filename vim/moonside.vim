@@ -18,7 +18,7 @@ hi DiffChange	guifg=#F6F929 guibg=#3a553a gui=none
 hi DiffDelete	guifg=#223322 guibg=#223322 gui=none
 hi DiffText	guifg=#F6F929 guibg=#448844 gui=bold
 hi ErrorMsg	guifg=#ee1111 guibg=#000000
-hi VertSplit	guifg=#223322 guibg=#223322
+hi VertSplit	guifg=#000000 guibg=#fd35fa
 hi Folded	guifg=#cccccc guibg=#000000
 hi FoldColumn	guifg=#557755 guibg=#102010
 hi IncSearch	guifg=#3a553a guibg=#F6F929 gui=none
@@ -36,7 +36,7 @@ hi Special	guifg=#aaef64 guibg=#000000 gui=bold
 hi StatusLine	guifg=#88ee99 guibg=#447f55 gui=bold
 hi StatusLineNC term=bold cterm=bold,underline ctermfg=green ctermbg=Black
 hi StatusLineNC term=bold gui=bold,underline guifg=#3a553a  guibg=Black
-hi Title	guifg=#F6F929 guibg=#223322 gui=bold
+hi Title	guifg=#fd35fa guibg=#000000 gui=bold
 hi Visual	guifg=#F6F929 guibg=#448844 gui=none
 hi VisualNOS	guifg=#cccccc guibg=#000000
 hi WarningMsg	guifg=#F6F929 guibg=#000000
@@ -49,7 +49,7 @@ hi Comment	guifg=#cccccc "guifg=#c67ff4
 hi Constant	guifg=#c67ff4 gui=bold,underline "guifg=#fd35fa gui=none
 hi Identifier	guifg=#F6F929
 hi Statement	guifg=#aaef64 gui=none
-"hi MatchParen guifg=#000000 guibg=#5e9aff 
+"hi MatchParen guifg=#000000 guibg=#5e9aff
 
 "Procedure name
 hi Function     guifg=#F6F929 gui=bold

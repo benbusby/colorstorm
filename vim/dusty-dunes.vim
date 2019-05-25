@@ -20,11 +20,11 @@ hi DiffChange	guifg=#f6d56a guibg=#3a553a gui=none
 hi DiffDelete	guifg=#223322 guibg=#223322 gui=none
 hi DiffText	guifg=#f6d56a guibg=#448844 gui=bold
 hi ErrorMsg	guifg=#ee1111 guibg=#0e0900
-hi VertSplit	guifg=#223322 guibg=#223322
+hi VertSplit	guifg=#0e0900 guibg=#f9e4a1
 hi Folded	guifg=#FFE17F guibg=#0e0900
 hi FoldColumn	guifg=#557755 guibg=#102010
 hi IncSearch	guifg=#3a553a guibg=#f6d56a gui=none
-hi LineNr	guifg=#446644 guibg=#0e0900 " guifg=#446644 guibg=#0e0900 gui=none
+hi LineNr	guifg=#666644 guibg=#0e0900 " guifg=#446644 guibg=#0e0900 gui=none
 hi ModeMsg	guifg=#FFE17F guibg=#0e0900
 hi MoreMsg	guifg=#FFE17F guibg=#0e0900
 hi Normal	guifg=#f9e4a1 guibg=#0e0900 " guifg=#d8bf6d guifg=#ead286
@@ -38,7 +38,7 @@ hi Special	guifg=#ffefbe " guibg=#223333 gui=bold
 hi StatusLine	guifg=#ffd754 guibg=#447f55 gui=bold
 hi StatusLineNC term=bold cterm=bold,underline ctermfg=green ctermbg=Black
 hi StatusLineNC term=bold gui=bold,underline guifg=#3a553a  guibg=Black
-hi Title	guifg=#f6d56a guibg=#223322 gui=bold
+hi Title	guifg=#f6d56a guibg=#0e0900 gui=bold
 hi Visual	guifg=#0e0900 guibg=#ffe17f gui=none
 hi VisualNOS	guifg=#FFE17F guibg=#0e0900
 hi WarningMsg	guifg=#f6d56a guibg=#0e0900

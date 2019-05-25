@@ -3,19 +3,15 @@ hi clear
 if exists("syntax_on")
   syntax reset
 endif
-let g:colors_name = 'ghost'
+let g:colors_name = 'earthbound'
 
 hi Cursor	guifg=#1c0037 guibg=#fafd51
 hi lCursor	guifg=#1c0037 guibg=#fafd51
 hi CursorLine	guibg=#1c0037 gui=underline
 hi CursorIM	guifg=#1c0037 guibg=#fafd51
 hi Directory	guifg=#fafd51 guibg=#1c0037 gui=bold
-"hi DiffAdd	guifg=#fafd51 guibg=#3a553a gui=none
-"hi DiffChange	guifg=#fafd51 guibg=#3a553a gui=none
-"hi DiffDelete	guifg=#223322 guibg=#223322 gui=none
-"hi DiffText	guifg=#fafd51 guibg=#448844 gui=bold
 hi ErrorMsg	guifg=#ee1111 guibg=#1c0037
-hi VertSplit	guifg=#223322 guibg=#223322
+hi VertSplit	guifg=#1c0037 guibg=#aaaaaa
 hi Folded	guifg=#cccccc guibg=#1c0037
 hi FoldColumn	guifg=#557755 guibg=#102010
 hi IncSearch	guifg=#3a553a guibg=#fafd51 gui=none
@@ -33,7 +29,7 @@ hi Special	guifg=#ffd69b guibg=#1c0037 gui=bold
 hi StatusLine	guifg=#88ee99 guibg=#447f55 gui=bold
 hi StatusLineNC term=bold cterm=bold,underline ctermfg=green ctermbg=Black
 hi StatusLineNC term=bold gui=bold,underline guifg=#3a553a  guibg=Black
-hi Title	guifg=#fafd51 guibg=#223322 gui=bold
+hi Title	guifg=#fafd51 guibg=#1c0037 gui=bold
 hi Visual	guifg=#fafd51 guibg=#448844 gui=none
 hi VisualNOS	guifg=#cccccc guibg=#1c0037
 hi WarningMsg	guifg=#fafd51 guibg=#1c0037

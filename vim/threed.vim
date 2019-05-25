@@ -3,19 +3,15 @@ hi clear
 if exists("syntax_on")
   syntax reset
 endif
-let g:colors_name = 'ghost'
+let g:colors_name = 'threed'
 
 hi Cursor	guifg=#303454 guibg=#ded7ff
 hi lCursor	guifg=#303454 guibg=#ded7ff
 hi CursorLine	guibg=#303454 gui=underline
 hi CursorIM	guifg=#303454 guibg=#ded7ff
 hi Directory	guifg=#ded7ff guibg=#303454 gui=bold
-"hi DiffAdd	guifg=#ded7ff guibg=#3a553a gui=none
-"hi DiffChange	guifg=#ded7ff guibg=#3a553a gui=none
-"hi DiffDelete	guifg=#223322 guibg=#223322 gui=none
-"hi DiffText	guifg=#ded7ff guibg=#448844 gui=bold
 hi ErrorMsg	guifg=#ee1111 guibg=#303454
-hi VertSplit	guifg=#223322 guibg=#223322
+hi VertSplit	guifg=#303454 guibg=#aaaaaa
 hi Folded	guifg=#cccccc guibg=#303454
 hi FoldColumn	guifg=#557755 guibg=#102010
 hi IncSearch	guifg=#3a553a guibg=#ded7ff gui=none
@@ -33,7 +29,7 @@ hi Special	guifg=#2fff89 guibg=#303454 gui=bold
 hi StatusLine	guifg=#88ee99 guibg=#447f55 gui=bold
 hi StatusLineNC term=bold cterm=bold,underline ctermfg=green ctermbg=Black
 hi StatusLineNC term=bold gui=bold,underline guifg=#3a553a  guibg=Black
-hi Title	guifg=#ded7ff guibg=#223322 gui=bold
+hi Title	guifg=#ded7ff guibg=#303454 gui=bold
 hi Visual	guifg=#ded7ff guibg=#448844 gui=none
 hi VisualNOS	guifg=#cccccc guibg=#303454
 hi WarningMsg	guifg=#ded7ff guibg=#303454
