@@ -5,16 +5,16 @@ if exists("syntax_on")
 endif
 let g:colors_name = 'threed'
 
-hi Cursor	guifg=#303454 guibg=#ded7ff
-hi lCursor	guifg=#303454 guibg=#ded7ff
+hi Cursor	guifg=#303454 guibg=#d4cbff
+hi lCursor	guifg=#303454 guibg=#d4cbff
 hi CursorLine	guibg=#303454 gui=underline
-hi CursorIM	guifg=#303454 guibg=#ded7ff
-hi Directory	guifg=#ded7ff guibg=#303454 gui=bold
+hi CursorIM	guifg=#303454 guibg=#d4cbff
+hi Directory	guifg=#d4cbff guibg=#303454 gui=bold
 hi ErrorMsg	guifg=#ee1111 guibg=#303454
 hi VertSplit	guifg=#303454 guibg=#aaaaaa
 hi Folded	guifg=#cccccc guibg=#303454
 hi FoldColumn	guifg=#557755 guibg=#102010
-hi IncSearch	guifg=#3a553a guibg=#ded7ff gui=none
+hi IncSearch	guifg=#3a553a guibg=#d4cbff gui=none
 hi LineNr	guifg=#aaaaaa guibg=#303454 " guifg=#446644 guibg=#303454 gui=none
 hi ModeMsg	guifg=#cccccc guibg=#303454
 hi MoreMsg	guifg=#cccccc guibg=#303454
@@ -29,28 +29,28 @@ hi Special	guifg=#2fff89 guibg=#303454 gui=bold
 hi StatusLine	guifg=#88ee99 guibg=#447f55 gui=bold
 hi StatusLineNC term=bold cterm=bold,underline ctermfg=green ctermbg=Black
 hi StatusLineNC term=bold gui=bold,underline guifg=#3a553a  guibg=Black
-hi Title	guifg=#ded7ff guibg=#303454 gui=bold
-hi Visual	guifg=#ded7ff guibg=#448844 gui=none
+hi Title	guifg=#d4cbff guibg=#303454 gui=bold
+hi Visual	guifg=#d4cbff guibg=#448844 gui=none
 hi VisualNOS	guifg=#cccccc guibg=#303454
-hi WarningMsg	guifg=#ded7ff guibg=#303454
-hi WildMenu	guifg=#3a553a guibg=#ded7ff
+hi WarningMsg	guifg=#d4cbff guibg=#303454
+hi WildMenu	guifg=#3a553a guibg=#d4cbff
 hi Number	guifg=#2fff89 guibg=#303454 gui=underline
-hi Char		guifg=#ded7ff guibg=#303454
+hi Char		guifg=#d4cbff guibg=#303454
 hi String	guifg=#ffcf32 guibg=#303454 gui=italic
-hi Boolean	guifg=#ded7ff guibg=#303454
+hi Boolean	guifg=#d4cbff guibg=#303454
 hi Comment	guifg=#cccccc "guifg=#c67ff4
 hi Constant	guifg=#c67ff4 gui=bold,underline "guifg=#fd35fa gui=none
-hi Identifier	guifg=#ded7ff
+hi Identifier	guifg=#d4cbff
 hi Statement	guifg=#2fff89 gui=none
 "hi MatchParen guifg=#303454 guibg=#5e9aff
 
 "Procedure name
-hi Function     guifg=#ded7ff gui=bold
+hi Function     guifg=#d4cbff gui=bold
 
 "Define, def
-hi PreProc	guifg=#ded7ff gui=bold
-hi Type		guifg=#ded7ff gui=bold
-hi Underlined	guifg=#ded7ff gui=underline
+hi PreProc	guifg=#d4cbff gui=bold
+hi Type		guifg=#d4cbff gui=bold
+hi Underlined	guifg=#d4cbff gui=underline
 hi Error	guifg=#ee1111 guibg=#303454
 hi Todo		guifg=#223322 guibg=#cccccc gui=none
 hi SignColumn   guibg=#303454
@@ -58,7 +58,7 @@ hi SignColumn   guibg=#303454
 if version >= 700
   " Pmenu
   hi Pmenu	guibg=#222222
-  hi PmenuSel	guibg=#3a553a guifg=#ded7ff
+  hi PmenuSel	guibg=#3a553a guifg=#d4cbff
   hi PmenuSbar	guibg=#222222
 
   " Tab
