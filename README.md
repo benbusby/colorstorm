@@ -1,5 +1,6 @@
-![Earthbound Themes](images/earthbound_themes_alt.png)
+![Earthbound Themes](images/earthbound_themes.png)
 ____
+![Earthbound Themes Preview](images/earthbound_themes_preview.png)
 :art: *Code editor themes inspired by the awesome, bizarre locations from the SNES game [Earthbound (aka Mother 2)](https://en.wikipedia.org/wiki/EarthBound).* <br><br>**Available now for Vim, VSCode, Atom, Sublime, and more!**
 ___
 ## Current Themes
