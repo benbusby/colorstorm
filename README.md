@@ -13,14 +13,15 @@ ___
 
 Each theme is modeled after an iconic location in the game, and all color themes follow the AA/AAA color accessibility guidelines for all font sizes.
 
-## Screenshots
-
 ## Currently Supported Editors
 - Vim
 - VSCode
 - Atom
 - Sublime
+- IntelliJ (work in progress)
 - More coming soon!
+
+## Screenshots
 
 ## Contributing
 Contributions and PRs are highly encouraged, as there are plenty of editors out there that I don't use but would like to support with these themes. There are also lots of other locations in the game that could make for a good color scheme, so feel free to submit your own ideas as well!
