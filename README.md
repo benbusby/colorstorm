@@ -23,6 +23,8 @@ Each theme is modeled after an iconic location in the game, and all color themes
   - ![#70caff](https://placehold.it/15/70caff/000000?text=+) `#70caff`
   - ![#abdcdc](https://placehold.it/15/abdcdc/000000?text=+) `#abdcdc`
   - ![#aaaaaa](https://placehold.it/15/aaaaaa/000000?text=+) `#aaaaaa`
+  
+![Earthbound Screenshot](images/earthbound_screenshot.png)
 
 #### Moonside
 - Colors:
@@ -35,6 +37,8 @@ Each theme is modeled after an iconic location in the game, and all color themes
   - ![#aaef64](https://placehold.it/15/aaef64/000000?text=+) `#aaef64`
   - ![#5e9aff](https://placehold.it/15/5e9aff/000000?text=+) `#5e9aff`
   
+![Moonside Screenshot](images/moonside_screenshot.png)
+  
 #### Zombie Threed
 - Colors:
   - ![#303454](https://placehold.it/15/303454/000000?text=+) `#303454` (Background)
@@ -45,6 +49,8 @@ Each theme is modeled after an iconic location in the game, and all color themes
   - ![#2fff89](https://placehold.it/15/2fff89/000000?text=+) `#2fff89`
   - ![#f89070](https://placehold.it/15/f89070/000000?text=+) `#f89070`
   - ![#aaaaaa](https://placehold.it/15/aaaaaa/000000?text=+) `#aaaaaa`
+  
+![Zombie Threed Screenshot](images/threed_screenshot.png)
   
 #### Fire Spring
 - Colors:
@@ -57,6 +63,8 @@ Each theme is modeled after an iconic location in the game, and all color themes
   - ![#a99ade](https://placehold.it/15/a99ade/000000?text=+) `#a99ade`
   - ![#d992ff](https://placehold.it/15/d992ff/000000?text=+) `#d992ff`
   
+![Fire Spring Screenshot](images/fire_spring_screenshot.png)
+  
 #### Dusty Dunes
 - Colors:
   - ![#0e0900](https://placehold.it/15/0e0900/000000?text=+) `#0e0900` (Background)
@@ -66,6 +74,8 @@ Each theme is modeled after an iconic location in the game, and all color themes
   - ![#ffd03c](https://placehold.it/15/ffd03c/000000?text=+) `#ffd03c`
   - ![#f6d56a](https://placehold.it/15/f6d56a/000000?text=+) `#f6d56a`
   - ![#666644](https://placehold.it/15/666644/000000?text=+) `#666644`
+  
+![Dusty Dunes Screenshot](images/dusty_dunes_screenshot.png)
   
 #### Magicant (Light Theme)
 - Colors:
@@ -78,6 +88,8 @@ Each theme is modeled after an iconic location in the game, and all color themes
   - ![#604633](https://placehold.it/15/604633/000000?text=+) `#604633`
   - ![#9d02f2](https://placehold.it/15/9d02f2/000000?text=+) `#9d02f2`
   
+![Magicant Screenshot](images/magicant_screenshot.png)
+  
 #### Cave of the Past (Monochrome)
 - Colors:
   - ![#9db9a3](https://placehold.it/15/9db9a3/000000?text=+) `#9db9a3` (Background)
@@ -86,6 +98,8 @@ Each theme is modeled after an iconic location in the game, and all color themes
   - ![#2b342a](https://placehold.it/15/2b342a/000000?text=+) `#2b342a`
   - ![#293d29](https://placehold.it/15/293d29/000000?text=+) `#293d29`
   - ![#445046](https://placehold.it/15/445046/000000?text=+) `#445046`
+  
+![Cave of the Past Screenshot](images/cave_screenshot.png)
 
 ## Currently Supported Editors
 - Vim
