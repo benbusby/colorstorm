@@ -2,7 +2,8 @@
     "name": "earthbound-themes",
     "displayName": "Earthbound Themes",
     "description": "Unique color themes inspired by the SNES game Earthbound",
-    "version": "0.0.1",
+    "version": "1.0.0",
+    "publisher": "benbusby",
     "license": "MIT",
     "repository": {
         "type": "git",
@@ -20,7 +21,9 @@
         "Super Nintendo",
         "Accessible Theme",
         "Vibrant",
-        "Video Game"
+        "Video Game",
+        "Monochrome",
+        "Night Theme"
     ],
     "scripts": {
         "publish": "vsce publish"
