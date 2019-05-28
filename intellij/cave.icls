@@ -9,7 +9,7 @@
     <option name="ANNOTATIONS_MERGED_COLOR" value="#596357" />
     <option name="CARET_COLOR" value="#697267" />
     <option name="CARET_ROW_COLOR" value="#90aa96" />
-    <option name="CONSOLE_BACKGROUND_KEY" value="#9DB9A3" />
+    <option name="CONSOLE_BACKGROUND_KEY" value="#b0d0b8" />
     <option name="FILESTATUS_ADDED" value="#2b342a"/>
     <option name="FILESTATUS_COPIED" value="#495447"/>
     <option name="FILESTATUS_IDEA_FILESTATUS_IGNORED" value="#445046"/>
@@ -21,7 +21,7 @@
     <option name="LINE_NUMBERS_COLOR" value="#495447" />
     <option name="METHOD_SEPARATORS_COLOR" value="#90aa96" />
     <option name="MODIFIED_LINES_COLOR" value="bccff9" />
-    <option name="NOTIFICATION_BACKGROUND" value="#9DB9A3" />
+    <option name="NOTIFICATION_BACKGROUND" value="#b0d0b8" />
     <option name="READONLY_FRAGMENT_BACKGROUND" value="" />
     <option name="RIGHT_MARGIN_COLOR" value="#90aa96" />
     <option name="SELECTED_INDENT_GUIDE" value="#495447" />
@@ -715,7 +715,7 @@
     <option name="DART_CONSTRUCTOR">
      <value>
     <option name="FOREGROUND" value="#0e1e0e" />
-    </value> 
+    </value>
     </option>
     <option name="DARTKEYWORD">
       <value>
@@ -1096,7 +1096,7 @@
     </option>
     <option name="EXECUTIONPOINT_ATTRIBUTES">
       <value>
-        <option name="FOREGROUND" value="#9DB9A3" />
+        <option name="FOREGROUND" value="#b0d0b8" />
         <option name="BACKGROUND" value="#596357" />
       </value>
     </option>
@@ -3422,7 +3422,7 @@
     <option name="TEXT">
       <value>
         <option name="FOREGROUND" value="#394537" />
-        <option name="BACKGROUND" value="#9DB9A3" />
+        <option name="BACKGROUND" value="#b0d0b8" />
       </value>
     </option>
     <option name="TEXT_SEARCH_RESULT_ATTRIBUTES">
@@ -3533,7 +3533,7 @@
     </option>
     <option name="UNMATCHED_BRACE_ATTRIBUTES">
       <value>
-        <option name="FOREGROUND" value="#9DB9A3" />
+        <option name="FOREGROUND" value="#b0d0b8" />
         <option name="BACKGROUND" value="#ff8800" />
       </value>
     </option>

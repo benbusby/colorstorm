@@ -4,7 +4,7 @@
     {
       "name": "Global settings",
       "settings": {
-        "background": "#9DB9A3",
+        "background": "#b0d0b8",
         "foreground": "#394537"
       }
     },
@@ -326,7 +326,7 @@
     {
       "name": "Global settings",
       "settings": {
-        "background": "#9DB9A3",
+        "background": "#b0d0b8",
         "foreground": "#394537"
       }
     }
@@ -347,28 +347,28 @@
     "list.highlightForeground": "#2b342a",
     "list.hoverBackground": "#FFFFFF1a",
     "list.inactiveSelectionBackground": "#FFFFFF33",
-    "activityBar.background": "#9DB9A3",
+    "activityBar.background": "#b0d0b8",
     "activityBar.foreground": "#394537",
     "activityBar.dropBackground": "#2b342a80",
     "activityBarBadge.background": "#2b342a",
     "activityBarBadge.foreground": "#ffffff",
     "badge.background": "#2b342a",
     "badge.foreground": "#ffffff",
-    "sideBar.background": "#9DB9A3",
-    "sideBarSectionHeader.background": "#9DB9A3",
+    "sideBar.background": "#b0d0b8",
+    "sideBarSectionHeader.background": "#b0d0b8",
     "editorGroup.dropBackground": "#2b342a80",
     "editorGroup.focusedEmptyBorder": "#2b342a",
-    "editorGroupHeader.tabsBackground": "#9DB9A3",
+    "editorGroupHeader.tabsBackground": "#b0d0b8",
     "tab.border": "#00000033",
     "tab.activeBorder": "#000000",
     "tab.activeForeground": "#0e1e0e",
-    "tab.inactiveBackground": "#9DB9A3",
+    "tab.inactiveBackground": "#b0d0b8",
     "tab.inactiveForeground": "#445046",
     "tab.activeModifiedBorder": "#2b342a",
     "tab.inactiveModifiedBorder": "#191f19",
     "tab.unfocusedActiveModifiedBorder": "#222921",
     "tab.unfocusedInactiveModifiedBorder": "#191f19",
-    "editor.background": "#9DB9A3",
+    "editor.background": "#b0d0b8",
     "editor.foreground": "#394537",
     "editorLineNumber.foreground": "#546658dd",
     "editorLineNumber.activeForeground": "#546658ff",
@@ -380,7 +380,7 @@
     "peekView.border": "#2b342a",
     "peekViewEditor.background": "#7d9482",
     "peekViewResult.background": "#bcdec3",
-    "peekViewTitle.background": "#9DB9A3",
+    "peekViewTitle.background": "#b0d0b8",
     "panel.background": "#bcdec3",
     "panel.border": "#FFFFFF1a",
     "panelTitle.activeBorder": "#39453780",
@@ -395,7 +395,7 @@
     "statusBarItem.remoteForeground": "#ffffff",
     "titleBar.activeBackground": "#7d9482",
     "pickerGroup.border": "#FFFFFF1a",
-    "debugToolBar.background": "#9DB9A3",
+    "debugToolBar.background": "#b0d0b8",
     "selection.background": "#798e7e",
     "editor.selectionBackground": "#798e7e",
     "editorCursor.foreground": "#0e1e0e",
