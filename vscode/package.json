@@ -3,12 +3,36 @@
     "displayName": "Earthbound Themes",
     "description": "Unique color themes inspired by the SNES game Earthbound",
     "version": "0.0.1",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/benbusby/earthbound-themes"
+    },
     "engines": {
         "vscode": "^1.34.0"
+    },
+    "keywords": [
+        "Theme",
+        "Dark Theme",
+        "Light Theme",
+        "Earthbound",
+        "SNES",
+        "Super Nintendo",
+        "Accessible Theme",
+        "Vibrant",
+        "Video Game"
+    ],
+    "scripts": {
+        "publish": "vsce publish"
+    },
+    "galleryBanner": {
+        "color": "#1c0037",
+        "theme": "dark"
     },
     "categories": [
         "Themes"
     ],
+    "icon": "vscode-icon.png",
     "contributes": {
         "themes": [
             {
@@ -38,12 +62,12 @@
             },
             {
                 "label": "Earthbound - Magicant",
-                "uiTheme": "vs-light",
+                "uiTheme": "vs",
                 "path": "./themes/magicant.json"
             },
             {
                 "label": "Earthbound - Cave of the Past",
-                "uiTheme": "vs-light",
+                "uiTheme": "vs",
                 "path": "./themes/cave.json"
             }
         ]
