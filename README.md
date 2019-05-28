@@ -92,7 +92,7 @@ Each theme is modeled after an iconic location in the game, and all color themes
   
 #### Cave of the Past (Monochrome)
 - Colors:
-  - ![#9db9a3](https://placehold.it/15/9db9a3/000000?text=+) `#9db9a3` (Background)
+  - ![#b0d0b8](https://placehold.it/15/b0d0b8/000000?text=+) `#b0d0b8` (Background)
   - ![#394537](https://placehold.it/15/394537/000000?text=+) `#394537` (Foreground)
   - ![#0e1e0e](https://placehold.it/15/0e1e0e/000000?text=+) `#0e1e0e`
   - ![#2b342a](https://placehold.it/15/2b342a/000000?text=+) `#2b342a`
