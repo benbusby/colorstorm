@@ -1,0 +1,51 @@
+{
+    "name": "earthbound-themes",
+    "displayName": "Earthbound Themes",
+    "description": "Unique color themes inspired by the SNES game Earthbound",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.34.0"
+    },
+    "categories": [
+        "Themes"
+    ],
+    "contributes": {
+        "themes": [
+            {
+                "label": "Earthbound - Main",
+                "uiTheme": "vs-dark",
+                "path": "./themes/earthbound.json"
+            },
+            {
+                "label": "Earthbound - Fire Spring",
+                "uiTheme": "vs-dark",
+                "path": "./themes/fire-spring.json"
+            },
+            {
+                "label": "Earthbound - Moonside",
+                "uiTheme": "vs-dark",
+                "path": "./themes/moonside.json"
+            },
+            {
+                "label": "Earthbound - Zombie Threed",
+                "uiTheme": "vs-dark",
+                "path": "./themes/threed.json"
+            },
+            {
+                "label": "Earthbound - Dusty Dunes",
+                "uiTheme": "vs-dark",
+                "path": "./themes/dusty-dunes.json"
+            },
+            {
+                "label": "Earthbound - Magicant",
+                "uiTheme": "vs-light",
+                "path": "./themes/magicant.json"
+            },
+            {
+                "label": "Earthbound - Cave of the Past",
+                "uiTheme": "vs-light",
+                "path": "./themes/cave.json"
+            }
+        ]
+    }
+}
