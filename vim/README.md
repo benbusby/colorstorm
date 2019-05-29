@@ -4,6 +4,11 @@
 Plugin 'benbusby/earthbound-themes', {'rtp': 'vim/'}
 ```
 
+#### vim-plug
+```
+Plug 'benbusby/earthbound-themes', {'rtp': '/vim' }
+```
+
 ## NOTE
 These vim color schemes make use of extended syntax highlighting that vim does not provide by default (in particular, function highlighting).
 
