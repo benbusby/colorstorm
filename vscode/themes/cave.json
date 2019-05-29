@@ -93,7 +93,7 @@
         "foreground": "#546658",
         "fontStyle": "italic"
       }
-    }
+    },
     {
       "name": "Class",
       "scope": "entity.name.type.class",
