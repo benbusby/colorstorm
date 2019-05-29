@@ -1,6 +1,6 @@
-![Earthbound Themes](images/earthbound_themes.png)
+![Earthbound Themes](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/earthbound_themes.png)
 ____
-![Earthbound Themes Preview](images/earthbound_themes_preview.png)
+![Earthbound Themes Preview](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/earthbound_themes_preview.png)
 :art: *Code editor themes inspired by the awesome, bizarre locations from the SNES game [Earthbound (aka Mother 2)](https://en.wikipedia.org/wiki/EarthBound).* <br><br>**Available now for Vim, VSCode, Atom, Sublime, and more!**
 ___
 ## Current Themes
@@ -24,7 +24,7 @@ Each theme is modeled after an iconic location in the game, and all color themes
   - ![#abdcdc](https://placehold.it/15/abdcdc/000000?text=+) `#abdcdc`
   - ![#aaaaaa](https://placehold.it/15/aaaaaa/000000?text=+) `#aaaaaa`
   
-![Earthbound Screenshot](images/earthbound_screenshot.png)
+![Earthbound Screenshot](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/earthbound_screenshot.png)
 
 #### Moonside
 - Colors:
@@ -37,7 +37,7 @@ Each theme is modeled after an iconic location in the game, and all color themes
   - ![#aaef64](https://placehold.it/15/aaef64/000000?text=+) `#aaef64`
   - ![#5e9aff](https://placehold.it/15/5e9aff/000000?text=+) `#5e9aff`
   
-![Moonside Screenshot](images/moonside_screenshot.png)
+![Moonside Screenshot](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/moonside_screenshot.png)
   
 #### Zombie Threed
 - Colors:
@@ -50,7 +50,7 @@ Each theme is modeled after an iconic location in the game, and all color themes
   - ![#f89070](https://placehold.it/15/f89070/000000?text=+) `#f89070`
   - ![#aaaaaa](https://placehold.it/15/aaaaaa/000000?text=+) `#aaaaaa`
   
-![Zombie Threed Screenshot](images/threed_screenshot.png)
+![Zombie Threed Screenshot](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/threed_screenshot.png)
   
 #### Fire Spring
 - Colors:
@@ -63,7 +63,7 @@ Each theme is modeled after an iconic location in the game, and all color themes
   - ![#a99ade](https://placehold.it/15/a99ade/000000?text=+) `#a99ade`
   - ![#d992ff](https://placehold.it/15/d992ff/000000?text=+) `#d992ff`
   
-![Fire Spring Screenshot](images/fire_spring_screenshot.png)
+![Fire Spring Screenshot](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/fire_spring_screenshot.png)
   
 #### Dusty Dunes
 - Colors:
@@ -75,7 +75,7 @@ Each theme is modeled after an iconic location in the game, and all color themes
   - ![#f6d56a](https://placehold.it/15/f6d56a/000000?text=+) `#f6d56a`
   - ![#666644](https://placehold.it/15/666644/000000?text=+) `#666644`
   
-![Dusty Dunes Screenshot](images/dusty_dunes_screenshot.png)
+![Dusty Dunes Screenshot](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/dusty_dunes_screenshot.png)
   
 #### Magicant (Light Theme)
 - Colors:
@@ -88,7 +88,7 @@ Each theme is modeled after an iconic location in the game, and all color themes
   - ![#604633](https://placehold.it/15/604633/000000?text=+) `#604633`
   - ![#9d02f2](https://placehold.it/15/9d02f2/000000?text=+) `#9d02f2`
   
-![Magicant Screenshot](images/magicant_screenshot.png)
+![Magicant Screenshot](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/magicant_screenshot.png)
   
 #### Cave of the Past (Monochrome)
 - Colors:
@@ -99,7 +99,7 @@ Each theme is modeled after an iconic location in the game, and all color themes
   - ![#293d29](https://placehold.it/15/293d29/000000?text=+) `#293d29`
   - ![#445046](https://placehold.it/15/445046/000000?text=+) `#445046`
   
-![Cave of the Past Screenshot](images/cave_screenshot.png)
+![Cave of the Past Screenshot](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/cave_screenshot.png)
 
 ## Currently Supported Editors
 - [Vim](vim/)
