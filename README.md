@@ -102,8 +102,8 @@ Each theme is modeled after an iconic location in the game, and all color themes
 ![Cave of the Past Screenshot](images/cave_screenshot.png)
 
 ## Currently Supported Editors
-- Vim
-- VSCode
+- [Vim](vim/)
+- [VSCode](https://marketplace.visualstudio.com/items?itemName=benbusby.earthbound-themes)
 - Atom
 - Sublime
 - IntelliJ (work in progress)
