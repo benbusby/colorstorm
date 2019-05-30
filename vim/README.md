@@ -6,7 +6,7 @@ Plugin 'benbusby/earthbound-themes', {'rtp': 'vim/'}
 
 #### vim-plug
 ```
-Plug 'benbusby/earthbound-themes', {'rtp': '/vim' }
+Plug 'benbusby/earthbound-themes', {'rtp': 'vim/' }
 ```
 
 ## NOTE
