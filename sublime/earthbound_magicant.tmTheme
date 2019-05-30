@@ -22,9 +22,9 @@
 				<key>invisibles</key>
 				<string>#3B3A32</string>
 				<key>lineHighlight</key>
-				<string>#3E3D32</string>
+				<string>#E3E37F</string>
 				<key>selection</key>
-				<string>#49483E</string>
+				<string>#C8B5FF</string>
 			</dict>
 		</dict>
 		<dict>
@@ -296,7 +296,7 @@
 	<key>colorSpaceName</key>
 	<string>sRGB</string>
 	<key>semanticClass</key>
-	<string>theme.dark.earthbound_moonside</string>
+	<string>theme.light.earthbound_magicant</string>
 	<key>author</key>
 	<string>Ben Busby</string>
 </dict>

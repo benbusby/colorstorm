@@ -22,9 +22,9 @@
 				<key>invisibles</key>
 				<string>#3B3A32</string>
 				<key>lineHighlight</key>
-				<string>#3E3D32</string>
+				<string>#585C85</string>
 				<key>selection</key>
-				<string>#49483E</string>
+				<string>#326B3C</string>
 			</dict>
 		</dict>
 		<dict>
@@ -298,7 +298,7 @@
 	<key>colorSpaceName</key>
 	<string>sRGB</string>
 	<key>semanticClass</key>
-	<string>theme.dark.earthbound_main</string>
+	<string>theme.dark.earthbound_zombie_threed</string>
 	<key>author</key>
 	<string>Ben Busby</string>
 </dict>
