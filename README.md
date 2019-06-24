@@ -3,6 +3,14 @@ ____
 ![Earthbound Themes Preview](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/earthbound_themes_preview.png)
 :art: *Code editor themes inspired by the awesome, bizarre locations from the SNES game [Earthbound (aka Mother 2)](https://en.wikipedia.org/wiki/EarthBound).* <br><br>**Available now for Vim, VSCode, Atom, Sublime, and more!**
 ___
+## Currently Supported Editors
+- [Vim](vim/)
+- [VSCode](https://marketplace.visualstudio.com/items?itemName=benbusby.earthbound-themes)
+- [Sublime](https://packagecontrol.io/packages/EarthboundThemes)
+- Atom (in progress)
+- IntelliJ (in progress)
+- More coming soon!
+
 ## Current Themes
 - Earthbound
 - Moonside
@@ -100,14 +108,6 @@ Each theme is modeled after an iconic location in the game, and all color themes
   - ![#445046](https://placehold.it/15/445046/000000?text=+) `#445046`
   
 ![Cave of the Past Screenshot](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/cave_screenshot.png)
-
-## Currently Supported Editors
-- [Vim](vim/)
-- [VSCode](https://marketplace.visualstudio.com/items?itemName=benbusby.earthbound-themes)
-- Atom
-- Sublime
-- IntelliJ (work in progress)
-- More coming soon!
 
 ## Contributing
 Contributions and PRs are highly encouraged, as there are plenty of editors out there that I don't use but would like to support with these themes. 
