@@ -3,7 +3,7 @@ ____
 ![Earthbound Themes Preview](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/earthbound_themes_preview.png)
 :art: *Code editor themes inspired by the awesome, bizarre locations from the SNES game [Earthbound (aka Mother 2)](https://en.wikipedia.org/wiki/EarthBound).* <br><br>**Available now for [Vim](vim/), [VSCode](https://marketplace.visualstudio.com/items?itemName=benbusby.earthbound-themes), [Sublime](https://packagecontrol.io/packages/EarthboundThemes), and more!**
 ___
-[![The MIT License](https://flat.badgen.net/badge/license/MIT/orange)](http://opensource.org/licenses/MIT)
+[![MIT License](https://img.shields.io/github/license/benbusby/earthbound-themes.svg)](http://opensource.org/licenses/MIT)
 [![GitHub release](https://img.shields.io/github/release/benbusby/earthbound-themes.svg)](https://github.com/benbusby/earthbound-themes/releases/)
 [![VSCode Installs](https://img.shields.io/visual-studio-marketplace/i/benbusby.earthbound-themes.svg)](https://marketplace.visualstudio.com/items?itemName=benbusby.earthbound-themes)
 
