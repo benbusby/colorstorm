@@ -1,7 +1,7 @@
 ![Earthbound Themes](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/earthbound_themes.png)
 ____
 ![Earthbound Themes Preview](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/earthbound_themes_preview.png)
-:art: *Code editor themes inspired by the awesome, bizarre locations from the SNES game [Earthbound (aka Mother 2)](https://en.wikipedia.org/wiki/EarthBound).* <br><br>**Available now for [Vim](vim/), [VSCode](https://marketplace.visualstudio.com/items?itemName=benbusby.earthbound-themes), [Sublime](https://packagecontrol.io/packages/EarthboundThemes), and more!**
+:art: *Code editor themes inspired by the memorable and bizarre locations from the SNES game [Earthbound (aka Mother 2)](https://en.wikipedia.org/wiki/EarthBound).* <br><br>**Available now for [Vim](vim/), [VSCode](https://marketplace.visualstudio.com/items?itemName=benbusby.earthbound-themes), [Sublime](https://packagecontrol.io/packages/EarthboundThemes), and [Atom](https://atom.io/themes/earthbound-syntax)!**
 ___
 [![MIT License](https://img.shields.io/github/license/benbusby/earthbound-themes.svg)](http://opensource.org/licenses/MIT)
 [![GitHub release](https://img.shields.io/github/release/benbusby/earthbound-themes.svg)](https://github.com/benbusby/earthbound-themes/releases/)
@@ -109,14 +109,35 @@ Each theme is modeled after an iconic location in the game, and all color themes
 - [Vim](vim/)
 - [VSCode](https://marketplace.visualstudio.com/items?itemName=benbusby.earthbound-themes)
 - [Sublime](https://packagecontrol.io/packages/EarthboundThemes)
-- Atom (in progress)
+- [Atom](https://atom.io/themes/earthbound-syntax)
 - IntelliJ (in progress)
 - More coming soon!
 
+## Installation
+### Vim
+#### Vundle
+```
+Plugin 'benbusby/earthbound-themes', {'rtp': 'vim/'}
+```
+
+#### vim-plug
+```
+Plug 'benbusby/earthbound-themes', {'rtp': 'vim/' }
+```
+
+### Visual Studio Code
+Install through [the online marketplace](https://marketplace.visualstudio.com/items?itemName=benbusby.earthbound-themes), or by searching "Earthbound" in the extension manager in VSCode and installing from there.
+
+### Sublime
+Install through Sublime by searching "EarthboundThemes" ([package info available here](https://packagecontrol.io/packages/EarthboundThemes)).
+
+### Atom
+Install through [atom's online package site](https://atom.io/themes/earthbound-syntax), or by opening Atom and searching for "Earthbound" in Themes.
+
 ## Contributing
-Contributions and PRs are highly encouraged, as there are plenty of editors out there that I don't use but would like to support with these themes. 
+Contributions and PRs are highly encouraged for improvements, new color themes, support for other editors, etc.
 
-There are also a lot of other locations in the game that could make for a good color scheme, so feel free to create a PR with your own ideas as well!
-
-## Issues
 If there are any issues with the color schemes, or if one of them has poor contrast in a particular setting, please let me know by [opening an issue](https://github.com/benbusby/earthbound-themes/issues/new).
+
+## Credits
+- Atom theme switcher adapted from Dayle Rees' Rainglow themes for Atom (https://github.com/rainglow/atom)
