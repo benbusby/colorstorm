@@ -18,6 +18,14 @@ ___
 
 Each theme is modeled after an iconic location in the game, and all color themes follow the AA/AAA color accessibility guidelines for all font sizes.
 
+### (New) "Darker" Themes
+- Earthbound Darker
+- Zombie Threed Darker
+- Dusty Dunes Darker
+- Fire Spring Darker
+
+These themes are nearly identical to their "regular" theme counterparts, but use a dark gray background to create more contrast with the syntax colors.
+
 #### Earthbound
 - Colors:
   - ![#1c0037](https://placehold.it/15/1c0037/000000?text=+) `#1c0037` (Background)
