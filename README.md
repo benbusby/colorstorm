@@ -26,7 +26,7 @@ Each theme is modeled after an iconic location in the game, and all color themes
 
 These themes are nearly identical to their "regular" theme counterparts, but use a dark gray background to create more contrast with the syntax colors.
 
-#### Earthbound
+#### Earthbound / Earthbound Darker
 - Colors:
   - ![#1c0037](https://placehold.it/15/1c0037/000000?text=+) `#1c0037` (Background)
   - ![#ffffff](https://placehold.it/15/ffffff/000000?text=+) `#ffffff` (Foreground)
@@ -51,7 +51,7 @@ These themes are nearly identical to their "regular" theme counterparts, but use
 
 ![Moonside Screenshot](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/moonside_screenshot.png)
 
-#### Zombie Threed
+#### Zombie Threed / Zombie Threed Darker
 - Colors:
   - ![#303454](https://placehold.it/15/303454/000000?text=+) `#303454` (Background)
   - ![#f0faff](https://placehold.it/15/f0faff/000000?text=+) `#f0faff` (Foreground)
@@ -64,7 +64,7 @@ These themes are nearly identical to their "regular" theme counterparts, but use
 
 ![Zombie Threed Screenshot](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/threed_screenshot_darkalt.png)
 
-#### Fire Spring
+#### Fire Spring / Fire Spring Darker
 - Colors:
   - ![#181020](https://placehold.it/15/181020/000000?text=+) `#181020` (Background)
   - ![#ffffca](https://placehold.it/15/ffffca/000000?text=+) `#ffffca` (Foreground)
@@ -77,7 +77,7 @@ These themes are nearly identical to their "regular" theme counterparts, but use
 
 ![Fire Spring Screenshot](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/fire_spring_screenshot_darkalt.png)
 
-#### Dusty Dunes
+#### Dusty Dunes / Dusty Dunes Darker
 - Colors:
   - ![#0e0900](https://placehold.it/15/0e0900/000000?text=+) `#0e0900` (Background)
   - ![#f9e4a1](https://placehold.it/15/f9e4a1/000000?text=+) `#f9e4a1` (Foreground)
