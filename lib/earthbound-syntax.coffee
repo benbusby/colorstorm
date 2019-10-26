@@ -5,11 +5,15 @@ module.exports =
       type: 'string',
       default: 'fire-spring-syntax',
       enum: ['fire-spring-syntax',
+      'fire-spring-darker-syntax',
       'earthbound-syntax',
+      'earthbound-darker-syntax',
       'dusty-dunes-syntax',
+      'dusty-dunes-darker-syntax',
       'magicant-light-syntax',
       'cave-of-the-past-light-syntax',
       'zombie-threed-syntax',
+      'zombie-threed-darker-syntax',
       'moonside-syntax'
       ]
 
