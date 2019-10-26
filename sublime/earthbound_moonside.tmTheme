@@ -37,7 +37,7 @@
 				<key>foreground</key>
 				<string>#AAAAAA</string>
 				<key>background</key>
-				<string>#0E090000</string>
+				<string>#00000000</string>
 			</dict>
 		</dict>
 		<dict>

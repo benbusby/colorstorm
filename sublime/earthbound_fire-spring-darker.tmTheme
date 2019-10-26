@@ -7,24 +7,24 @@
 <plist version="1.0">
 <dict>
 	<key>name</key>
-	<string>Earthbound - Main</string>
+	<string>Earthbound - Fire Spring</string>
 	<key>settings</key>
 	<array>
 		<dict>
 			<key>settings</key>
 			<dict>
 				<key>background</key>
-				<string>#1C0037</string>
+				<string>#080808</string>
 				<key>caret</key>
 				<string>#F8F8F0</string>
 				<key>foreground</key>
-				<string>#FFFFFF</string>
+				<string>#FFFFCA</string>
 				<key>invisibles</key>
 				<string>#3B3A32</string>
 				<key>lineHighlight</key>
-				<string>#37006c</string>
+				<string>#312240</string>
 				<key>selection</key>
-				<string>#747A00</string>
+				<string>#403621</string>
 			</dict>
 		</dict>
 		<dict>
@@ -35,9 +35,9 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#666644</string>
+				<string>#AAAAAA</string>
 				<key>background</key>
-				<string>#1C003700</string>
+				<string>#08080800</string>
 			</dict>
 		</dict>
 		<dict>
@@ -48,7 +48,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#FB967F</string>
+				<string>#D9C400</string>
 			</dict>
 		</dict>
 		<dict>
@@ -59,7 +59,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#FAFD51</string>
+				<string>#F0E500</string>
 				<key>fontStyle</key>
 				<string> underline</string>
 			</dict>
@@ -72,7 +72,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#FAFD51</string>
+				<string>#F0E500</string>
 			</dict>
 		</dict>
 		<dict>
@@ -83,7 +83,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#FAFD51</string>
+				<string>#F0E500</string>
 			</dict>
 		</dict>
 		<dict>
@@ -94,7 +94,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#70CAFF</string>
+				<string>#A99ADE</string>
 			</dict>
 		</dict>
 		<dict>
@@ -105,7 +105,7 @@
 			<key>settings</key>
 			<dict>
 				<key>foreground</key>
-				<string>#70CAFF</string>
+				<string>#A99ADE</string>
 			</dict>
 		</dict>
 		<dict>
@@ -118,7 +118,7 @@
 				<key>fontStyle</key>
 				<string></string>
 				<key>foreground</key>
-				<string>#70CAFF</string>
+				<string>#A99ADE</string>
 			</dict>
 		</dict>
 		<dict>
@@ -131,7 +131,7 @@
 				<key>fontStyle</key>
 				<string>italic</string>
 				<key>foreground</key>
-				<string>#25FF81</string>
+				<string>#D992FF</string>
 			</dict>
 		</dict>
 		<dict>
@@ -141,10 +141,10 @@
 			<string>entity.name.class</string>
 			<key>settings</key>
 			<dict>
-				<key>fontStyle</key>
-				<string>underline</string>
 				<key>foreground</key>
-				<string>#25FF81</string>
+				<string>#D992FF</string>
+				<key>fontStyle</key>
+				<string> underline</string>
 			</dict>
 		</dict>
 		<dict>
@@ -157,7 +157,7 @@
 				<key>fontStyle</key>
 				<string>italic underline</string>
 				<key>foreground</key>
-				<string>#25FF81</string>
+				<string>#D992FF</string>
 			</dict>
 		</dict>
 		<dict>
@@ -167,10 +167,8 @@
 			<string>entity.name.function</string>
 			<key>settings</key>
 			<dict>
-				<key>fontStyle</key>
-				<string></string>
 				<key>foreground</key>
-				<string>#25FF81</string>
+				<string>#F0E500</string>
 			</dict>
 		</dict>
 		<dict>
@@ -181,9 +179,9 @@
 			<key>settings</key>
 			<dict>
 				<key>fontStyle</key>
-				<string>italic</string>
+				<string>italic </string>
 				<key>foreground</key>
-				<string>#25FF81</string>
+				<string>#F0E500</string>
 			</dict>
 		</dict>
 		<dict>
@@ -196,7 +194,7 @@
 				<key>fontStyle</key>
 				<string></string>
 				<key>foreground</key>
-				<string>#FAFD51</string>
+				<string>#74E4F3</string>
 			</dict>
 		</dict>
 		<dict>
@@ -209,7 +207,7 @@
 				<key>fontStyle</key>
 				<string></string>
 				<key>foreground</key>
-				<string>#FAFD51</string>
+				<string>#74E4F3</string>
 			</dict>
 		</dict>
 		<dict>
@@ -222,7 +220,7 @@
 				<key>fontStyle</key>
 				<string></string>
 				<key>foreground</key>
-				<string>#FAFD51</string>
+				<string>#74E4F3</string>
 			</dict>
 		</dict>
 		<dict>
@@ -235,7 +233,7 @@
 				<key>fontStyle</key>
 				<string></string>
 				<key>foreground</key>
-				<string>#FAFD51</string>
+				<string>#74E4F3</string>
 			</dict>
 		</dict>
 		<dict>
@@ -248,7 +246,7 @@
 				<key>fontStyle</key>
 				<string>italic</string>
 				<key>foreground</key>
-				<string>#FAFD51</string>
+				<string>#74E4F3</string>
 			</dict>
 		</dict>
 		<dict>
@@ -261,7 +259,7 @@
 				<key>fontStyle</key>
 				<string></string>
 				<key>foreground</key>
-				<string>#FAFD51</string>
+				<string>#74E4F3</string>
 			</dict>
 		</dict>
 		<dict>
@@ -298,7 +296,7 @@
 	<key>colorSpaceName</key>
 	<string>sRGB</string>
 	<key>semanticClass</key>
-	<string>theme.dark.earthbound_main</string>
+	<string>theme.dark.earthbound_fire_spring</string>
 	<key>author</key>
 	<string>Ben Busby</string>
 </dict>
