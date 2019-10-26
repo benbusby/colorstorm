@@ -1,8 +1,11 @@
 ![Earthbound Themes](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/earthbound_themes.png)
 ____
 ![Earthbound Themes Preview](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/earthbound_themes_preview.png)
-<br>*VSCode themes inspired by the awesome, bizarre locations from the SNES game [Earthbound (aka Mother 2)](https://en.wikipedia.org/wiki/EarthBound).* <br><br>**Also available for Vim, Atom, Sublime, and more!**
+:art: *Code editor themes inspired by the memorable and bizarre locations from [Earthbound (aka Mother 2)](https://en.wikipedia.org/wiki/EarthBound).* <br><br>**Available now for [Vim](vim/), [VSCode](https://marketplace.visualstudio.com/items?itemName=benbusby.earthbound-themes), [Sublime](https://packagecontrol.io/packages/EarthboundThemes), and [Atom](https://atom.io/themes/earthbound-syntax)!**
 ___
+[![MIT License](https://img.shields.io/github/license/benbusby/earthbound-themes.svg)](http://opensource.org/licenses/MIT)
+[![GitHub release](https://img.shields.io/github/release/benbusby/earthbound-themes.svg)](https://github.com/benbusby/earthbound-themes/releases/)
+[![VSCode Installs](https://img.shields.io/visual-studio-marketplace/i/benbusby.earthbound-themes.svg)](https://marketplace.visualstudio.com/items?itemName=benbusby.earthbound-themes)
 
 ## Current Themes
 - Earthbound
@@ -15,7 +18,15 @@ ___
 
 Each theme is modeled after an iconic location in the game, and all color themes follow the AA/AAA color accessibility guidelines for all font sizes.
 
-#### Earthbound
+### (New) "Darker" Themes
+- Earthbound Darker
+- Zombie Threed Darker
+- Dusty Dunes Darker
+- Fire Spring Darker
+
+These themes are nearly identical to their "regular" theme counterparts, but use a dark gray background to create more contrast with the syntax colors.
+
+#### Earthbound / Earthbound Darker
 - Colors:
   - ![#1c0037](https://placehold.it/15/1c0037/000000?text=+) `#1c0037` (Background)
   - ![#ffffff](https://placehold.it/15/ffffff/000000?text=+) `#ffffff` (Foreground)
@@ -25,7 +36,7 @@ Each theme is modeled after an iconic location in the game, and all color themes
   - ![#abdcdc](https://placehold.it/15/abdcdc/000000?text=+) `#abdcdc`
   - ![#aaaaaa](https://placehold.it/15/aaaaaa/000000?text=+) `#aaaaaa`
 
-![Earthbound Screenshot](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/earthbound_screenshot.png)
+![Earthbound Screenshot](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/earthbound_screenshot_darkalt.png)
 
 #### Moonside
 - Colors:
@@ -40,7 +51,7 @@ Each theme is modeled after an iconic location in the game, and all color themes
 
 ![Moonside Screenshot](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/moonside_screenshot.png)
 
-#### Zombie Threed
+#### Zombie Threed / Zombie Threed Darker
 - Colors:
   - ![#303454](https://placehold.it/15/303454/000000?text=+) `#303454` (Background)
   - ![#f0faff](https://placehold.it/15/f0faff/000000?text=+) `#f0faff` (Foreground)
@@ -51,9 +62,9 @@ Each theme is modeled after an iconic location in the game, and all color themes
   - ![#f89070](https://placehold.it/15/f89070/000000?text=+) `#f89070`
   - ![#aaaaaa](https://placehold.it/15/aaaaaa/000000?text=+) `#aaaaaa`
 
-![Zombie Threed Screenshot](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/threed_screenshot.png)
+![Zombie Threed Screenshot](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/threed_screenshot_darkalt.png)
 
-#### Fire Spring
+#### Fire Spring / Fire Spring Darker
 - Colors:
   - ![#181020](https://placehold.it/15/181020/000000?text=+) `#181020` (Background)
   - ![#ffffca](https://placehold.it/15/ffffca/000000?text=+) `#ffffca` (Foreground)
@@ -64,9 +75,9 @@ Each theme is modeled after an iconic location in the game, and all color themes
   - ![#a99ade](https://placehold.it/15/a99ade/000000?text=+) `#a99ade`
   - ![#d992ff](https://placehold.it/15/d992ff/000000?text=+) `#d992ff`
 
-![Fire Spring Screenshot](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/fire_spring_screenshot.png)
+![Fire Spring Screenshot](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/fire_spring_screenshot_darkalt.png)
 
-#### Dusty Dunes
+#### Dusty Dunes / Dusty Dunes Darker
 - Colors:
   - ![#0e0900](https://placehold.it/15/0e0900/000000?text=+) `#0e0900` (Background)
   - ![#f9e4a1](https://placehold.it/15/f9e4a1/000000?text=+) `#f9e4a1` (Foreground)
@@ -76,7 +87,7 @@ Each theme is modeled after an iconic location in the game, and all color themes
   - ![#f6d56a](https://placehold.it/15/f6d56a/000000?text=+) `#f6d56a`
   - ![#666644](https://placehold.it/15/666644/000000?text=+) `#666644`
 
-![Dusty Dunes Screenshot](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/dusty_dunes_screenshot.png)
+![Dusty Dunes Screenshot](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/dusty_dunes_screenshot_darkalt.png)
 
 #### Magicant (Light Theme)
 - Colors:
@@ -103,17 +114,38 @@ Each theme is modeled after an iconic location in the game, and all color themes
 ![Cave of the Past Screenshot](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/cave_screenshot.png)
 
 ## Currently Supported Editors
-- Vim
-- VSCode
-- Atom
-- Sublime
-- IntelliJ (work in progress)
+- [Vim](vim/)
+- [VSCode](https://marketplace.visualstudio.com/items?itemName=benbusby.earthbound-themes)
+- [Sublime](https://packagecontrol.io/packages/EarthboundThemes)
+- [Atom](https://atom.io/themes/earthbound-syntax)
+- IntelliJ (in progress)
 - More coming soon!
 
+## Installation
+### Vim
+#### Vundle
+```
+Plugin 'benbusby/earthbound-themes', {'rtp': 'vim/'}
+```
+
+#### vim-plug
+```
+Plug 'benbusby/earthbound-themes', {'rtp': 'vim/' }
+```
+
+### Visual Studio Code
+Install through [the online marketplace](https://marketplace.visualstudio.com/items?itemName=benbusby.earthbound-themes), or by searching "Earthbound" in the extension manager in VSCode and installing from there.
+
+### Sublime
+Install through Sublime by searching "EarthboundThemes" ([package info available here](https://packagecontrol.io/packages/EarthboundThemes)).
+
+### Atom
+Install through [atom's online package site](https://atom.io/themes/earthbound-syntax), or by opening Atom and searching for "Earthbound" in Themes.
+
 ## Contributing
-Contributions and PRs are highly encouraged, as there are plenty of editors out there that I don't use but would like to support with these themes.
+Contributions and PRs are highly encouraged for improvements, new color themes, support for other editors, etc.
 
-There are also a lot of other locations in the game that could make for a good color scheme, so feel free to create a PR with your own ideas as well!
-
-## Issues
 If there are any issues with the color schemes, or if one of them has poor contrast in a particular setting, please let me know by [opening an issue](https://github.com/benbusby/earthbound-themes/issues/new).
+
+## Credits
+- Atom theme switcher adapted from Dayle Rees' Rainglow themes for Atom (https://github.com/rainglow/atom)
