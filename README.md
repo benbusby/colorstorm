@@ -27,8 +27,8 @@ Each theme is modeled after an iconic location in the game, and all color themes
   - ![#70caff](https://placehold.it/15/70caff/000000?text=+) `#70caff`
   - ![#abdcdc](https://placehold.it/15/abdcdc/000000?text=+) `#abdcdc`
   - ![#aaaaaa](https://placehold.it/15/aaaaaa/000000?text=+) `#aaaaaa`
-  
-![Earthbound Screenshot](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/earthbound_screenshot.png)
+
+![Earthbound Screenshot](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/earthbound_screenshot_darkalt.png)
 
 #### Moonside
 - Colors:
@@ -40,9 +40,9 @@ Each theme is modeled after an iconic location in the game, and all color themes
   - ![#c67ff4](https://placehold.it/15/c67ff4/000000?text=+) `#c67ff4`
   - ![#aaef64](https://placehold.it/15/aaef64/000000?text=+) `#aaef64`
   - ![#5e9aff](https://placehold.it/15/5e9aff/000000?text=+) `#5e9aff`
-  
+
 ![Moonside Screenshot](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/moonside_screenshot.png)
-  
+
 #### Zombie Threed
 - Colors:
   - ![#303454](https://placehold.it/15/303454/000000?text=+) `#303454` (Background)
@@ -53,9 +53,9 @@ Each theme is modeled after an iconic location in the game, and all color themes
   - ![#2fff89](https://placehold.it/15/2fff89/000000?text=+) `#2fff89`
   - ![#f89070](https://placehold.it/15/f89070/000000?text=+) `#f89070`
   - ![#aaaaaa](https://placehold.it/15/aaaaaa/000000?text=+) `#aaaaaa`
-  
-![Zombie Threed Screenshot](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/threed_screenshot.png)
-  
+
+![Zombie Threed Screenshot](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/threed_screenshot_darkalt.png)
+
 #### Fire Spring
 - Colors:
   - ![#181020](https://placehold.it/15/181020/000000?text=+) `#181020` (Background)
@@ -66,9 +66,9 @@ Each theme is modeled after an iconic location in the game, and all color themes
   - ![#f0e500](https://placehold.it/15/f0e500/000000?text=+) `#f0e500`
   - ![#a99ade](https://placehold.it/15/a99ade/000000?text=+) `#a99ade`
   - ![#d992ff](https://placehold.it/15/d992ff/000000?text=+) `#d992ff`
-  
-![Fire Spring Screenshot](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/fire_spring_screenshot.png)
-  
+
+![Fire Spring Screenshot](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/fire_spring_screenshot_darkalt.png)
+
 #### Dusty Dunes
 - Colors:
   - ![#0e0900](https://placehold.it/15/0e0900/000000?text=+) `#0e0900` (Background)
@@ -78,9 +78,9 @@ Each theme is modeled after an iconic location in the game, and all color themes
   - ![#ffd03c](https://placehold.it/15/ffd03c/000000?text=+) `#ffd03c`
   - ![#f6d56a](https://placehold.it/15/f6d56a/000000?text=+) `#f6d56a`
   - ![#666644](https://placehold.it/15/666644/000000?text=+) `#666644`
-  
-![Dusty Dunes Screenshot](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/dusty_dunes_screenshot.png)
-  
+
+![Dusty Dunes Screenshot](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/dusty_dunes_screenshot_darkalt.png)
+
 #### Magicant (Light Theme)
 - Colors:
   - ![#f9f8b9](https://placehold.it/15/f9f8b9/000000?text=+) `#f9f8b9` (Background)
@@ -91,9 +91,9 @@ Each theme is modeled after an iconic location in the game, and all color themes
   - ![#87000d](https://placehold.it/15/87000d/000000?text=+) `#87000d`
   - ![#604633](https://placehold.it/15/604633/000000?text=+) `#604633`
   - ![#9d02f2](https://placehold.it/15/9d02f2/000000?text=+) `#9d02f2`
-  
+
 ![Magicant Screenshot](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/magicant_screenshot.png)
-  
+
 #### Cave of the Past (Monochrome)
 - Colors:
   - ![#b0d0b8](https://placehold.it/15/b0d0b8/000000?text=+) `#b0d0b8` (Background)
@@ -102,7 +102,7 @@ Each theme is modeled after an iconic location in the game, and all color themes
   - ![#2b342a](https://placehold.it/15/2b342a/000000?text=+) `#2b342a`
   - ![#293d29](https://placehold.it/15/293d29/000000?text=+) `#293d29`
   - ![#445046](https://placehold.it/15/445046/000000?text=+) `#445046`
-  
+
 ![Cave of the Past Screenshot](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/cave_screenshot.png)
 
 ## Currently Supported Editors
