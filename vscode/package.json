@@ -2,7 +2,7 @@
     "name": "earthbound-themes",
     "displayName": "Earthbound Themes",
     "description": "Unique color themes inspired by the SNES game Earthbound",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "publisher": "benbusby",
     "license": "MIT",
     "repository": {
@@ -44,7 +44,17 @@
                 "path": "./themes/earthbound.json"
             },
             {
+                "label": "Earthbound - Main (Darker)",
+                "uiTheme": "vs-dark",
+                "path": "./themes/earthbound.json"
+            },
+            {
                 "label": "Earthbound - Fire Spring",
+                "uiTheme": "vs-dark",
+                "path": "./themes/fire-spring.json"
+            },
+            {
+                "label": "Earthbound - Fire Spring (Darker)",
                 "uiTheme": "vs-dark",
                 "path": "./themes/fire-spring.json"
             },
@@ -59,7 +69,17 @@
                 "path": "./themes/threed.json"
             },
             {
+                "label": "Earthbound - Zombie Threed (Darker)",
+                "uiTheme": "vs-dark",
+                "path": "./themes/threed.json"
+            },
+            {
                 "label": "Earthbound - Dusty Dunes",
+                "uiTheme": "vs-dark",
+                "path": "./themes/dusty-dunes.json"
+            },
+            {
+                "label": "Earthbound - Dusty Dunes (Darker)",
                 "uiTheme": "vs-dark",
                 "path": "./themes/dusty-dunes.json"
             },

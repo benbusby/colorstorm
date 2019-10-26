@@ -2,6 +2,14 @@
 
 All notable changes to the "earthbound-themes" extension will be documented in this file.
 
-## [Unreleased]
+## 1.1.0
+
+- Added "darker" theme alts (using neutral dark gray bg instead of colored bg) for the following themes:
+    - Earthbound
+    - Zombie Threed
+    - Dusty Dunes
+    - Fire Spring
+
+## 1.0.0
 
 - Initial release
