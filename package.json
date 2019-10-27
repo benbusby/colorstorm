@@ -2,7 +2,7 @@
   "name": "earthbound-syntax",
   "main": "./lib/earthbound-syntax",
   "theme": "syntax",
-  "version": "1.2.0",
+  "version": "1.0.0",
   "description": "A collection of unique syntax themes inspired by the SNES game Earthbound",
   "keywords": [
     "syntax",
