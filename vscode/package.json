@@ -2,7 +2,7 @@
     "name": "earthbound-themes",
     "displayName": "Earthbound Themes",
     "description": "Unique color themes inspired by the SNES game Earthbound",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "publisher": "benbusby",
     "license": "MIT",
     "repository": {
@@ -46,7 +46,7 @@
             {
                 "label": "Earthbound - Main (Darker)",
                 "uiTheme": "vs-dark",
-                "path": "./themes/earthbound.json"
+                "path": "./themes/earthbound-darker.json"
             },
             {
                 "label": "Earthbound - Fire Spring",
@@ -56,7 +56,7 @@
             {
                 "label": "Earthbound - Fire Spring (Darker)",
                 "uiTheme": "vs-dark",
-                "path": "./themes/fire-spring.json"
+                "path": "./themes/fire-spring-darker.json"
             },
             {
                 "label": "Earthbound - Moonside",
@@ -71,7 +71,7 @@
             {
                 "label": "Earthbound - Zombie Threed (Darker)",
                 "uiTheme": "vs-dark",
-                "path": "./themes/threed.json"
+                "path": "./themes/threed-darker.json"
             },
             {
                 "label": "Earthbound - Dusty Dunes",
@@ -81,7 +81,7 @@
             {
                 "label": "Earthbound - Dusty Dunes (Darker)",
                 "uiTheme": "vs-dark",
-                "path": "./themes/dusty-dunes.json"
+                "path": "./themes/dusty-dunes-darker.json"
             },
             {
                 "label": "Earthbound - Magicant",
