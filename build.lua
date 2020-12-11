@@ -143,6 +143,12 @@ local atom_path = 'atom/%s-syntax/colors.less'
 
 function generate_theme(file, theme)
   local theme_file = io.open(file, 'r')
+
+  if theme_file == nil
+    print('Unable to open ' .. file)
+    return
+  end
+
   local lines = {}
   for line in theme_file:lines() do
     for k,v in pairs(color_table[theme]) do
