@@ -1,6 +1,6 @@
 #!/usr/bin/lua
 -- Lua script for automatically building theme files
--- for vim, vscode, and sublime (atom tbd).
+-- for vim, vscode, sublime, and atom.
 
 USAGE = [[
 ./test.lua [vim, vscode, sublime]
@@ -101,7 +101,7 @@ color_table = {
   magicant={
     theme_id=uuid(),
     theme_name_full='Magicant (Light)',
-    theme_name_alt='magicant',
+    theme_name_alt='magicant-light',
     color_bg_main='#f9f8b9',
     color_bg_alt1='#efeeb2',
     color_bg_alt2='#e6e5ab',
@@ -134,27 +134,36 @@ color_files = {
   vim='vim/colors/template.vim',
   vscode='vscode/themes/template.json',
   sublime='sublime/earthbound_template.tmTheme',
+  atom='atom/colors.less'
 }
 
 -- THEME GENERATION
 
+local atom_path = 'atom/%s-syntax/colors.less'
+
 function generate_theme(file, theme)
-  local hFile = io.open(file, 'r')
+  local theme_file = io.open(file, 'r')
   local lines = {}
-  for line in hFile:lines() do
+  for line in theme_file:lines() do
     for k,v in pairs(color_table[theme]) do
       line = string.gsub(line, k, v)
     end
 
     lines[#lines + 1] = line
   end
-  hFile:close()
+  theme_file:close()
 
-  hFile = io.open(string.gsub(file, 'template', theme), 'w')
+  out_path = string.match(file, 'colors.less') and
+    string.format(atom_path, color_table[theme]['theme_name_alt']) or
+    string.gsub(file, 'template', theme)
+
+  print(out_path)
+
+  theme_file = io.open(out_path, 'w')
   for i,line in ipairs(lines) do
-    hFile:write(line, "\n")
+    theme_file:write(line, "\n")
   end
-  hFile:close()
+  theme_file:close()
 end
 
 if arg[1] == nil then
@@ -173,9 +182,11 @@ else
       local darker_theme = theme .. '_darker'
 
       color_table[darker_theme] = color_table[theme]
+      color_table[theme] = nil
+
       color_table[darker_theme]['color_bg'] = '#080808'
-      color_table[darker_theme]['theme_name'] =
-      color_table[darker_theme]['theme_name'] .. ' Darker'
+      color_table[darker_theme]['theme_name_full'] =
+      color_table[darker_theme]['theme_name_full'] .. ' Darker'
       color_table[darker_theme]['theme_name_alt'] =
       color_table[darker_theme]['theme_name_alt'] .. '-darker'
 

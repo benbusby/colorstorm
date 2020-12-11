@@ -11,7 +11,7 @@ module.exports =
       'dusty-dunes-syntax',
       'dusty-dunes-darker-syntax',
       'magicant-light-syntax',
-      'cave-of-the-past-light-syntax',
+      'cave-of-the-past-syntax',
       'zombie-threed-syntax',
       'zombie-threed-darker-syntax',
       'moonside-syntax'
