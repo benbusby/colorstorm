@@ -144,7 +144,7 @@ local atom_path = 'atom/%s-syntax/colors.less'
 function generate_theme(file, theme)
   local theme_file = io.open(file, 'r')
 
-  if theme_file == nil
+  if theme_file == nil then
     print('Unable to open ' .. file)
     return
   end
