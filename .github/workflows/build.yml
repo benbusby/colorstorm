@@ -1,0 +1,23 @@
+name: build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install dependencies
+      run: sudo apt-get install jq
+    - name: Build theme files
+      run: |
+          ./build.lua vim
+          ./build.lua vscode
+          ./build.lua sublime
+    - name: Validate theme files
+      run: for file in vscode/themes/*.json; do cat $file | jq .; done

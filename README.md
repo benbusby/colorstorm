@@ -123,15 +123,7 @@ These themes are nearly identical to their "regular" theme counterparts, but use
 
 ## Installation
 ### Vim
-#### Vundle
-```
-Plugin 'benbusby/earthbound-themes', {'rtp': 'vim/'}
-```
-
-#### vim-plug
-```
-Plug 'benbusby/earthbound-themes', {'rtp': 'vim/' }
-```
+[See instructions here](vim/)
 
 ### Visual Studio Code
 Install through [the online marketplace](https://marketplace.visualstudio.com/items?itemName=benbusby.earthbound-themes), or by searching "Earthbound" in the extension manager in VSCode and installing from there.
