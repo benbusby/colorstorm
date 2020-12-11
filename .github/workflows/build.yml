@@ -19,9 +19,9 @@ jobs:
       run: sudo apt-get install jq
     - name: Build theme files
       run: |
-          ./build.lua vim
-          ./build.lua vscode
-          ./build.lua sublime
-          ./build.lua atom
+          lua build.lua vim
+          lua build.lua vscode
+          lua build.lua sublime
+          lua build.lua atom
     - name: Validate theme files
       run: for file in vscode/themes/*.json; do cat $file | jq .; done
