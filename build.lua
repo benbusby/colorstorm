@@ -163,7 +163,8 @@ function generate_theme(file, theme)
     string.format(atom_path, color_table[theme]['theme_name_alt']) or
     string.gsub(file, 'template', theme)
 
-  print(out_path)
+  -- Ensure directory exists
+  os.execute('mkdir -p ' .. string.gsub(out_path, 'colors.less', ''))
 
   theme_file = io.open(out_path, 'w')
   for i,line in ipairs(lines) do
