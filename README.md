@@ -6,6 +6,7 @@ ___
 [![MIT License](https://img.shields.io/github/license/benbusby/earthbound-themes.svg)](http://opensource.org/licenses/MIT)
 [![GitHub release](https://img.shields.io/github/release/benbusby/earthbound-themes.svg)](https://github.com/benbusby/earthbound-themes/releases/)
 [![VSCode Installs](https://img.shields.io/visual-studio-marketplace/i/benbusby.earthbound-themes.svg)](https://marketplace.visualstudio.com/items?itemName=benbusby.earthbound-themes)
+[![build](https://github.com/benbusby/earthbound-themes/workflows/build/badge.svg)](https://github.com/benbusby/earthbound-themes/actions)
 
 ## Current Themes
 - Earthbound
