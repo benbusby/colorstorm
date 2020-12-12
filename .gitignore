@@ -1,2 +1,11 @@
 *.vsix
 *.backup
+
+vim/colors/*.vim
+!vim/colors/template.vim
+
+vscode/themes/*.json
+!vscode/themes/template.json
+
+sublime/*.tmTheme
+!sublime/earthbound_template.tmTheme

@@ -149,7 +149,7 @@ local atom_path = 'atom/%s-syntax/colors.less'
 -- using the values in color_table.
 -- @param file: The template file to use
 -- @param theme: The theme to generate a file for
-function generate_theme(file, theme)
+function generate_theme(file, name, theme)
   local is_atom = string.match(file, 'colors.less')
   local theme_file = io.open(file, 'r')
 
@@ -160,7 +160,7 @@ function generate_theme(file, theme)
 
   local lines = {}
   for line in theme_file:lines() do
-    for k,v in pairs(color_table[theme]) do
+    for k,v in pairs(theme) do
       line = string.gsub(line, k, v)
     end
 
@@ -169,8 +169,8 @@ function generate_theme(file, theme)
   theme_file:close()
 
   out_path = is_atom and
-    string.format(atom_path, color_table[theme]['theme_name_alt']) or
-    string.gsub(file, 'template', theme)
+  string.format(atom_path, theme['theme_name_alt']) or
+  string.gsub(file, 'template', name)
 
   print(out_path)
 
@@ -201,24 +201,24 @@ else
   local filename = color_files[arg[1]]
   print('=== Generating theme files for ' .. arg[1])
 
-  for theme,_ in pairs(color_table) do
-    generate_theme(filename, theme)
+  for theme, value in pairs(color_table) do
+    generate_theme(filename, theme, color_table[theme])
 
     -- A few themes can use darker variants, which replaces the background
     -- with #080808
     if darker_variants[theme] ~= nil then
-      local darker_theme = theme .. '_darker'
+      local darker_name = theme .. '_darker'
 
-      color_table[darker_theme] = color_table[theme]
-      color_table[theme] = nil
+      dark_theme = {}
+      for key, val in pairs(color_table[theme]) do
+        dark_theme[key] = val
+      end
 
-      color_table[darker_theme]['color_bg'] = '#080808'
-      color_table[darker_theme]['theme_name_full'] =
-      color_table[darker_theme]['theme_name_full'] .. ' Darker'
-      color_table[darker_theme]['theme_name_alt'] =
-      color_table[darker_theme]['theme_name_alt'] .. '-darker'
+      dark_theme['color_bg_main'] = '#080808'
+      dark_theme['theme_name_full'] = dark_theme['theme_name_full'] .. ' Darker'
+      dark_theme['theme_name_alt'] = dark_theme['theme_name_alt'] .. '-darker'
 
-      generate_theme(filename, darker_theme)
+      generate_theme(filename, darker_name, dark_theme)
     end
   end
 end

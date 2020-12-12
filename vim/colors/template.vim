@@ -16,13 +16,13 @@ hi Cursor	guifg=color_bg_main guibg=color_x3
 hi lCursor	guifg=color_bg_main guibg=color_x3
 hi CursorIM	guifg=color_bg_main guibg=color_x3
 hi Directory	guifg=color_x3 guibg=color_bg_main gui=bold
-hi ErrorMsg	guifg=#ee1111 guibg=color_bg
+hi ErrorMsg	guifg=#ee1111 guibg=color_bg_main
 hi VertSplit	guifg=color_bg_main guibg=color_x1
-hi LineNr	guifg=color_x1 guibg=color_bg
-hi ModeMsg	guifg=#cccccc guibg=color_bg
-hi MoreMsg	guifg=#cccccc guibg=color_bg
-hi Normal	guifg=color_fg guibg=color_bg
-hi Question	guifg=#cccccc guibg=color_bg
+hi LineNr	guifg=color_x1 guibg=color_bg_main
+hi ModeMsg	guifg=#cccccc guibg=color_bg_main
+hi MoreMsg	guifg=#cccccc guibg=color_bg_main
+hi Normal	guifg=color_fg guibg=color_bg_main
+hi Question	guifg=#cccccc guibg=color_bg_main
 hi Search	guifg=#223322 guibg=#cccccc gui=none
 hi NonText	guifg=#606060 gui=none
 hi SpecialKey	guifg=#707070
@@ -31,13 +31,13 @@ hi Special	guifg=color_x5 guibg=color_bg_main gui=bold
 " status line
 hi Title	guifg=color_x1 guibg=color_bg_main gui=bold
 hi Visual	guifg=color_x3 guibg=#448844 gui=none
-hi VisualNOS	guifg=#cccccc guibg=color_bg
-hi WarningMsg	guifg=color_x3 guibg=color_bg
+hi VisualNOS	guifg=#cccccc guibg=color_bg_main
+hi WarningMsg	guifg=color_x3 guibg=color_bg_main
 hi WildMenu	guifg=#3a553a guibg=color_x3
 hi Number	guifg=color_x5 guibg=color_bg_main gui=underline
-hi Char		guifg=color_x3 guibg=color_bg
+hi Char		guifg=color_x3 guibg=color_bg_main
 hi String	guifg=color_x2 guibg=color_bg_main gui=italic
-hi Boolean	guifg=color_x3 guibg=color_bg
+hi Boolean	guifg=color_x3 guibg=color_bg_main
 hi Comment	guifg=#cccccc "guifg=color_x4
 hi Constant	guifg=color_x4 gui=bold,underline
 hi Identifier	guifg=color_x3
@@ -50,9 +50,9 @@ hi Function     guifg=color_x3 gui=bold
 hi PreProc	guifg=color_x3 gui=bold
 hi Type		guifg=color_x3 gui=bold
 hi Underlined	guifg=color_x3 gui=underline
-hi Error	guifg=#ee1111 guibg=color_bg
+hi Error	guifg=#ee1111 guibg=color_bg_main
 hi Todo		guifg=#223322 guibg=#cccccc gui=none
-hi SignColumn   guibg=color_bg
+hi SignColumn   guibg=color_bg_main
 
 if version >= 700
   " Pmenu
