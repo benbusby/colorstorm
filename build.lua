@@ -19,7 +19,10 @@ end
 -- COLOR DEFINITIONS
 
 darker_variants = {
-  earthbound=1, threed=1, fire_spring=1, dusty_dunes=1
+  earthbound=1,
+  threed=1,
+  fire_spring=1,
+  dusty_dunes=1
 }
 
 color_table = {
@@ -141,7 +144,13 @@ color_files = {
 
 local atom_path = 'atom/%s-syntax/colors.less'
 
+--- Generates a formatted theme file
+-- A string replacement is performed for each line of (file)
+-- using the values in color_table.
+-- @param file: The template file to use
+-- @param theme: The theme to generate a file for
 function generate_theme(file, theme)
+  local is_atom = string.match(file, 'colors.less')
   local theme_file = io.open(file, 'r')
 
   if theme_file == nil then
@@ -159,12 +168,16 @@ function generate_theme(file, theme)
   end
   theme_file:close()
 
-  out_path = string.match(file, 'colors.less') and
+  out_path = is_atom and
     string.format(atom_path, color_table[theme]['theme_name_alt']) or
     string.gsub(file, 'template', theme)
 
+  print(out_path)
+
   -- Ensure directory exists
-  os.execute('mkdir -p ' .. string.gsub(out_path, 'colors.less', ''))
+  if is_atom then
+    os.execute('mkdir -p ' .. string.gsub(out_path, 'colors.less', ''))
+  end
 
   theme_file = io.open(out_path, 'w')
   for i,line in ipairs(lines) do
@@ -172,6 +185,8 @@ function generate_theme(file, theme)
   end
   theme_file:close()
 end
+
+-- CLI
 
 if arg[1] == nil then
   print('Error: Argument required')
@@ -182,9 +197,15 @@ elseif color_files[arg[1]] == nil then
   print(USAGE)
   os.exit(1)
 else
+  -- Get template file for theme generation
   local filename = color_files[arg[1]]
+  print('=== Generating theme files for ' .. arg[1])
+
   for theme,_ in pairs(color_table) do
     generate_theme(filename, theme)
+
+    -- A few themes can use darker variants, which replaces the background
+    -- with #080808
     if darker_variants[theme] ~= nil then
       local darker_theme = theme .. '_darker'
 
