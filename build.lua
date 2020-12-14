@@ -3,7 +3,7 @@
 -- for vim, vscode, sublime, and atom.
 
 USAGE = [[
-./test.lua [vim, vscode, sublime]
+./test.lua [vim, vscode, sublime, atom]
 ]]
 
 -- MISC UTILS
@@ -104,7 +104,7 @@ color_table = {
   magicant={
     theme_id=uuid(),
     theme_name_full='Magicant (Light)',
-    theme_name_alt='magicant-light',
+    theme_name_alt='magicant',
     color_bg_main='#f9f8b9',
     color_bg_alt1='#efeeb2',
     color_bg_alt2='#e6e5ab',
@@ -134,17 +134,17 @@ color_table = {
 }
 
 color_files = {
-  vim='vim/colors/template.vim',
-  vscode='vscode/themes/template.json',
-  sublime='sublime/earthbound_template.tmTheme',
-  atom='atom/colors.less'
+  vim='templates/template.vim',
+  vscode='templates/template.json',
+  sublime='templates/earthbound_template.tmTheme',
+  atom='templates/colors.less'
 }
 
 out_paths = {
   vim='vim/colors/%s.vim',
-  vscode='vscode/themes/%.json',
+  vscode='vscode/themes/%s.json',
   sublime='sublime/earthbound_%s.tmTheme',
-  atom='atom/%s-syntax/colors.less'
+  atom='atom/themes/%s-syntax/colors.less'
 }
 
 -- THEME GENERATION
@@ -199,7 +199,7 @@ else
   print('=== Generating theme files for ' .. arg[1])
 
   for theme, value in pairs(color_table) do
-    generate_theme(filename, theme, color_table[theme])
+    generate_theme(filename, theme, color_table[theme], out_paths[editor])
 
     -- A few themes can use darker variants, which replaces the background
     -- with #080808
