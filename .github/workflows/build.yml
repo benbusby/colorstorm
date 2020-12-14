@@ -19,6 +19,8 @@ jobs:
       run: sudo apt-get install jq
     - name: Build theme files
       run: |
+          git submodule init
+          git submodule update
           lua build.lua vim
           lua build.lua vscode
           lua build.lua sublime
