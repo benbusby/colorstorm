@@ -140,17 +140,21 @@ color_files = {
   atom='atom/colors.less'
 }
 
--- THEME GENERATION
+out_paths = {
+  vim='vim/colors/%s.vim',
+  vscode='vscode/themes/%.json',
+  sublime='sublime/earthbound_%s.tmTheme',
+  atom='atom/%s-syntax/colors.less'
+}
 
-local atom_path = 'atom/%s-syntax/colors.less'
+-- THEME GENERATION
 
 --- Generates a formatted theme file
 -- A string replacement is performed for each line of (file)
 -- using the values in color_table.
 -- @param file: The template file to use
 -- @param theme: The theme to generate a file for
-function generate_theme(file, name, theme)
-  local is_atom = string.match(file, 'colors.less')
+function generate_theme(file, name, theme, out_path)
   local theme_file = io.open(file, 'r')
 
   if theme_file == nil then
@@ -168,16 +172,8 @@ function generate_theme(file, name, theme)
   end
   theme_file:close()
 
-  out_path = is_atom and
-  string.format(atom_path, theme['theme_name_alt']) or
-  string.gsub(file, 'template', name)
-
+  out_path = string.format(out_path, theme['theme_name_alt'])
   print(out_path)
-
-  -- Ensure directory exists
-  if is_atom then
-    os.execute('mkdir -p ' .. string.gsub(out_path, 'colors.less', ''))
-  end
 
   theme_file = io.open(out_path, 'w')
   for i,line in ipairs(lines) do
@@ -198,7 +194,8 @@ elseif color_files[arg[1]] == nil then
   os.exit(1)
 else
   -- Get template file for theme generation
-  local filename = color_files[arg[1]]
+  local editor = arg[1]
+  local filename = color_files[editor]
   print('=== Generating theme files for ' .. arg[1])
 
   for theme, value in pairs(color_table) do
@@ -218,7 +215,7 @@ else
       dark_theme['theme_name_full'] = dark_theme['theme_name_full'] .. ' Darker'
       dark_theme['theme_name_alt'] = dark_theme['theme_name_alt'] .. '-darker'
 
-      generate_theme(filename, darker_name, dark_theme)
+      generate_theme(filename, darker_name, dark_theme, out_paths[editor])
     end
   end
 end
