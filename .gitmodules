@@ -1,0 +1,15 @@
+[submodule "vim"]
+	path = vim
+	url = https://github.com/benbusby/earthbound-themes-vim.git
+[submodule "sublime"]
+	path = sublime
+	url = https://github.com/benbusby/earthbound-themes-sublime.git
+[submodule "vscode"]
+	path = vscode
+	url = https://github.com/benbusby/earthbound-themes-vscode.git
+[submodule "atom"]
+	path = atom
+	url = https://github.com/benbusby/earthbound-themes-atom.git
+[submodule "intellij"]
+	path = intellij
+	url = https://github.com/benbusby/earthbound-themes-intellij.git
