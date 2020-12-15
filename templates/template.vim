@@ -14,59 +14,59 @@ if exists("syntax_on")
 endif
 let g:colors_name = 'theme_name_alt'
 
-hi Cursor	guifg=color_bg_main guibg=color_x3
-hi lCursor	guifg=color_bg_main guibg=color_x3
-hi CursorIM	guifg=color_bg_main guibg=color_x3
-hi Directory	guifg=color_x3 guibg=color_bg_main gui=bold
-hi ErrorMsg	guifg=#ee1111 guibg=color_bg_main
-hi VertSplit	guifg=color_bg_main guibg=color_x1
-hi LineNr	guifg=color_x1 guibg=color_bg_alt2
-hi ModeMsg	guifg=#cccccc guibg=color_bg_main
-hi MoreMsg	guifg=#cccccc guibg=color_bg_main
-hi Normal	guifg=color_fg guibg=color_bg_main
-hi Question	guifg=#cccccc guibg=color_bg_main
-hi Search	guifg=#223322 guibg=#cccccc gui=none
-hi NonText	guifg=#606060 gui=none
-hi SpecialKey	guifg=#707070
+hi Cursor	   guifg=color_bg_main  guibg=color_fg
+hi lCursor	   guifg=color_bg_main  guibg=color_fg
+hi CursorIM	   guifg=color_bg_main  guibg=color_fg
+hi Directory   guifg=color_types    guibg=color_bg_main  gui=bold
+hi ErrorMsg    guifg=#ee1111        guibg=color_bg_main
+hi VertSplit   guifg=color_bg_main  guibg=color_accent
+hi LineNr      guifg=color_accent   guibg=color_bg_alt2
+hi ModeMsg     guifg=color_comments guibg=color_bg_main
+hi MoreMsg     guifg=color_comments guibg=color_bg_main
+hi Normal      guifg=color_fg       guibg=color_bg_main
+hi Question	   guifg=color_comments guibg=color_bg_main
+hi Search      guifg=#223322        guibg=color_comment  gui=none
+hi NonText	   guifg=#606060                             gui=none
+hi SpecialKey  guifg=#707070
 "\n, \0, %d, %s, etc...
-hi Special	guifg=color_x5 guibg=color_bg_main gui=bold
+hi Special	   guifg=color_numbers  guibg=color_bg_main gui=bold
 " status line
-hi Title	guifg=color_x1 guibg=color_bg_main gui=bold
-hi Visual	guifg=color_x3 guibg=color_bg_alt2 gui=none
-hi VisualNOS	guifg=#cccccc guibg=color_bg_main
-hi WarningMsg	guifg=color_x3 guibg=color_bg_main
-hi WildMenu	guifg=#3a553a guibg=color_x3
-hi Number	guifg=color_x5 guibg=color_bg_main gui=underline
-hi Char		guifg=color_x3 guibg=color_bg_main
-hi String	guifg=color_x2 guibg=color_bg_main gui=italic
-hi Boolean	guifg=color_x3 guibg=color_bg_main
-hi Comment	guifg=#cccccc "guifg=color_x4
-hi Constant	guifg=color_x4 gui=bold,underline
-hi Identifier	guifg=color_x3
-hi Statement	guifg=color_x5 gui=none
-hi CursorLine guibg=color_bg_alt1
+hi Title       guifg=color_accent   guibg=color_bg_main  gui=bold
+hi Visual                           guibg=color_bg_alt2  gui=none
+hi VisualNOS                        guibg=color_bg_main
+hi WarningMsg  guifg=color_types    guibg=color_bg_main
+hi Number	   guifg=color_numeric  guibg=color_bg_main  gui=underline
+hi Char		   guifg=color_strings  guibg=color_bg_main
+hi String	   guifg=color_strings  guibg=color_bg_main  gui=italic
+hi Boolean	   guifg=color_booleans guibg=color_bg_main
+hi Comment	   guifg=color_comments
+hi Constant	   guifg=color_variables                     gui=bold,underline
+hi Identifier  guifg=color_types
+hi Statement   guifg=color_functions                     gui=none
+hi CursorLine                         guibg=color_bg_alt1
+hi CursorLineNR guifg=color_functions guibg=color_bg_main gui=bold
 
 "Procedure name
-hi Function     guifg=color_x3 gui=bold
+hi Function    guifg=color_functions                     gui=bold
 
 "Define, def
-hi PreProc	guifg=color_x3 gui=bold
-hi Type		guifg=color_x3 gui=bold
-hi Underlined	guifg=color_x3 gui=underline
-hi Error	guifg=#ee1111 guibg=color_bg_main
-hi Todo		guifg=#223322 guibg=#cccccc gui=none
-hi SignColumn   guibg=color_bg_main
+hi PreProc	   guifg=color_types                         gui=bold
+hi Type		   guifg=color_types                         gui=bold
+hi Underlined  guifg=color_types                         gui=underline
+hi Error       guifg=#ee1111        guibg=color_bg_main
+hi Todo        guifg=color_accents  guibg=color_comments gui=none
+hi SignColumn                       guibg=color_bg_main
 
 if version >= 700
   " Pmenu
-  hi Pmenu	guibg=#222222
-  hi PmenuSel	guibg=#3a553a guifg=color_x3
-  hi PmenuSbar	guibg=#222222
+  hi Pmenu                          guibg=#222222
+  hi PmenuSel   guifg=color_types   guibg=#3a553a
+  hi PmenuSbar                      guibg=#222222
 
   " Tab
-  hi TabLine	  guifg=#3a553a guibg=black gui=bold
-  hi TabLineFill  guifg=black guibg=black gui=bold
-  hi TabLineSel	  guifg=#88ee99 guibg=#447f55 gui=bold
+  hi TabLine	 guifg=#3a553a      guibg=black          gui=bold
+  hi TabLineFill guifg=black        guibg=black          gui=bold
+  hi TabLineSel	 guifg=#88ee99      guibg=#447f55        gui=bold
 endif
 
 " Highlight Class and Function names
@@ -77,4 +77,4 @@ syn match    cCustomClass    "\w\+\s*::" contains=cCustomScope
 syn match    cCustomProp     "\.\w\+\s*."
 
 hi cCustomProp gui=italic
-hi cCustomFunc guifg=color_x6 guibg=color_bg_main gui=bold "hi def cCustomFunc link cCustomFunc  Function
+hi cCustomFunc guifg=color_functions guibg=color_bg_main gui=bold 
