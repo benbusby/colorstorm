@@ -92,21 +92,21 @@
       "name": "Type",
       "scope": "support.type",
       "settings": {
-        "foreground": "color_x5"
+        "foreground": "color_types"
       }
     },
     {
       "name": "Type",
       "scope": "entity.name.type, entity.other.inherited-class",
       "settings": {
-        "foreground": "color_x5"
+        "foreground": "color_types"
       }
     },
     {
       "name": "Comment",
       "scope": "comment",
       "settings": {
-        "foreground": "color_x1",
+        "foreground": "color_comments",
         "fontStyle": "italic"
       }
     },
@@ -114,7 +114,7 @@
       "name": "Class",
       "scope": "entity.name.type.class",
       "settings": {
-        "foreground": "color_x5",
+        "foreground": "color_types",
         "fontStyle": "underline"
       }
     },
@@ -122,21 +122,21 @@
       "name": "Class variable",
       "scope": "variable.object.property, meta.field.declaration entity.name.function",
       "settings": {
-        "foreground": "color_x5"
+        "foreground": "color_types"
       }
     },
     {
       "name": "Class method",
       "scope": "meta.definition.method entity.name.function",
       "settings": {
-        "foreground": "color_x5"
+        "foreground": "color_types"
       }
     },
     {
       "name": "Function definition",
       "scope": "meta.function entity.name.function",
       "settings": {
-        "foreground": "color_x5"
+        "foreground": "color_types"
       }
     },
     {
@@ -192,7 +192,7 @@
       "name": "CSS tag",
       "scope": "source.css entity.name.tag",
       "settings": {
-        "foreground": "color_x5"
+        "foreground": "color_types"
       }
     },
     {
@@ -213,7 +213,7 @@
       "name": "HTML tag attribute",
       "scope": "entity.other.attribute-name",
       "settings": {
-        "foreground": "color_x6"
+        "foreground": "color_functions"
       }
     },
     {
@@ -293,7 +293,7 @@
       "name": "C# class",
       "scope": "source.cs meta.class.identifier storage.type",
       "settings": {
-        "foreground": "color_x5",
+        "foreground": "color_types",
         "fontStyle": "underline"
       }
     },
@@ -301,35 +301,35 @@
       "name": "C# class method",
       "scope": "source.cs meta.method.identifier entity.name.function",
       "settings": {
-        "foreground": "color_x5"
+        "foreground": "color_types"
       }
     },
     {
       "name": "C# function call",
       "scope": "source.cs meta.method-call meta.method, source.cs entity.name.function",
       "settings": {
-        "foreground": "color_x6"
+        "foreground": "color_functions"
       }
     },
     {
       "name": "C# type",
       "scope": "source.cs storage.type",
       "settings": {
-        "foreground": "color_x5"
+        "foreground": "color_types"
       }
     },
     {
       "name": "C# return type",
       "scope": "source.cs meta.method.return-type",
       "settings": {
-        "foreground": "color_x5"
+        "foreground": "color_types"
       }
     },
     {
       "name": "C# preprocessor",
       "scope": "source.cs meta.preprocessor",
       "settings": {
-        "foreground": "color_x1"
+        "foreground": "color_accent"
       }
     },
     {
@@ -383,8 +383,8 @@
     "tab.unfocusedInactiveModifiedBorder": "#908900",
     "editor.background": "color_bg_main",
     "editor.foreground": "color_fg",
-    "editorLineNumber.foreground": "color_x1dd",
-    "editorLineNumber.activeForeground": "color_x1ff",
+    "editorLineNumber.foreground": "color_accentdd",
+    "editorLineNumber.activeForeground": "color_accentff",
     "editor.lineHighlightBorder": "#FFFFFF1a",
     "editor.rangeHighlightBackground": "#FFFFFF0d",
     "editorWidget.background": "color_bg_main",
