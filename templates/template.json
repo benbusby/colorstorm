@@ -355,7 +355,7 @@
     "dropdown.background": "color_bg_alt2",
     "input.background": "color_bg_alt2",
     "inputOption.activeBorder": "color_booleans",
-    "list.activeSelectionBackground": "color_booleans80",
+    "list.activeSelectionBackground": "color_select80",
     "list.activeSelectionForeground": "#FFFFFF",
     "list.dropBackground": "color_booleans80",
     "list.focusBackground": "color_booleans80",
@@ -383,7 +383,7 @@
     "tab.unfocusedInactiveModifiedBorder": "#908900",
     "editor.background": "color_bg_main",
     "editor.foreground": "color_fg",
-    "editorLineNumber.foreground": "color_accentdd",
+    "editorLineNumber.foreground": "color_linenrdd",
     "editorLineNumber.activeForeground": "color_accentff",
     "editor.lineHighlightBorder": "#FFFFFF1a",
     "editor.rangeHighlightBackground": "#FFFFFF0d",
@@ -409,6 +409,6 @@
     "titleBar.activeBackground": "color_bg_alt1",
     "pickerGroup.border": "#FFFFFF1a",
     "debugToolBar.background": "color_bg_alt1",
-    "selection.background": "color_booleans"
+    "selection.background": "color_select"
   }
 }

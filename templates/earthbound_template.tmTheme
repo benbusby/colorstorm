@@ -24,7 +24,7 @@ https://github.com/benbusby/earthbound-themes -->
           <key>lineHighlight</key>
           <string>color_bg_alt3</string>
           <key>selection</key>
-          <string>color_accent</string>
+          <string>color_select</string>
         </dict>
       </dict>
       <dict>
