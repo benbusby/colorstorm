@@ -1,7 +1,7 @@
 ![Earthbound Themes](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/earthbound_themes.png)
 ____
 ![Earthbound Themes Preview](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/earthbound_themes_preview.png)
-:art: *Code editor themes inspired by the memorable and bizarre locations from [Earthbound (aka Mother 2)](https://en.wikipedia.org/wiki/EarthBound).* <br><br>**Available now for [Vim](vim/), [VSCode](https://marketplace.visualstudio.com/items?itemName=benbusby.earthbound-themes), [Sublime](https://packagecontrol.io/packages/EarthboundThemes), and [Atom](https://atom.io/themes/earthbound-syntax)!**
+:art: *Code editor themes inspired by the memorable and bizarre locations from [Earthbound (aka Mother 2)](https://en.wikipedia.org/wiki/EarthBound).* <br><br>**Available now for [Vim](https://www.vim.org/scripts/script.php?script_id=5920), [VSCode](https://marketplace.visualstudio.com/items?itemName=benbusby.earthbound-themes), [Sublime](https://packagecontrol.io/packages/EarthboundThemes), and [Atom](https://atom.io/themes/earthbound-syntax)!**
 ___
 [![MIT License](https://img.shields.io/github/license/benbusby/earthbound-themes.svg)](http://opensource.org/licenses/MIT)
 [![GitHub release](https://img.shields.io/github/release/benbusby/earthbound-themes.svg)](https://github.com/benbusby/earthbound-themes/releases/)
@@ -115,7 +115,7 @@ These themes are nearly identical to their "regular" theme counterparts, but use
 ![Cave of the Past Screenshot](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/cave_screenshot.png)
 
 ## Currently Supported Editors
-- [Vim](https://github.com/benbusby/vim-earthbound-themes)
+- [Vim](https://www.vim.org/scripts/script.php?script_id=5920)
 - [VSCode](https://marketplace.visualstudio.com/items?itemName=benbusby.earthbound-themes)
 - [Sublime](https://packagecontrol.io/packages/EarthboundThemes)
 - [Atom](https://atom.io/themes/earthbound-syntax)
@@ -124,7 +124,7 @@ These themes are nearly identical to their "regular" theme counterparts, but use
 
 ## Installation
 ### Vim
-Refer to [the vim submodule README](vim/) or [the plugin page on vim.org]()
+Refer to [the vim submodule README](https://github.com/benbusby/vim-earthbound-themes) or [the plugin page on vim.org]()
 
 ### Visual Studio Code
 Install through [the online marketplace](https://marketplace.visualstudio.com/items?itemName=benbusby.earthbound-themes), or by searching "Earthbound" in the extension manager in VSCode and installing from there.
