@@ -115,7 +115,7 @@ These themes are nearly identical to their "regular" theme counterparts, but use
 ![Cave of the Past Screenshot](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/cave_screenshot.png)
 
 ## Currently Supported Editors
-- [Vim](vim/)
+- [Vim](https://github.com/benbusby/vim-earthbound-themes)
 - [VSCode](https://marketplace.visualstudio.com/items?itemName=benbusby.earthbound-themes)
 - [Sublime](https://packagecontrol.io/packages/EarthboundThemes)
 - [Atom](https://atom.io/themes/earthbound-syntax)
@@ -124,7 +124,7 @@ These themes are nearly identical to their "regular" theme counterparts, but use
 
 ## Installation
 ### Vim
-[See instructions here](vim/)
+Refer to [the vim submodule README](vim/) or [the plugin page on vim.org]()
 
 ### Visual Studio Code
 Install through [the online marketplace](https://marketplace.visualstudio.com/items?itemName=benbusby.earthbound-themes), or by searching "Earthbound" in the extension manager in VSCode and installing from there.
