@@ -12,28 +12,28 @@
       "name": "String",
       "scope": "string",
       "settings": {
-        "foreground": "color_strings"
+        "foreground": "color_string"
       }
     },
     {
       "name": "String Escape",
       "scope": "constant.character.escape, text.html constant.character.entity.named, punctuation.definition.entity.html",
       "settings": {
-        "foreground": "color_booleans"
+        "foreground": "color_boolean"
       }
     },
     {
       "name": "Boolean",
       "scope": "constant.language.boolean",
       "settings": {
-        "foreground": "color_booleans"
+        "foreground": "color_boolean"
       }
     },
     {
       "name": "Number",
       "scope": "constant.numeric",
       "settings": {
-        "foreground": "color_numbers"
+        "foreground": "color_number"
       }
     },
     {
@@ -49,7 +49,7 @@
         "support.variable"
       ],
       "settings": {
-        "foreground": "color_variables"
+        "foreground": "color_variable"
       }
     },
     {
@@ -63,28 +63,28 @@
       "name": "Keyword",
       "scope": "keyword, modifier, variable.language.this, support.type.object, constant.language",
       "settings": {
-        "foreground": "color_booleans"
+        "foreground": "color_boolean"
       }
     },
     {
       "name": "Function call",
       "scope": "entity.name.function, support.function",
       "settings": {
-        "foreground": "color_functions"
+        "foreground": "color_function"
       }
     },
     {
       "name": "Storage",
       "scope": "storage.type, storage.modifier",
       "settings": {
-        "foreground": "color_booleans"
+        "foreground": "color_boolean"
       }
     },
     {
       "name": "Modules",
       "scope": "support.module, support.node",
       "settings": {
-        "foreground": "color_booleans",
+        "foreground": "color_boolean",
         "fontStyle": "italic"
       }
     },
@@ -92,21 +92,21 @@
       "name": "Type",
       "scope": "support.type",
       "settings": {
-        "foreground": "color_types"
+        "foreground": "color_type"
       }
     },
     {
       "name": "Type",
       "scope": "entity.name.type, entity.other.inherited-class",
       "settings": {
-        "foreground": "color_types"
+        "foreground": "color_type"
       }
     },
     {
       "name": "Comment",
       "scope": "comment",
       "settings": {
-        "foreground": "color_comments",
+        "foreground": "color_comment",
         "fontStyle": "italic"
       }
     },
@@ -114,7 +114,7 @@
       "name": "Class",
       "scope": "entity.name.type.class",
       "settings": {
-        "foreground": "color_types",
+        "foreground": "color_type",
         "fontStyle": "underline"
       }
     },
@@ -122,28 +122,28 @@
       "name": "Class variable",
       "scope": "variable.object.property, meta.field.declaration entity.name.function",
       "settings": {
-        "foreground": "color_types"
+        "foreground": "color_type"
       }
     },
     {
       "name": "Class method",
       "scope": "meta.definition.method entity.name.function",
       "settings": {
-        "foreground": "color_types"
+        "foreground": "color_type"
       }
     },
     {
       "name": "Function definition",
       "scope": "meta.function entity.name.function",
       "settings": {
-        "foreground": "color_types"
+        "foreground": "color_type"
       }
     },
     {
       "name": "Template expression",
       "scope": "template.expression.begin, template.expression.end, punctuation.definition.template-expression.begin, punctuation.definition.template-expression.end",
       "settings": {
-        "foreground": "color_booleans"
+        "foreground": "color_boolean"
       }
     },
     {
@@ -157,91 +157,91 @@
       "name": "YAML key",
       "scope": "entity.name.tag.yaml",
       "settings": {
-        "foreground": "color_booleans"
+        "foreground": "color_boolean"
       }
     },
     {
       "name": "JSON key",
       "scope": "meta.object-literal.key, meta.object-literal.key string, support.type.property-name.json",
       "settings": {
-        "foreground": "color_booleans"
+        "foreground": "color_boolean"
       }
     },
     {
       "name": "JSON constant",
       "scope": "constant.language.json",
       "settings": {
-        "foreground": "color_booleans"
+        "foreground": "color_boolean"
       }
     },
     {
       "name": "CSS class",
       "scope": "entity.other.attribute-name.class",
       "settings": {
-        "foreground": "color_booleans"
+        "foreground": "color_boolean"
       }
     },
     {
       "name": "CSS ID",
       "scope": "entity.other.attribute-name.id",
       "settings": {
-        "foreground": "color_strings"
+        "foreground": "color_string"
       }
     },
     {
       "name": "CSS tag",
       "scope": "source.css entity.name.tag",
       "settings": {
-        "foreground": "color_types"
+        "foreground": "color_type"
       }
     },
     {
       "name": "HTML tag outer",
       "scope": "meta.tag, punctuation.definition.tag",
       "settings": {
-        "foreground": "color_booleans"
+        "foreground": "color_boolean"
       }
     },
     {
       "name": "HTML tag inner",
       "scope": "entity.name.tag",
       "settings": {
-        "foreground": "color_booleans"
+        "foreground": "color_boolean"
       }
     },
     {
       "name": "HTML tag attribute",
       "scope": "entity.other.attribute-name",
       "settings": {
-        "foreground": "color_functions"
+        "foreground": "color_function"
       }
     },
     {
       "name": "Markdown heading",
       "scope": "markup.heading",
       "settings": {
-        "foreground": "color_booleans"
+        "foreground": "color_boolean"
       }
     },
     {
       "name": "Markdown link text",
       "scope": "text.html.markdown meta.link.inline, meta.link.reference",
       "settings": {
-        "foreground": "color_booleans"
+        "foreground": "color_boolean"
       }
     },
     {
       "name": "Markdown list item",
       "scope": "text.html.markdown beginning.punctuation.definition.list",
       "settings": {
-        "foreground": "color_booleans"
+        "foreground": "color_boolean"
       }
     },
     {
       "name": "Markdown italic",
       "scope": "markup.italic",
       "settings": {
-        "foreground": "color_booleans",
+        "foreground": "color_boolean",
         "fontStyle": "italic"
       }
     },
@@ -249,7 +249,7 @@
       "name": "Markdown bold",
       "scope": "markup.bold",
       "settings": {
-        "foreground": "color_booleans",
+        "foreground": "color_boolean",
         "fontStyle": "bold"
       }
     },
@@ -257,7 +257,7 @@
       "name": "Markdown bold italic",
       "scope": "markup.bold markup.italic, markup.italic markup.bold",
       "settings": {
-        "foreground": "color_booleans",
+        "foreground": "color_boolean",
         "fontStyle": "italic bold"
       }
     },
@@ -265,35 +265,35 @@
       "name": "Markdown code block",
       "scope": "markup.fenced_code.block.markdown punctuation.definition.markdown",
       "settings": {
-        "foreground": "color_strings"
+        "foreground": "color_string"
       }
     },
     {
       "name": "Markdown inline code",
       "scope": "markup.inline.raw.string.markdown",
       "settings": {
-        "foreground": "color_strings"
+        "foreground": "color_string"
       }
     },
     {
       "name": "INI property name",
       "scope": "keyword.other.definition.ini",
       "settings": {
-        "foreground": "color_booleans"
+        "foreground": "color_boolean"
       }
     },
     {
       "name": "INI section title",
       "scope": "entity.name.section.group-title.ini",
       "settings": {
-        "foreground": "color_booleans"
+        "foreground": "color_boolean"
       }
     },
     {
       "name": "C# class",
       "scope": "source.cs meta.class.identifier storage.type",
       "settings": {
-        "foreground": "color_types",
+        "foreground": "color_type",
         "fontStyle": "underline"
       }
     },
@@ -301,28 +301,28 @@
       "name": "C# class method",
       "scope": "source.cs meta.method.identifier entity.name.function",
       "settings": {
-        "foreground": "color_types"
+        "foreground": "color_type"
       }
     },
     {
       "name": "C# function call",
       "scope": "source.cs meta.method-call meta.method, source.cs entity.name.function",
       "settings": {
-        "foreground": "color_functions"
+        "foreground": "color_function"
       }
     },
     {
       "name": "C# type",
       "scope": "source.cs storage.type",
       "settings": {
-        "foreground": "color_types"
+        "foreground": "color_type"
       }
     },
     {
       "name": "C# return type",
       "scope": "source.cs meta.method.return-type",
       "settings": {
-        "foreground": "color_types"
+        "foreground": "color_type"
       }
     },
     {
@@ -348,36 +348,36 @@
     }
   ],
   "colors": {
-    "focusBorder": "color_booleans",
+    "focusBorder": "color_boolean",
     "foreground": "color_fg",
-    "button.background": "color_booleans",
+    "button.background": "color_boolean",
     "button.foreground": "#000000",
     "dropdown.background": "color_bg_alt2",
     "input.background": "color_bg_alt2",
-    "inputOption.activeBorder": "color_booleans",
+    "inputOption.activeBorder": "color_boolean",
     "list.activeSelectionBackground": "color_select80",
     "list.activeSelectionForeground": "#FFFFFF",
-    "list.dropBackground": "color_booleans80",
-    "list.focusBackground": "color_booleans80",
+    "list.dropBackground": "color_boolean80",
+    "list.focusBackground": "color_boolean80",
     "list.focusForeground": "#FFFFFF",
-    "list.highlightForeground": "color_booleans",
+    "list.highlightForeground": "color_boolean",
     "list.hoverBackground": "#FFFFFF1a",
     "list.inactiveSelectionBackground": "#FFFFFF33",
     "activityBar.background": "color_bg_alt1",
-    "activityBar.dropBackground": "color_booleans80",
-    "activityBarBadge.background": "color_booleans",
+    "activityBar.dropBackground": "color_boolean80",
+    "activityBarBadge.background": "color_boolean",
     "activityBarBadge.foreground": "#000000",
-    "badge.background": "color_booleans",
+    "badge.background": "color_boolean",
     "badge.foreground": "#000000",
     "sideBar.background": "color_bg_main",
     "sideBarSectionHeader.background": "color_bg_alt1",
-    "editorGroup.dropBackground": "color_booleans80",
-    "editorGroup.focusedEmptyBorder": "color_booleans",
+    "editorGroup.dropBackground": "color_boolean80",
+    "editorGroup.focusedEmptyBorder": "color_boolean",
     "editorGroupHeader.tabsBackground": "color_bg_main",
     "tab.border": "#00000033",
-    "tab.activeBorder": "color_booleans",
+    "tab.activeBorder": "color_boolean",
     "tab.inactiveBackground": "color_bg_alt1",
-    "tab.activeModifiedBorder": "color_booleans",
+    "tab.activeModifiedBorder": "color_boolean",
     "tab.inactiveModifiedBorder": "#908900",
     "tab.unfocusedActiveModifiedBorder": "#c0b700",
     "tab.unfocusedInactiveModifiedBorder": "#908900",
@@ -390,7 +390,7 @@
     "editorWidget.background": "color_bg_main",
     "editorHoverWidget.background": "color_bg_main",
     "editorMarkerNavigation.background": "color_bg_main",
-    "peekView.border": "color_booleans",
+    "peekView.border": "color_boolean",
     "peekViewEditor.background": "color_bg_alt1",
     "peekViewResult.background": "color_bg_main",
     "peekViewTitle.background": "color_bg_main",
@@ -399,12 +399,12 @@
     "panelTitle.activeBorder": "color_fg80",
     "panelTitle.inactiveForeground": "color_fg80",
     "statusBar.background": "color_bg_alt1",
-    "statusBar.debuggingBackground": "color_booleans",
+    "statusBar.debuggingBackground": "color_boolean",
     "statusBar.debuggingForeground": "#000000",
     "statusBar.noFolderBackground": "color_bg_alt1",
-    "statusBarItem.activeBackground": "color_booleans80",
+    "statusBarItem.activeBackground": "color_boolean80",
     "statusBarItem.hoverBackground": "#FFFFFF1a",
-    "statusBarItem.remoteBackground": "color_booleans",
+    "statusBarItem.remoteBackground": "color_boolean",
     "statusBarItem.remoteForeground": "#000000",
     "titleBar.activeBackground": "color_bg_alt1",
     "pickerGroup.border": "#FFFFFF1a",

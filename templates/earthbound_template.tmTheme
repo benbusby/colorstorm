@@ -35,7 +35,7 @@ https://github.com/benbusby/earthbound-themes -->
         <key>settings</key>
         <dict>
           <key>foreground</key>
-          <string>color_comments</string>
+          <string>color_comment</string>
           <key>background</key>
           <string>color_bg00</string>
         </dict>
@@ -59,7 +59,7 @@ https://github.com/benbusby/earthbound-themes -->
         <key>settings</key>
         <dict>
           <key>foreground</key>
-          <string>color_numbers</string>
+          <string>color_number</string>
           <key>fontStyle</key>
           <string> underline</string>
         </dict>
@@ -83,7 +83,7 @@ https://github.com/benbusby/earthbound-themes -->
         <key>settings</key>
         <dict>
           <key>foreground</key>
-          <string>color_variables</string>
+          <string>color_variable</string>
         </dict>
       </dict>
       <dict>
@@ -94,7 +94,7 @@ https://github.com/benbusby/earthbound-themes -->
         <key>settings</key>
         <dict>
           <key>foreground</key>
-          <string>color_variables</string>
+          <string>color_variable</string>
         </dict>
       </dict>
       <dict>
@@ -105,7 +105,7 @@ https://github.com/benbusby/earthbound-themes -->
         <key>settings</key>
         <dict>
           <key>foreground</key>
-          <string>color_booleans</string>
+          <string>color_boolean</string>
         </dict>
       </dict>
       <dict>
@@ -131,7 +131,7 @@ https://github.com/benbusby/earthbound-themes -->
           <key>fontStyle</key>
           <string>italic</string>
           <key>foreground</key>
-          <string>color_types</string>
+          <string>color_type</string>
         </dict>
       </dict>
       <dict>
@@ -142,7 +142,7 @@ https://github.com/benbusby/earthbound-themes -->
         <key>settings</key>
         <dict>
           <key>foreground</key>
-          <string>color_functions</string>
+          <string>color_function</string>
           <key>fontStyle</key>
           <string> underline</string>
         </dict>
@@ -157,7 +157,7 @@ https://github.com/benbusby/earthbound-themes -->
           <key>fontStyle</key>
           <string>italic underline</string>
           <key>foreground</key>
-          <string>color_functions</string>
+          <string>color_function</string>
         </dict>
       </dict>
       <dict>
@@ -181,7 +181,7 @@ https://github.com/benbusby/earthbound-themes -->
           <key>fontStyle</key>
           <string>italic </string>
           <key>foreground</key>
-          <string>color_booleans</string>
+          <string>color_boolean</string>
         </dict>
       </dict>
       <dict>
@@ -194,7 +194,7 @@ https://github.com/benbusby/earthbound-themes -->
           <key>fontStyle</key>
           <string></string>
           <key>foreground</key>
-          <string>color_variables</string>
+          <string>color_variable</string>
         </dict>
       </dict>
       <dict>
@@ -207,7 +207,7 @@ https://github.com/benbusby/earthbound-themes -->
           <key>fontStyle</key>
           <string></string>
           <key>foreground</key>
-          <string>color_variables</string>
+          <string>color_variable</string>
         </dict>
       </dict>
       <dict>
@@ -220,7 +220,7 @@ https://github.com/benbusby/earthbound-themes -->
           <key>fontStyle</key>
           <string></string>
           <key>foreground</key>
-          <string>color_functions</string>
+          <string>color_function</string>
         </dict>
       </dict>
       <dict>
@@ -233,7 +233,7 @@ https://github.com/benbusby/earthbound-themes -->
           <key>fontStyle</key>
           <string></string>
           <key>foreground</key>
-          <string>color_variables</string>
+          <string>color_variable</string>
         </dict>
       </dict>
       <dict>
@@ -246,7 +246,7 @@ https://github.com/benbusby/earthbound-themes -->
           <key>fontStyle</key>
           <string>italic</string>
           <key>foreground</key>
-          <string>color_types</string>
+          <string>color_type</string>
         </dict>
       </dict>
       <dict>
@@ -259,7 +259,7 @@ https://github.com/benbusby/earthbound-themes -->
           <key>fontStyle</key>
           <string></string>
           <key>foreground</key>
-          <string>color_variables</string>
+          <string>color_variable</string>
         </dict>
       </dict>
       <dict>
