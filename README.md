@@ -19,15 +19,15 @@ ___
 
 Each theme is modeled after an iconic location in the game, and all color themes follow the AA/AAA color accessibility guidelines for all font sizes.
 
-### (New) "Darker" Themes
+### "Darker" Themes
 - Earthbound Darker
 - Zombie Threed Darker
 - Dusty Dunes Darker
 - Fire Spring Darker
 
-These themes are nearly identical to their "regular" theme counterparts, but use a dark gray background to create more contrast with the syntax colors.
+These themes are nearly identical to their "regular" theme counterparts, but use a darker background to provide a higher contrast alternative with the syntax colors.
 
-#### Earthbound / Earthbound Darker
+#### Earthbound
 - Colors:
   - ![#1c0037](https://placehold.it/15/1c0037/000000?text=+) `#1c0037` (Background)
   - ![#ffffff](https://placehold.it/15/ffffff/000000?text=+) `#ffffff` (Foreground)
@@ -37,7 +37,7 @@ These themes are nearly identical to their "regular" theme counterparts, but use
   - ![#abdcdc](https://placehold.it/15/abdcdc/000000?text=+) `#abdcdc`
   - ![#aaaaaa](https://placehold.it/15/aaaaaa/000000?text=+) `#aaaaaa`
 
-![Earthbound Screenshot](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/earthbound_screenshot_darkalt.png)
+![Earthbound Screenshot](images/demos/earthbound.png)
 
 #### Moonside
 - Colors:
@@ -50,9 +50,9 @@ These themes are nearly identical to their "regular" theme counterparts, but use
   - ![#aaef64](https://placehold.it/15/aaef64/000000?text=+) `#aaef64`
   - ![#5e9aff](https://placehold.it/15/5e9aff/000000?text=+) `#5e9aff`
 
-![Moonside Screenshot](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/moonside_screenshot.png)
+![Moonside Screenshot](images/demos/moonside.png)
 
-#### Zombie Threed / Zombie Threed Darker
+#### Zombie Threed
 - Colors:
   - ![#303454](https://placehold.it/15/303454/000000?text=+) `#303454` (Background)
   - ![#f0faff](https://placehold.it/15/f0faff/000000?text=+) `#f0faff` (Foreground)
@@ -63,9 +63,9 @@ These themes are nearly identical to their "regular" theme counterparts, but use
   - ![#f89070](https://placehold.it/15/f89070/000000?text=+) `#f89070`
   - ![#aaaaaa](https://placehold.it/15/aaaaaa/000000?text=+) `#aaaaaa`
 
-![Zombie Threed Screenshot](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/threed_screenshot_darkalt.png)
+![Zombie Threed Screenshot](images/demos/threed.png)
 
-#### Fire Spring / Fire Spring Darker
+#### Fire Spring
 - Colors:
   - ![#181020](https://placehold.it/15/181020/000000?text=+) `#181020` (Background)
   - ![#ffffca](https://placehold.it/15/ffffca/000000?text=+) `#ffffca` (Foreground)
@@ -76,9 +76,9 @@ These themes are nearly identical to their "regular" theme counterparts, but use
   - ![#a99ade](https://placehold.it/15/a99ade/000000?text=+) `#a99ade`
   - ![#d992ff](https://placehold.it/15/d992ff/000000?text=+) `#d992ff`
 
-![Fire Spring Screenshot](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/fire_spring_screenshot_darkalt.png)
+![Fire Spring Screenshot](images/demos/fire_spring.png)
 
-#### Dusty Dunes / Dusty Dunes Darker
+#### Dusty Dunes
 - Colors:
   - ![#0e0900](https://placehold.it/15/0e0900/000000?text=+) `#0e0900` (Background)
   - ![#f9e4a1](https://placehold.it/15/f9e4a1/000000?text=+) `#f9e4a1` (Foreground)
@@ -88,7 +88,7 @@ These themes are nearly identical to their "regular" theme counterparts, but use
   - ![#f6d56a](https://placehold.it/15/f6d56a/000000?text=+) `#f6d56a`
   - ![#666644](https://placehold.it/15/666644/000000?text=+) `#666644`
 
-![Dusty Dunes Screenshot](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/dusty_dunes_screenshot_darkalt.png)
+![Dusty Dunes Screenshot](images/demos/dusty_dunes.png)
 
 #### Magicant (Light Theme)
 - Colors:
@@ -101,7 +101,7 @@ These themes are nearly identical to their "regular" theme counterparts, but use
   - ![#604633](https://placehold.it/15/604633/000000?text=+) `#604633`
   - ![#9d02f2](https://placehold.it/15/9d02f2/000000?text=+) `#9d02f2`
 
-![Magicant Screenshot](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/magicant_screenshot.png)
+![Magicant Screenshot](images/demos/magicant.png)
 
 #### Cave of the Past (Monochrome)
 - Colors:
@@ -112,7 +112,7 @@ These themes are nearly identical to their "regular" theme counterparts, but use
   - ![#293d29](https://placehold.it/15/293d29/000000?text=+) `#293d29`
   - ![#445046](https://placehold.it/15/445046/000000?text=+) `#445046`
 
-![Cave of the Past Screenshot](https://raw.githubusercontent.com/benbusby/earthbound-themes/master/images/cave_screenshot.png)
+![Cave of the Past Screenshot](images/demos/cave_of_the_past.png)
 
 ## Currently Supported Editors
 - [Vim](https://www.vim.org/scripts/script.php?script_id=5920)
