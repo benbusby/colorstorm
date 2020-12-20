@@ -1,0 +1,20 @@
+{
+    "name": "earthbound-syntax",
+    "main": "./lib/earthbound-syntax",
+    "theme": "syntax",
+    "version": "1.1.0",
+    "description": "A collection of unique syntax themes inspired by the SNES game Earthbound",
+    "keywords": [
+        "syntax",
+        "theme",
+        "game",
+        "earthbound",
+        "snes",
+        "nintendo"
+    ],
+    "repository": "https://github.com/benbusby/earthbound-themes",
+    "license": "MIT",
+    "engines": {
+        "atom": ">=1.0.0 <2.0.0"
+    }
+}
