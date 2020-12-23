@@ -12,9 +12,9 @@ color_table = {
   earthbound={
     theme_name_full='Earthbound',
     theme_name_alt='earthbound',
-    color_bg_main='#1c0037',
+    color_bg_main='#360a5f',
     color_bg_alt1='#2b044f',
-    color_bg_alt2='#110021',
+    color_bg_alt2='#1c0037',
     color_fg='#ffffff',
     color_linenr='#94b2b2',
     color_select='#6a6c23',
@@ -175,7 +175,7 @@ end
 -- using the values in color_table.
 -- @param file: The template file to use
 -- @param theme: The theme to generate a file for
-function generate_theme(file, name, theme, out_path)
+local function generate_theme(file, name, theme, out_path)
   local theme_file = io.open(file, 'r')
 
   if theme_file == nil then
@@ -185,7 +185,7 @@ function generate_theme(file, name, theme, out_path)
 
   local lines = {}
   for line in theme_file:lines() do
-    for k,v in pairs(theme) do
+    for k, v in pairs(theme) do
       line = string.gsub(line, k, v)
     end
 
@@ -197,7 +197,7 @@ function generate_theme(file, name, theme, out_path)
   print(out_path)
 
   theme_file = io.open(out_path, 'w')
-  for i,line in ipairs(lines) do
+  for i, line in ipairs(lines) do
     theme_file:write(line, "\n")
   end
   theme_file:close()
@@ -223,8 +223,8 @@ else
     color_table[theme]['uuid'] = uuid()
     generate_theme(filename, theme, color_table[theme], out_paths[editor])
 
-    -- A few themes can use darker variants, which replaces the background
-    -- with #080808
+    -- A few themes can use "-darker" variants, which swaps the default 
+    -- background (color_bg_main) and the darker background (color_bg_alt2)
     if darker_variants[theme] ~= nil then
       local darker_name = theme .. '_darker'
 
