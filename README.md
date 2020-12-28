@@ -5,8 +5,12 @@ ____
 ___
 [![MIT License](https://img.shields.io/github/license/benbusby/earthbound-themes.svg)](http://opensource.org/licenses/MIT)
 [![GitHub release](https://img.shields.io/github/release/benbusby/earthbound-themes.svg)](https://github.com/benbusby/earthbound-themes/releases/)
-[![VSCode Installs](https://img.shields.io/visual-studio-marketplace/i/benbusby.earthbound-themes.svg)](https://marketplace.visualstudio.com/items?itemName=benbusby.earthbound-themes)
 [![build](https://github.com/benbusby/earthbound-themes/workflows/build/badge.svg)](https://github.com/benbusby/earthbound-themes/actions)
+
+[![Vim Installs](https://img.shields.io/static/v1?label=vim&message=?&color=green&logo=vim)]()
+[![VSCode Installs](https://img.shields.io/visual-studio-marketplace/i/benbusby.earthbound-themes?label=vscode&color=4444ff&logo=visual-studio-code)](https://marketplace.visualstudio.com/items?itemName=benbusby.earthbound-themes)
+[![Package Control](https://img.shields.io/packagecontrol/dt/EarthboundThemes?color=ff4500&label=sublime&logo=sublime-text)](https://packagecontrol.io/packages/EarthboundThemes)
+[![APM](https://img.shields.io/apm/dm/earthbound-syntax?color=dark-green&label=atom&logo=atom)](https://atom.io/packages/earthbound-syntax)
 
 ## Current Themes
 - Earthbound
