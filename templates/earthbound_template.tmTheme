@@ -15,16 +15,20 @@ https://github.com/benbusby/earthbound-themes -->
           <key>background</key>
           <string>color_bg_main</string>
           <key>caret</key>
-          <string>color_bg_alt2</string>
+          <string>color_fg</string>
           <key>foreground</key>
           <string>color_fg</string>
 
           <key>invisibles</key>
           <string>#3B3A32</string>
           <key>lineHighlight</key>
-          <string>color_bg_alt3</string>
+          <string>color_bg_alt2</string>
           <key>selection</key>
           <string>color_select</string>
+          <key>gutter</key>
+          <string>color_bg_alt1</string>
+          <key>gutterForeground</key>
+          <string>color_linenr</string>
         </dict>
       </dict>
       <dict>
@@ -37,7 +41,7 @@ https://github.com/benbusby/earthbound-themes -->
           <key>foreground</key>
           <string>color_comment</string>
           <key>background</key>
-          <string>color_bg00</string>
+          <string>color_bg_main00</string>
         </dict>
       </dict>
       <dict>

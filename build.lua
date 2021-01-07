@@ -88,6 +88,7 @@ color_table = {
     color_bg_alt1='#150d00',
     color_bg_alt2='#140f00',
     color_fg='#f9e4a1',
+    color_linenr='#f9e4a1',
     color_select='#6b5e33',
     color_type='#e0c364',
     color_accent='#f6d56a',
