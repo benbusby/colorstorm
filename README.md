@@ -10,7 +10,7 @@ ___
 [![Vim Installs](https://img.shields.io/static/v1?label=vim&message=?&color=green&logo=vim)]()
 [![VSCode Installs](https://img.shields.io/visual-studio-marketplace/i/benbusby.earthbound-themes?label=vscode&color=4444ff&logo=visual-studio-code)](https://marketplace.visualstudio.com/items?itemName=benbusby.earthbound-themes)
 [![Package Control](https://img.shields.io/packagecontrol/dt/Earthbound%20Themes?color=ff4500&label=sublime&logo=sublime-text)](https://packagecontrol.io/packages/Earthbound%20Themes)
-[![APM](https://img.shields.io/apm/dm/earthbound-syntax?color=dark-green&label=atom&logo=atom)](https://atom.io/packages/earthbound-syntax)
+[![APM](https://img.shields.io/apm/dm/earthbound-themes-syntax?color=dark-green&label=atom&logo=atom)](https://atom.io/packages/earthbound-themes-syntax)
 
 ## Current Themes
 - Earthbound
