@@ -8,7 +8,7 @@
 
 typedef struct Theme {
     char *name;
-    int darkMode;
+    int dark_mode;
     char *values[N_VALUES][2];
 } Theme;
 
@@ -17,9 +17,9 @@ typedef struct Editor {
     char *output;
 } Editor;
 
-void replaceAll(char *str, const char *oldWord, const char *newWord);
-void generateTheme(FILE *template, const char *output, struct Theme theme);
-void writeOutput(FILE *fInput, FILE *fOutput, struct Theme theme);
+void replace_all(char *str, const char *old_word, const char *new_word);
+void generate_theme(FILE *template, const char *output, struct Theme theme);
+void write_output(FILE *f_input, FILE *f_output, struct Theme theme);
 
 struct Editor editors[N_EDITORS] = {
     {"templates/template.vim", "vim/colors/%s.vim"},

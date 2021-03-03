@@ -11,3 +11,5 @@ sublime/*.tmTheme
 !sublime/earthbound_template.tmTheme
 
 .idea/
+
+out
