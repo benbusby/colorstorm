@@ -24,8 +24,9 @@ void generate_theme(FILE *f_template, const char *output, struct Theme theme) {
     char name[32] = {0}, dark_name[32] = {0};
     char darker[] = "-darker";
 
-    sprintf(name, "%s", theme.name);
-    sprintf(editor_theme, output, name);
+    snprintf(name, strlen(theme.name) + 1, "%s", theme.name);
+    snprintf(editor_theme, strlen(name) + strlen(output) + 1, output, name);
+
     f_output = fopen(editor_theme, "w");
 
     write_output(f_template, f_output, theme);
@@ -41,7 +42,10 @@ void generate_theme(FILE *f_template, const char *output, struct Theme theme) {
         strcat(dark_name, name);
         strcat(dark_name, darker);
 
-        sprintf(editor_dark_theme, output, dark_name);
+        snprintf(editor_dark_theme,
+                 strlen(dark_name) + strlen(output) + 1,
+                 output,
+                 dark_name);
         f_output_dark = fopen(editor_dark_theme, "w");
 
         write_output(f_template, f_output_dark, theme);
