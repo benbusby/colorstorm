@@ -20,6 +20,6 @@ jobs:
           git submodule update
           make clean
           make
-          ./out
+          ./earthbound-themes
     - name: Validate theme files
       run: for file in vscode/themes/*.json; do cat $file | jq .; done
