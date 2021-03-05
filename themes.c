@@ -111,29 +111,3 @@ void replace_all(char *str, const char *old_word, const char *new_word) {
         strcat(str, temp + index + strlen(old_word));
     }
 }
-
-/** ======================================================================== */
-int main() {
-    int i, j;
-    FILE *f_template;
-
-    for (i = 0; i < N_EDITORS; i++) {
-        f_template = fopen(editors[i].template, "r");
-        if (f_template == NULL) {
-            /* Unable to open template file, need to abort */
-            printf("\n!!! Unable to open template file: '%s'\n",
-                    editors[i].template);
-            printf("Please check whether the file exists.\n\n");
-            exit(EXIT_FAILURE);
-        }
-
-        /* Generate the editor themes using the template file
-         * and a formatted output path */
-        for (j = 0; j < N_THEMES; j++) {
-            generate_theme(f_template, editors[i].output, themes[j]);
-        }
-    }
-
-    fclose(f_template);
-    return EXIT_SUCCESS;
-}

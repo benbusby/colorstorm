@@ -12,4 +12,5 @@ sublime/*.tmTheme
 
 .idea/
 
-out
+*.o
+earthbound-themes
