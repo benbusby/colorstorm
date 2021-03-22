@@ -144,4 +144,5 @@ Contributions and PRs are highly encouraged for improvements, new color themes, 
 If there are any issues with the color schemes, or if one of them has poor contrast in a particular setting, please let me know by [opening an issue](https://github.com/benbusby/earthbound-themes/issues/new).
 
 ## Credits
+- Screenshot font is [Anomaly Mono](https://github.com/benbusby/anomaly-mono)
 - Atom theme switcher adapted from Dayle Rees' Rainglow themes for Atom (https://github.com/rainglow/atom)
