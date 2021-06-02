@@ -52,7 +52,7 @@ https://github.com/benbusby/earthbound-themes -->
         <key>settings</key>
         <dict>
           <key>foreground</key>
-          <string>color_strings</string>
+          <string>color_string</string>
         </dict>
       </dict>
       <dict>
