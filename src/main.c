@@ -2,14 +2,14 @@
 #include <stdio.h>
 #include "themes.h"
 
-struct Editor editors[N_EDITORS] = {
+Editor editors[N_EDITORS] = {
     {"templates/template.vim", "vim/colors/%s.vim"},
     {"templates/template.json", "vscode/themes/%s.json"},
     {"templates/earthbound_template.tmTheme", "sublime/earthbound_%s.tmTheme"},
     {"templates/colors.less", "atom/themes/%s-syntax/colors.less"}
 };
 
-struct Theme themes[N_THEMES] = {
+Theme themes[N_THEMES] = {
     {
         "earthbound", 1, {
             {"theme_name_full", "Earthbound"},

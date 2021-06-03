@@ -1,0 +1,6 @@
+Previous C implementation of theme generator. To use, move the contents of this directory to the root level of the repo and run:
+
+```
+make
+./earthbound-themes
+```
