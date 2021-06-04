@@ -16,14 +16,11 @@ jobs:
       with:
         luaVersion: "5.1.5"
     - name: Install dependencies
-      run: sudo apt-get install jq
+      run: sudo apt-get install jq libxml2-utils vim npm nodejs
     - name: Build theme files
       run: |
           git submodule init
           git submodule update
-          lua build.lua vim
-          lua build.lua vscode
-          lua build.lua sublime
-          lua build.lua atom
+          lua build.lua all
     - name: Validate theme files
-      run: for file in vscode/themes/*.json; do cat $file | jq .; done
+      run: ./validate.sh
