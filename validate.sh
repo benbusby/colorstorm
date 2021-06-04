@@ -33,7 +33,7 @@ echo -e "\n=== Atom Tests"
 for file in atom/themes/*-syntax/*.less; do 
     echo -n "  ? $file: "
     cp $file .
-    lessc atom/styles/base.less out.css
+    ./node_modules/less/bin/lessc atom/styles/base.less out.css
     echo -e "\r  ✓ $file "
 done
 
