@@ -20,7 +20,7 @@ https://github.com/benbusby/earthbound-themes -->
           <string>color_fg</string>
 
           <key>invisibles</key>
-          <string>#3B3A32</string>
+          <string>color_linenr</string>
           <key>lineHighlight</key>
           <string>color_bg_alt2</string>
           <key>selection</key>

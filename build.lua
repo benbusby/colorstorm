@@ -134,6 +134,24 @@ color_table = {
     color_number='#445046',
     color_comment='#5b5f59',
     color_function='#0e1e0e'
+  },
+  devils_machine={
+    theme_name_full='Devils Machine',
+    theme_name_alt='devils-machine',
+    color_bg_main='#070102',
+    color_bg_alt1='#260000',
+    color_bg_alt2='#170000',
+    color_fg='#ffcccc',
+    color_linenr='#a45a52',
+    color_select='#481200',
+    color_type='#c15bac',
+    color_accent='#ffcc99',
+    color_string='#ddaaaa',
+    color_boolean='#938198',
+    color_variable='#ff8c69',
+    color_number='#aa6666',
+    color_comment='#a59e85',
+    color_function='#e6817e'
   }
 }
 
@@ -148,7 +166,8 @@ color_files = {
   vim='templates/template.vim',
   vscode='templates/template.json',
   sublime='templates/earthbound_template.tmTheme',
-  atom='templates/colors.less'
+  atom='templates/colors.less',
+  all=''
 }
 
 out_paths = {
@@ -204,21 +223,11 @@ local function generate_theme(file, name, theme, out_path)
   theme_file:close()
 end
 
--- CLI
-
-if arg[1] == nil then
-  print('Error: Argument required')
-  print(USAGE)
-  os.exit(1)
-elseif color_files[arg[1]] == nil then
-  print('Error: Invalid argument')
-  print(USAGE)
-  os.exit(1)
-else
-  -- Get template file for theme generation
-  local editor = arg[1]
+--- Runs all necessary theme generation functions for a specific editor
+-- @param editor: The editor to use for theme generation
+local function create_editor_themes(editor)
   local filename = color_files[editor]
-  print('=== Generating theme files for ' .. arg[1])
+  print('=== Generating theme files for ' .. editor)
 
   for theme, value in pairs(color_table) do
     color_table[theme]['uuid'] = uuid()
@@ -242,5 +251,26 @@ else
 
       generate_theme(filename, darker_name, dark_theme, out_paths[editor])
     end
+  end
+end
+
+-- CLI
+
+if arg[1] == nil then
+  print('Error: Argument required')
+  print(USAGE)
+  os.exit(1)
+elseif color_files[arg[1]] == nil then
+  print('Error: Invalid argument')
+  print(USAGE)
+  os.exit(1)
+else
+  -- Get template file for theme generation
+  if arg[1] == 'all' then
+    for editor, _ in pairs(out_paths) do
+      create_editor_themes(editor)
+    end
+  else
+    create_editor_themes(arg[1])
   end
 end
