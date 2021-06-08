@@ -138,7 +138,7 @@ color_table = {
   devils_machine={
     theme_name_full='Devils Machine',
     theme_name_alt='devils-machine',
-    color_bg_main='#070102',
+    color_bg_main='#040001',
     color_bg_alt1='#260000',
     color_bg_alt2='#170000',
     color_fg='#ffcccc',
@@ -149,7 +149,7 @@ color_table = {
     color_string='#ddaaaa',
     color_boolean='#938198',
     color_variable='#ff8c69',
-    color_number='#aa6666',
+    color_number='#b4a0dc',
     color_comment='#a59e85',
     color_function='#e6817e'
   }
