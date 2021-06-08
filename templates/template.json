@@ -77,7 +77,7 @@
       "name": "Storage",
       "scope": "storage.type, storage.modifier",
       "settings": {
-        "foreground": "color_boolean"
+        "foreground": "color_accent"
       }
     },
     {
@@ -129,14 +129,14 @@
       "name": "Class method",
       "scope": "meta.definition.method entity.name.function",
       "settings": {
-        "foreground": "color_type"
+        "foreground": "color_function"
       }
     },
     {
       "name": "Function definition",
       "scope": "meta.function entity.name.function",
       "settings": {
-        "foreground": "color_type"
+        "foreground": "color_function"
       }
     },
     {
