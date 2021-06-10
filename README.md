@@ -17,6 +17,7 @@ ___
 - Zombie Threed
 - Dusty Dunes
 - Fire Spring
+- Devil's Machine
 - Magicant (Light Theme)
 - Cave of the Past (Monochromatic Theme)
 
@@ -30,31 +31,35 @@ Each theme is modeled after an iconic location in the game, and all color themes
 
 These themes are nearly identical to their "regular" theme counterparts, but use a darker background to provide a higher contrast alternative with the syntax colors.
 
-#### Earthbound
+### Earthbound
 
 ![Earthbound Screenshot](images/demos/earthbound.png)
 
-#### Moonside
+### Moonside
 
 ![Moonside Screenshot](images/demos/moonside.png)
 
-#### Zombie Threed
+### Zombie Threed
 
 ![Zombie Threed Screenshot](images/demos/threed.png)
 
-#### Fire Spring
+### Fire Spring
 
 ![Fire Spring Screenshot](images/demos/fire_spring.png)
 
-#### Dusty Dunes
+### Devil's Machine
+
+![Devil's Machine Screenshot](images/demos/devils_machine.png)
+
+### Dusty Dunes
 
 ![Dusty Dunes Screenshot](images/demos/dusty_dunes.png)
 
-#### Magicant (Light Theme)
+### Magicant (Light Theme)
 
 ![Magicant Screenshot](images/demos/magicant.png)
 
-#### Cave of the Past (Monochrome)
+### Cave of the Past (Monochrome)
 
 ![Cave of the Past Screenshot](images/demos/cave_of_the_past.png)
 
@@ -85,5 +90,4 @@ Contributions and PRs are highly encouraged for improvements, new color themes, 
 If there are any issues with the color schemes, or if one of them has poor contrast in a particular setting, please let me know by [opening an issue](https://github.com/benbusby/earthbound-themes/issues/new).
 
 ## Credits
-- Screenshot font is [Anomaly Mono](https://github.com/benbusby/anomaly-mono)
 - Atom theme switcher adapted from Dayle Rees' Rainglow themes for Atom (https://github.com/rainglow/atom)
