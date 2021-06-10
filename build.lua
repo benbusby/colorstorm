@@ -50,7 +50,7 @@ color_table = {
     theme_name_alt='threed',
     color_bg_main='#303454',
     color_bg_alt1='#373c60',
-    color_bg_alt2='#202339',
+    color_bg_alt2='#2a2e4a',
     color_fg='#f0faff',
     color_linenr='#9590b2',
     color_select='#534f63',
@@ -102,9 +102,9 @@ color_table = {
   magicant={
     theme_name_full='Magicant (Light)',
     theme_name_alt='magicant',
-    color_bg_main='#e6e5ab',
+    color_bg_main='#f9f8b9',
     color_bg_alt1='#efeeb2',
-    color_bg_alt2='#f9f8b9',
+    color_bg_alt2='#e6e5ab',
     color_fg='#220088',
     color_linenr='#876a55',
     color_select='#b299ff',
@@ -233,7 +233,7 @@ local function create_editor_themes(editor)
     color_table[theme]['uuid'] = uuid()
     generate_theme(filename, theme, color_table[theme], out_paths[editor])
 
-    -- A few themes can use "-darker" variants, which swaps the default 
+    -- A few themes can use "-darker" variants, which swaps the default
     -- background (color_bg_main) and the darker background (color_bg_alt2)
     if darker_variants[theme] ~= nil then
       local darker_name = theme .. '_darker'
