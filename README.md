@@ -6,7 +6,7 @@ ___
 [![GitHub release](https://img.shields.io/github/release/benbusby/earthbound-themes.svg)](https://github.com/benbusby/earthbound-themes/releases/)
 [![build](https://github.com/benbusby/earthbound-themes/workflows/build/badge.svg)](https://github.com/benbusby/earthbound-themes/actions)
 
-[![Vim Installs](https://img.shields.io/static/v1?label=vim&message=?&color=green&logo=vim)]()
+[![Vim Installs](https://img.shields.io/static/v1?label=vim&message=?&color=green&logo=vim)](https://www.vim.org/scripts/script.php?script_id=5920)
 [![VSCode Installs](https://img.shields.io/visual-studio-marketplace/i/benbusby.earthbound-themes?label=vscode&color=4444ff&logo=visual-studio-code)](https://marketplace.visualstudio.com/items?itemName=benbusby.earthbound-themes)
 [![Package Control](https://img.shields.io/packagecontrol/dt/Earthbound%20Themes?color=ff4500&label=sublime&logo=sublime-text)](https://packagecontrol.io/packages/Earthbound%20Themes)
 [![APM](https://img.shields.io/apm/dm/earthbound-themes-syntax?color=dark-green&label=atom&logo=atom)](https://atom.io/packages/earthbound-themes-syntax)
@@ -73,7 +73,7 @@ These themes are nearly identical to their "regular" theme counterparts, but use
 
 ## Installation
 ### Vim
-Refer to [the vim submodule README](https://github.com/benbusby/vim-earthbound-themes) or [the plugin page on vim.org]()
+Refer to [the vim submodule README](https://github.com/benbusby/vim-earthbound-themes) or [the plugin page on vim.org](https://www.vim.org/scripts/script.php?script_id=5920)
 
 ### Visual Studio Code
 Install through [the online marketplace](https://marketplace.visualstudio.com/items?itemName=benbusby.earthbound-themes), or by searching "Earthbound" in the extension manager in VSCode and installing from there.
