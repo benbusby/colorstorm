@@ -1,6 +1,6 @@
 ![Earthbound Themes](https://raw.githubusercontent.com/benbusby/earthbound-themes/main/images/earthbound_themes.png)
 
-:art: *Code editor themes inspired by the memorable and bizarre locations from [Earthbound (aka Mother 2)](https://en.wikipedia.org/wiki/EarthBound).* <br><br>**Available now for [Vim](https://www.vim.org/scripts/script.php?script_id=5920), [VSCode](https://marketplace.visualstudio.com/items?itemName=benbusby.earthbound-themes), [Sublime](https://packagecontrol.io/packages/EarthboundThemes), and [Atom](https://atom.io/themes/earthbound-syntax)!**
+:art: *Code editor themes inspired by the memorable and bizarre locations from [Earthbound (aka Mother 2)](https://en.wikipedia.org/wiki/EarthBound).* <br><br>**Available now for [Vim](https://www.vim.org/scripts/script.php?script_id=5920), [VSCode](https://marketplace.visualstudio.com/items?itemName=benbusby.earthbound-themes), [Sublime](https://packagecontrol.io/packages/EarthboundThemes), and [Atom](https://atom.io/themes/earthbound-themes-syntax)!**
 ___
 [![MIT License](https://img.shields.io/github/license/benbusby/earthbound-themes.svg)](http://opensource.org/licenses/MIT)
 [![GitHub release](https://img.shields.io/github/release/benbusby/earthbound-themes.svg)](https://github.com/benbusby/earthbound-themes/releases/)
