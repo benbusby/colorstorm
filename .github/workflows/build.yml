@@ -16,12 +16,19 @@ jobs:
       with:
         luaVersion: "5.1.5"
     - name: Install dependencies
-      run: sudo apt-get install jq libxml2-utils vim npm nodejs
+      run: sudo apt-get install -y jq libxml2-utils vim php npm nodejs
     - name: Build theme files
       run: |
           npm install less
           git submodule init
           git submodule update
           lua build.lua all
+          
+          # Vim themes need extra work for cterm colors
+          cd vim
+          git submodule init
+          git submodule update
+          ./build.sh
+          cd ..
     - name: Validate theme files
       run: ./validate.sh
