@@ -22,7 +22,7 @@ jobs:
           npm install -g vsce
           git submodule init
           git submodule update
-          TAG_NAME="${GITHUB_REF#refs/tags/}"
+          TAG_NAME="${GITHUB_REF#refs/tags/v}"
           lua build.lua all
           
           echo "$TAG_NAME"
@@ -34,6 +34,7 @@ jobs:
           git checkout main
           git add .
           git commit --allow-empty -m "AUTO-COMMIT: Version $TAG_NAME release (vscode)"
+          git tag v"$TAG_NAME"
           git push
           vsce publish "$TAG_NAME" -p "$VSCODE_TOKEN"
           git push --follow-tags
