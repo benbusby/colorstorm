@@ -16,6 +16,7 @@ jobs:
           ${{ secrets.VSCODE_SUBMODULE_KEY }}
           ${{ secrets.VIM_SUBMODULE_KEY }}
           ${{ secrets.SUBLIME_SUBMODULE_KEY }}
+          ${{ secrets.PRIMARY_REPO_KEY }}
     - uses: leafo/gh-actions-lua@v8.0.0
       with:
         luaVersion: "5.1.5"
@@ -35,71 +36,71 @@ jobs:
           TAG_NAME="${GITHUB_REF#refs/tags/v}"
           lua build.lua all
           
-          echo "$TAG_NAME"
+          echo "Building release for version $TAG_NAME"
           
           # VSCode
           echo "============= VSCODE ============="
           cd vscode
           git remote set-url origin git@github.com:benbusby/vscode-earthbound-themes.git
           git checkout main
-          echo "$TAG_NAME" > test
-          git add test
-          git commit -m '[AUTO] Version $TAG_NAME release'
+          git add .
+          git commit --allow-empty -m "[AUTO] Version $TAG_NAME release"
+          git tag -a -m "Version $TAG_NAME tag" v"$TAG_NAME"
+          git push --follow-tags
+          vsce publish "$TAG_NAME" -p "$VSCODE_TOKEN"
+          git remote set-url origin https://github.com/benbusby/vscode-earthbound-themes.git
+          cd ..
+          
+          # Sublime
+          echo "============= SUBLIME ============="
+          cd sublime
+          git remote set-url origin git@github.com:benbusby/sublime-earthbound-themes.git
+          git checkout main
+          git add .
+          git commit --allow-empty -m "[AUTO] Version $TAG_NAME release"
+          git tag -a -m "Version $TAG_NAME tag" v"$TAG_NAME"
+          git push --follow-tags
+          git remote set-url origin https://github.com/benbusby/sublime-earthbound-themes.git
+          cd ..
+          
+          # Vim
+          echo "============= VIM ============="
+          cd vim
+          git remote set-url origin git@github.com:benbusby/vim-earthbound-themes.git
+          git submodule init
+          git submodule update
+          ./build.sh
+          git checkout main
+          git add .
+          git commit --allow-empty -m "[AUTO] Version $TAG_NAME release"
+          git tag -a -m "Version $TAG_NAME tag" v"$TAG_NAME"
+          git push --follow-tags
+          git remote set-url origin https://github.com/benbusby/vim-earthbound-themes.git
+          cd ..
+          tar -czvf vim-earthbound-themes.tar.gz -C vim/colors .
+          
+          # Atom
+          echo "============= ATOM ============="
+          cd atom
+          git remote set-url origin git@github.com:benbusby/atom-earthbound-themes.git
+          git checkout master
+          TMP_PACKAGE=$(mktemp)
+          jq --arg tag "$TAG_NAME" '.version = $tag' package.json > "$TMP_PACKAGE" && mv "$TMP_PACKAGE" package.json
+          git add .
+          git commit --allow-empty -m "[AUTO] Version $TAG_NAME release"
+          git tag -a -m "Version $TAG_NAME tag" v"$TAG_NAME"
+          git push --follow-tags
+          apm publish --tag v"$TAG_NAME"
+          git remote set-url origin https://github.com/benbusby/atom-earthbound-themes.git
+          cd ..
+          
+          # Update main repo submodules
+          echo "============= FINISHING UP ============="
+          git remote set-url origin git@github.com:benbusby/earthbound-themes.git
+          git checkout main
+          git add vscode vim atom sublime
+          git commit --allow-empty -m "[AUTO] Version $TAG_NAME submodule update"
           git push
-          #git add .
-          #git commit --allow-empty -m "AUTO-COMMIT: Version $TAG_NAME release (vscode)"
-          #git tag v"$TAG_NAME"
-          #git push
-          #vsce publish "$TAG_NAME" -p "$VSCODE_TOKEN"
-          #git push --follow-tags
-          #cd ..
-          
-          ## Sublime
-          #echo "============= SUBLIME ============="
-          #cd sublime
-          #git remote set-url origin https://benbusby:$EARTHBOUND_THEMES_TOKEN@github.com/benbusby/sublime-earthbound-themes.git
-          #git checkout main
-          #git add .
-          #git commit --allow-empty -m "AUTO-COMMIT: Version $TAG_NAME release (sublime)"
-          #git tag v"$TAG_NAME"
-          #git push --follow-tags
-          #cd ..
-          
-          ## Vim
-          #echo "============= VIM ============="
-          #cd vim
-          #git submodule init
-          #git submodule update
-          #./build.sh
-          #git remote set-url origin https://benbusby:$EARTHBOUND_THEMES_TOKEN@github.com/benbusby/vim-earthbound-themes.git
-          #git checkout main
-          #git add .
-          #git commit --allow-empty -m "AUTO-COMMIT: Version $TAG_NAME release (vim)"
-          #git tag v"$TAG_NAME"
-          #git push --follow-tags
-          #cd ..
-          #tar -czvf vim-earthbound-themes.tar.gz -C vim/colors .
-          
-          ## Atom
-          #echo "============= ATOM ============="
-          #cd atom
-          #git remote set-url origin https://benbusby:$EARTHBOUND_THEMES_TOKEN@github.com/benbusby/atom-earthbound-themes.git
-          #git checkout master
-          #TMP_PACKAGE=$(mktemp)
-          #jq --arg tag "$TAG_NAME" '.version = $tag' package.json > "$TMP_PACKAGE" && mv "$TMP_PACKAGE" package.json
-          #git add .
-          #git commit --allow-empty -m "AUTO-COMMIT: Version $TAG_NAME release (atom)"
-          #git tag v"$TAG_NAME"
-          #git push --follow-tags
-          #apm publish --tag v"$TAG_NAME"
-          #cd ..
-          
-          ## Update main repo submodules
-          #echo "============= FINISHING UP ============="
-          #git remote set-url origin https://benbusby:$EARTHBOUND_THEMES_TOKEN@github.com/benbusby/earthbound-themes.git
-          #git add vscode vim atom sublime
-          #git commit --allow-empty -m "AUTO-COMMIT: Version $TAG_NAME submodule update"
-          #git push
           
     - name: Release
       uses: softprops/action-gh-release@v1
