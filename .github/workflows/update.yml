@@ -11,7 +11,16 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Verify themes changed
+      uses: tj-actions/verify-changed-files@v8.6
+      id: verify-changed-files
+      with:
+        files: |
+          build.lua
+          templates
+
     - uses: webfactory/ssh-agent@v0.5.3
+      if: steps.verify-changed-files.outputs.files_changed == 'true'
       with:
         ssh-private-key: |
           ${{ secrets.ATOM_SUBMODULE_KEY }}
@@ -21,19 +30,13 @@ jobs:
           ${{ secrets.PRIMARY_REPO_KEY }}
 
     - uses: leafo/gh-actions-lua@v8.0.0
+      if: steps.verify-changed-files.outputs.files_changed == 'true'
       with:
         luaVersion: "5.1.5"
 
     - name: Install dependencies
+      if: steps.verify-changed-files.outputs.files_changed == 'true'
       run: sudo apt-get install npm nodejs php
-
-    - name: Verify themes changed
-      uses: tj-actions/verify-changed-files@v8.6
-      id: verify-changed-files
-      with:
-        files: |
-          build.lua
-          templates
 
     - name: Build theme files
       if: steps.verify-changed-files.outputs.files_changed == 'true'
