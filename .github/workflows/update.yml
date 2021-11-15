@@ -25,7 +25,6 @@ jobs:
           templates/template.json
           templates/template.vim
 
-
     - uses: webfactory/ssh-agent@v0.5.3
       if: steps.verify-changed-files.outputs.any_changed == 'true'
       with:
@@ -57,15 +56,13 @@ jobs:
 
           export EB_REPO="https://github.com/benbusby/earthbound-themes/commit"
           
-          echo "Building release for version $TAG_NAME"
-          
           # VSCode
           echo "============= VSCODE ============="
           cd vscode
           git remote set-url origin git@github.com:benbusby/vscode-earthbound-themes.git
           git checkout main
           git add .
-          git commit --allow-empty -m "[CI] Automatic update" -m "$EB_REPO/$GITHUB_SHA"
+          git commit --allow-empty -m "[CI] Update VSCode themes" -m "$EB_REPO/$GITHUB_SHA"
           git push 
           cd ..
           
@@ -75,7 +72,7 @@ jobs:
           git remote set-url origin git@github.com:benbusby/sublime-earthbound-themes.git
           git checkout main
           git add .
-          git commit --allow-empty -m "[CI] Automatic update" -m "$EB_REPO/$GITHUB_SHA"
+          git commit --allow-empty -m "[CI] Update Sublime themes" -m "$EB_REPO/$GITHUB_SHA"
           git push
           cd ..
           
@@ -88,7 +85,7 @@ jobs:
           ./build.sh
           git checkout main
           git add .
-          git commit --allow-empty -m "[CI] Automatic update" -m "$EB_REPO/$GITHUB_SHA"
+          git commit --allow-empty -m "[CI] Update Vim themes" -m "$EB_REPO/$GITHUB_SHA"
           git push
           cd ..
           
@@ -98,7 +95,7 @@ jobs:
           git remote set-url origin git@github.com:benbusby/atom-earthbound-themes.git
           git checkout master
           git add .
-          git commit --allow-empty -m "[CI] Automatic update" -m "$EB_REPO/$GITHUB_SHA"
+          git commit --allow-empty -m "[CI] Update Atom themes" -m "$EB_REPO/$GITHUB_SHA"
           git push
           cd ..
           
@@ -107,5 +104,5 @@ jobs:
           git remote set-url origin git@github.com:benbusby/earthbound-themes.git
           git checkout main
           git add vscode vim atom sublime
-          git commit --allow-empty -m "[CI] Auto submodule update"
+          git commit --allow-empty -m "[CI] Update submodules"
           git push
