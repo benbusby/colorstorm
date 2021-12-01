@@ -3,7 +3,7 @@
 -- for vim, vscode, sublime, and atom.
 
 USAGE = [[
-./test.lua [vim, vscode, sublime, atom]
+./test.lua [vim, vscode, sublime, atom, iterm2]
 ]]
 
 -- COLOR DEFINITIONS
@@ -162,11 +162,16 @@ darker_variants = {
   dusty_dunes=1
 }
 
+use_percentages = {
+  iterm2=1
+}
+
 color_files = {
   vim='templates/template.vim',
   vscode='templates/template.json',
   sublime='templates/earthbound_template.tmTheme',
   atom='templates/colors.less',
+  iterm2='templates/template.itermcolors',
   all=''
 }
 
@@ -174,7 +179,8 @@ out_paths = {
   vim='vim/colors/%s.vim',
   vscode='vscode/themes/%s.json',
   sublime='sublime/earthbound_%s.tmTheme',
-  atom='atom/themes/%s-syntax/colors.less'
+  atom='atom/themes/%s-syntax/colors.less',
+  iterm2='iterm2/%s.itermcolors'
 }
 
 -- MISC UTILS
@@ -188,6 +194,18 @@ local function uuid()
   end)
 end
 
+local function hex_to_percent(color)
+  local colorR = string.sub(color, 1, 2)
+  local colorG = string.sub(color, 3, 4)
+  local colorB = string.sub(color, 5, 6)
+
+  return {
+    R=tonumber(string.format('0x%s', colorR)) / 255,
+    G=tonumber(string.format('0x%s', colorG)) / 255,
+    B=tonumber(string.format('0x%s', colorB)) / 255
+  }
+end
+
 -- THEME GENERATION
 
 --- Generates a formatted theme file
@@ -195,7 +213,7 @@ end
 -- using the values in color_table.
 -- @param file: The template file to use
 -- @param theme: The theme to generate a file for
-local function generate_theme(file, name, theme, out_path)
+local function generate_theme(file, name, theme, editor)
   local theme_file = io.open(file, 'r')
 
   if theme_file == nil then
@@ -206,14 +224,21 @@ local function generate_theme(file, name, theme, out_path)
   local lines = {}
   for line in theme_file:lines() do
     for k, v in pairs(theme) do
-      line = string.gsub(line, k, v)
+      if use_percentages[editor] ~= nil and string.find(v, '^#') then
+        local colorRGB = hex_to_percent(string.sub(v, 2))
+        line = string.gsub(line, 'R' .. k, colorRGB['R'])
+        line = string.gsub(line, 'G' .. k, colorRGB['G'])
+        line = string.gsub(line, 'B' .. k, colorRGB['B'])
+      else
+        line = string.gsub(line, k, v)
+      end
     end
 
     lines[#lines + 1] = line
   end
   theme_file:close()
 
-  out_path = string.format(out_path, theme['theme_name_alt'])
+  out_path = string.format(out_paths[editor], theme['theme_name_alt'])
   print(out_path)
 
   theme_file = io.open(out_path, 'w')
@@ -231,7 +256,7 @@ local function create_editor_themes(editor)
 
   for theme, value in pairs(color_table) do
     color_table[theme]['uuid'] = uuid()
-    generate_theme(filename, theme, color_table[theme], out_paths[editor])
+    generate_theme(filename, theme, color_table[theme], editor)
 
     -- A few themes can use "-darker" variants, which swaps the default
     -- background (color_bg_main) and the darker background (color_bg_alt2)
@@ -249,7 +274,7 @@ local function create_editor_themes(editor)
       dark_theme['theme_name_full'] = dark_theme['theme_name_full'] .. ' Darker'
       dark_theme['theme_name_alt'] = dark_theme['theme_name_alt'] .. '-darker'
 
-      generate_theme(filename, darker_name, dark_theme, out_paths[editor])
+      generate_theme(filename, darker_name, dark_theme, editor)
     end
   end
 end
