@@ -17,3 +17,12 @@ package-lock.json
 
 *.o
 earthbound-themes
+
+colorstorm-out/
+zig-cache/
+zig-out/
+/release/
+/debug/
+/build/
+/build-*/
+/docgen_tmp/

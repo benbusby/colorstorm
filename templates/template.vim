@@ -36,15 +36,15 @@ hi Visual                              guibg=color_select   gui=none
 hi VisualNOS                           guibg=color_bg_main
 hi WarningMsg    guifg=color_type      guibg=color_bg_main
 hi Number        guifg=color_number                         gui=underline
-hi Char          guifg=color_string                       
-hi String        guifg=color_string                         gui=italic         
-hi Boolean       guifg=color_boolean                      
+hi Char          guifg=color_string
+hi String        guifg=color_string                         gui=italic
+hi Boolean       guifg=color_boolean
 hi Comment       guifg=color_comment
 hi Constant      guifg=color_variable                       gui=bold
 hi Identifier    guifg=color_type
 hi Statement     guifg=color_accent                         gui=none
 hi CursorLine                          guibg=color_bg_alt2
-hi CursorLineNR  guifg=color_accent                         gui=bold
+hi CursorLineNR  guifg=color_accent    guibg=color_bg_alt2  gui=bold
 
 "Procedure name
 hi Function      guifg=color_function                       gui=bold
@@ -55,7 +55,7 @@ hi Type          guifg=color_accent                         gui=bold
 hi Underlined    guifg=color_type                           gui=underline
 hi Error         guifg=#ee1111         guibg=color_bg_main
 hi Todo          guifg=color_bg_main   guibg=color_comment  gui=none
-hi SignColumn                          guibg=color_bg_main
+hi SignColumn                          guibg=color_bg_alt2
 
 if version >= 700
   " Pmenu
@@ -76,8 +76,9 @@ syn match    cCustomScope    "::"
 syn match    cCustomClass    "\w\+\s*::" contains=cCustomScope
 syn match    cCustomProp     "\.\w\+\s*."
 
-"hi cCustomProp                                                        
-hi cCustomFunc    guifg=color_function                      gui=bold 
+"hi cCustomProp
+hi cCustomFunc    guifg=color_function                      gui=bold
 
 hi diffAdded ctermfg=green guifg=#00FF00
 hi diffRemoved ctermfg=red guifg=#FF0000
+"
