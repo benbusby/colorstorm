@@ -8,7 +8,7 @@
 [![GitHub release](https://img.shields.io/github/release/benbusby/colorstorm.svg)](https://github.com/benbusby/colorstorm/releases/)
 [![build](https://github.com/benbusby/colorstorm/workflows/build/badge.svg)](https://github.com/benbusby/colorstorm/actions)
 
-__
+___
 
 Contents
 1. [Install](#install)
@@ -25,7 +25,8 @@ In progress, check back soon!
 ### From Source
 
 - Install [Zig](https://github.com/ziglang/zig/wiki/Install-Zig-from-a-Package-Manager)
-- Run: `zig build release`
+- Run: `make release`
+- Move `zig-out/bin/colorstorm` into your `PATH`
 
 ## Usage
 
