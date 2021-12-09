@@ -5,7 +5,7 @@ const stdout = std.io.getStdOut().writer();
 const max_template_len = 12000;
 pub const Theme = struct {
     theme_name_full: []u8,
-    theme_name_alt: []u8,
+    theme_name_safe: []u8,
     color_bg_main: []u8,
     color_bg_alt1: []u8,
     color_bg_alt2: []u8,
@@ -61,8 +61,6 @@ const template_end = std.ComptimeStringMap(u8, .{
     .{ @tagName(cli.Gen.iterm2), '>' },
     .{ @tagName(cli.Gen.sublime), '>' },
 });
-
-//
 
 /// Parses a json array from the input file into a list of themes. Each
 /// theme must contain the fields defined in the Theme struct above.
@@ -148,7 +146,7 @@ fn generate(gen_type: []const u8, themes: []Theme, outdir: []const u8) !void {
         var fmt_out_file = try std.fmt.allocPrint(
             a,
             "{s}/{s}{s}",
-            .{ fmt_out_path, theme.theme_name_alt, out_ext.get(gen_type).? },
+            .{ fmt_out_path, theme.theme_name_safe, out_ext.get(gen_type).? },
         );
 
         if (std.mem.eql(u8, @tagName(cli.Gen.atom), gen_type)) {
@@ -158,7 +156,7 @@ fn generate(gen_type: []const u8, themes: []Theme, outdir: []const u8) !void {
             fmt_out_path = try std.fmt.allocPrint(
                 a,
                 "{s}/{s}-syntax",
-                .{ fmt_out_path, theme.theme_name_alt },
+                .{ fmt_out_path, theme.theme_name_safe },
             );
 
             fmt_out_file = try std.fmt.allocPrint(

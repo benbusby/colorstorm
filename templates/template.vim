@@ -1,5 +1,5 @@
 " Theme:   theme_name_full
-" File:    theme_name_alt.vim
+" File:    theme_name_safe.vim
 " URL:     https://github.com/benbusby/earthbound-themes
 " Author:  Ben Busby (https://benbusby.com)
 " License: MIT
@@ -12,7 +12,7 @@ hi clear
 if exists("syntax_on")
   syntax reset
 endif
-let g:colors_name = 'theme_name_alt'
+let g:colors_name = 'theme_name_safe'
 
 hi Cursor        guifg=color_bg_main   guibg=color_fg
 hi lCursor       guifg=color_bg_main   guibg=color_fg
