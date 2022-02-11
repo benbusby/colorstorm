@@ -3,7 +3,7 @@ const cli = @import("cli.zig");
 const utils = @import("utils.zig");
 const templator = @import("templator.zig");
 
-var a: *std.mem.Allocator = undefined;
+var a: std.mem.Allocator = undefined;
 const io = std.io;
 const stdout = std.io.getStdOut().writer();
 
@@ -21,7 +21,8 @@ const help =
 fn parse_args() !void {
     var arena = std.heap.ArenaAllocator.init(std.heap.page_allocator);
     defer arena.deinit();
-    a = &arena.allocator;
+    a = arena.allocator();
+
     var iter = std.process.args();
     var flag: cli.Flag = cli.Flag.na;
 

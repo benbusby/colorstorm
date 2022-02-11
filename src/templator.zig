@@ -97,8 +97,8 @@ fn replace(name: []const u8, val: []const u8, gen_type: []const u8) !void {
     // as regular variable names, just prefixed with "R|G|B".
     if (std.mem.startsWith(u8, val, "#")) {
         var c_percents = utils.hex_to_percent(val);
-        var iter = std.mem.split(c_percents, " ");
-        for ("RGB") |c, i| {
+        var iter = std.mem.split(u8, c_percents, " ");
+        for ("RGB") |c| {
             var c_val = iter.next().?;
             var c_var = try std.fmt.allocPrint(
                 a,
