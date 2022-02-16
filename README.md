@@ -18,7 +18,11 @@ Contents
 
 ## Install
 
-### Binary Packages
+### Arch Linux (AUR)
+
+`yay -S colorstorm`
+
+### Other distros
 
 In progress, check back soon!
 
