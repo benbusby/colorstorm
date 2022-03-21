@@ -22,6 +22,7 @@ colorstorm
 colorstorm-out/
 zig-cache/
 zig-out/
+out/
 /release/
 /debug/
 /build/

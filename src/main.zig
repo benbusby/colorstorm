@@ -5,7 +5,6 @@ const templator = @import("templator.zig");
 
 var a: std.mem.Allocator = undefined;
 const io = std.io;
-const stdout = std.io.getStdOut().writer();
 
 const help =
     \\USAGE:
@@ -19,6 +18,7 @@ const help =
 ;
 
 fn parse_args() !void {
+    const stdout = std.io.getStdOut().writer();
     var arena = std.heap.ArenaAllocator.init(std.heap.page_allocator);
     defer arena.deinit();
     a = arena.allocator();
@@ -54,6 +54,7 @@ fn parse_args() !void {
 }
 
 pub fn main() !void {
+    const stdout = std.io.getStdOut().writer();
     try cli.init();
     try parse_args();
 

@@ -1,7 +1,6 @@
 const std = @import("std");
 const cli = @import("cli.zig");
 const utils = @import("utils.zig");
-const stdout = std.io.getStdOut().writer();
 const max_template_len = 12000;
 pub const Theme = struct {
     theme_name_full: []u8,
@@ -126,6 +125,7 @@ fn replace(name: []const u8, val: []const u8, gen_type: []const u8) !void {
 /// with structuring editor/emulator specific submodules that rely on specific structures to work
 /// properly (primarly atom, see below).
 fn generate(gen_type: []const u8, themes: []Theme, outdir: []const u8) !void {
+    const stdout = std.io.getStdOut().writer();
     try stdout.print("-- {s}\n", .{gen_type});
 
     for (themes) |theme| {
