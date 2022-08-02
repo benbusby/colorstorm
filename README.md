@@ -98,63 +98,63 @@ Value names are mostly self-explanatory, but here is a breakdown of what each fi
         <td>The full name of the theme that will appear in theme file documentation</td>
     </tr>
     <tr>
-        <td><code>theme_name_safe</code>/td>
+        <td><code>theme_name_safe</code></td>
         <td>The value to use as the filename for the theme</td>
     </tr>
     <tr>
-        <td><code>color_bg_main</code>/td>
+        <td><code>color_bg_main</code></td>
         <td>Primary background color</td>
     </tr>
     <tr>
-        <td><code>color_bg_alt1</code>/td>
+        <td><code>color_bg_alt1</code></td>
         <td>A separate background color to use for UI elements like file trees and tab bars</td>
     </tr>
     <tr>
-        <td><code>color_bg_alt2</code>/td>
+        <td><code>color_bg_alt2</code></td>
         <td>A separate background color to use for UI elements like line numbers and gutters</td>
     </tr>
     <tr>
-        <td><code>color_fg</code>/td>
+        <td><code>color_fg</code></td>
         <td>The foreground color (all generic text)</td>
     </tr>
     <tr>
-        <td><code>color_linenr</code>/td>
+        <td><code>color_linenr</code></td>
         <td>The color used for line numbers</td>
     </tr>
     <tr>
-        <td><code>color_select</code>/td>
+        <td><code>color_select</code></td>
         <td>The color used for selecting a word or lines of text</td>
     </tr>
     <tr>
-        <td><code>color_type</code>/td>
+        <td><code>color_type</code></td>
         <td>The color used for variable types (int, float, etc)</td>
     </tr>
     <tr>
-        <td><code>color_accent</code>/td>
+        <td><code>color_accent</code></td>
         <td>An "accent" color -- typically used for special cases (like current line number highlight or badge backgrounds)</td>
     </tr>
     <tr>
-        <td><code>color_string</code>/td>
+        <td><code>color_string</code></td>
         <td>The color used for strings</td>
     </tr>
     <tr>
-        <td><code>color_boolean</code>/td>
+        <td><code>color_boolean</code></td>
         <td>The color used for boolean values</td>
     </tr>
     <tr>
-        <td><code>color_variable</code>/td>
+        <td><code>color_variable</code></td>
         <td>The color used for variable instances and constants</td>
     </tr>
     <tr>
-        <td><code>color_number</code>/td>
+        <td><code>color_number</code></td>
         <td>The color used for numeric values</td>
     </tr>
     <tr>
-        <td><code>color_comment</code>/td>
+        <td><code>color_comment</code></td>
         <td>The color used for code comments</td>
     </tr>
     <tr>
-        <td><code>color_function</code>/td>
+        <td><code>color_function</code></td>
         <td>The color used for function names</td>
     </tr>
 </table>
