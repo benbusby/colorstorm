@@ -88,24 +88,76 @@ one theme), with the following structure:
 
 Value names are mostly self-explanatory, but here is a breakdown of what each field means:
 
-| Field | Explanation |
-| -- | -- |
-| `theme_name_full` | The full name of the theme that will appear in theme file documentation |
-| `theme_name_safe` | The value to use as the filename for the theme |
-| `color_bg_main`   | Primary background color |
-| `color_bg_alt1`   | A separate background color to use for UI elements like file trees and tab bars |
-| `color_bg_alt2`   | A separate background color to use for UI elements like line numbers and gutters |
-| `color_fg`        | The foreground color (all generic text) |
-| `color_linenr`    | The color used for line numbers |
-| `color_select`    | The color used for selecting a word or lines of text |
-| `color_type`      | The color used for variable types (int, float, etc) |
-| `color_accent`    | An "accent" color -- typically used for special cases (like current line number highlight or badge backgrounds) |
-| `color_string`    | The color used for strings |
-| `color_boolean`   | The color used for boolean values |
-| `color_variable`  | The color used for variable instances and constants |
-| `color_number`    | The color used for numeric values |
-| `color_comment`   | The color used for code comments |
-| `color_function`  | The color used for function names |
+<table>
+    <tr>
+        <td>Field</td>
+        <td>Explanation</td>
+    </tr>
+    <tr>
+        <td><code>theme_name_full</code></td>
+        <td>The full name of the theme that will appear in theme file documentation</td>
+    </tr>
+    <tr>
+        <td><code>theme_name_safe</code>/td>
+        <td>The value to use as the filename for the theme</td>
+    </tr>
+    <tr>
+        <td><code>color_bg_main</code>/td>
+        <td>Primary background color</td>
+    </tr>
+    <tr>
+        <td><code>color_bg_alt1</code>/td>
+        <td>A separate background color to use for UI elements like file trees and tab bars</td>
+    </tr>
+    <tr>
+        <td><code>color_bg_alt2</code>/td>
+        <td>A separate background color to use for UI elements like line numbers and gutters</td>
+    </tr>
+    <tr>
+        <td><code>color_fg</code>/td>
+        <td>The foreground color (all generic text)</td>
+    </tr>
+    <tr>
+        <td><code>color_linenr</code>/td>
+        <td>The color used for line numbers</td>
+    </tr>
+    <tr>
+        <td><code>color_select</code>/td>
+        <td>The color used for selecting a word or lines of text</td>
+    </tr>
+    <tr>
+        <td><code>color_type</code>/td>
+        <td>The color used for variable types (int, float, etc)</td>
+    </tr>
+    <tr>
+        <td><code>color_accent</code>/td>
+        <td>An "accent" color -- typically used for special cases (like current line number highlight or badge backgrounds)</td>
+    </tr>
+    <tr>
+        <td><code>color_string</code>/td>
+        <td>The color used for strings</td>
+    </tr>
+    <tr>
+        <td><code>color_boolean</code>/td>
+        <td>The color used for boolean values</td>
+    </tr>
+    <tr>
+        <td><code>color_variable</code>/td>
+        <td>The color used for variable instances and constants</td>
+    </tr>
+    <tr>
+        <td><code>color_number</code>/td>
+        <td>The color used for numeric values</td>
+    </tr>
+    <tr>
+        <td><code>color_comment</code>/td>
+        <td>The color used for code comments</td>
+    </tr>
+    <tr>
+        <td><code>color_function</code>/td>
+        <td>The color used for function names</td>
+    </tr>
+</table>
 
 ## Screenshots
 
