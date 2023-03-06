@@ -27,10 +27,10 @@ fn parse_args() !void {
     var flag: cli.Flag = cli.Flag.na;
 
     // Skip first arg
-    _ = iter.next(a);
+    _ = iter.next();
 
-    while (iter.next(a)) |arg| {
-        const argument = arg catch break;
+    while (iter.next()) |arg| {
+        const argument = arg;
 
         if (flag != cli.Flag.na) {
             try cli.set_flag_val(flag, argument);
@@ -64,7 +64,7 @@ pub fn main() !void {
         std.os.exit(1);
     }
 
-    const f = std.fs.cwd().openFile(input, std.fs.File.OpenFlags{ .read = true }) catch {
+    const f = std.fs.cwd().openFile(input, std.fs.File.OpenFlags{}) catch {
         try stdout.print("ERROR: Unable to open file '{s}'\n", .{input});
         std.os.exit(1);
     };

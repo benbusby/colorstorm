@@ -24,7 +24,6 @@ pub fn hex_to_percent(hex_color: []const u8) []const u8 {
 /// Returns an [3]i32 corresponding to RGB int values
 /// derived from a hex color string (i.e. "#ffffff")
 pub fn hex_to_dec(hex_color: []const u8) [3]i32 {
-    comptime var i = 0;
     var result = [3]i32{ 0, 0, 0 };
 
     for (result) |_, index| {
@@ -39,8 +38,6 @@ pub fn hex_to_dec(hex_color: []const u8) [3]i32 {
         defer allocator.free(string);
         //std.debug.print("{s}!\n", .{string});
         result[index] = std.fmt.parseInt(i32, string, 0) catch 0;
-
-        i += 1;
     }
 
     return result;

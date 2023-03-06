@@ -8,7 +8,7 @@ arch=("x86_64" "i686")
 url="https://github.com/benbusby/colorstorm"
 license=("MIT")
 depends=()
-makedepends=("zig>=0.9.0" "make")
+makedepends=("zig==0.10.1" "make")
 conflicts=($pkgname-git)
 source=("$pkgname-$pkgver.tar.gz::https://github.com/benbusby/colorstorm/archive/refs/tags/v$pkgver.tar.gz")
 sha256sums=("9944a14eeca2759142690fec5c4bd91b243957e242a51fb59484e498fe58467c")

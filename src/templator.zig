@@ -27,11 +27,11 @@ var tmp_gen = std.BufMap.init(a);
 // Each embedded template file allows colorstorm to loop through and replace template
 // variables with color values to produce a full template.
 pub const templates = std.ComptimeStringMap([]const u8, .{
-    .{ @tagName(cli.Gen.vim), @embedFile("../templates/template.vim") },
-    .{ @tagName(cli.Gen.atom), @embedFile("../templates/colors.less") },
-    .{ @tagName(cli.Gen.vscode), @embedFile("../templates/template.json") },
-    .{ @tagName(cli.Gen.iterm2), @embedFile("../templates/template.itermcolors") },
-    .{ @tagName(cli.Gen.sublime), @embedFile("../templates/template.tmTheme") },
+    .{ @tagName(cli.Gen.vim), @embedFile("templates/template.vim") },
+    .{ @tagName(cli.Gen.atom), @embedFile("templates/colors.less") },
+    .{ @tagName(cli.Gen.vscode), @embedFile("templates/template.json") },
+    .{ @tagName(cli.Gen.iterm2), @embedFile("templates/template.itermcolors") },
+    .{ @tagName(cli.Gen.sublime), @embedFile("templates/template.tmTheme") },
 });
 
 // The base output path to use for each theme
