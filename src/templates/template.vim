@@ -17,7 +17,7 @@ let g:colors_name = 'theme_name_safe'
 hi Cursor        guifg=color_bg_main   guibg=color_fg
 hi lCursor       guifg=color_bg_main   guibg=color_fg
 hi CursorIM      guifg=color_bg_main   guibg=color_fg
-hi Directory     guifg=color_type      guibg=color_bg_main  gui=bold
+hi Directory     guifg=color_type      guibg=NONE  gui=bold
 hi ErrorMsg      guifg=#ee1111         guibg=color_bg_main
 hi VertSplit     guifg=color_bg_main   guibg=color_accent
 hi LineNr        guifg=color_linenr    guibg=color_bg_alt2
