@@ -39,7 +39,7 @@ fn parse_args() !void {
             flag = cli.parse_flag(argument);
             if (flag == cli.Flag.help) {
                 try stdout.print("\n{s}\n\n", .{help});
-                std.os.exit(0);
+                std.process.exit(0);
             }
         }
 
@@ -58,18 +58,18 @@ pub fn main() !void {
     try cli.init();
     try parse_args();
 
-    var input = cli.get_flag_val(cli.Flag.input).?;
+    const input = cli.get_flag_val(cli.Flag.input).?;
     if (input.len == 0) {
         try stdout.print("ERROR: Missing input file\n{s}\n\n", .{help});
-        std.os.exit(1);
+        std.process.exit(1);
     }
 
     const f = std.fs.cwd().openFile(input, std.fs.File.OpenFlags{}) catch {
         try stdout.print("ERROR: Unable to open file '{s}'\n", .{input});
-        std.os.exit(1);
+        std.process.exit(1);
     };
 
-    var outdir = cli.get_flag_val(cli.Flag.outdir).?;
+    const outdir = cli.get_flag_val(cli.Flag.outdir).?;
     try std.fs.cwd().makePath(cli.get_flag_val(cli.Flag.outdir).?);
     try templator.create_themes(f, outdir, cli.get_flag_val(cli.Flag.gen).?);
 }
