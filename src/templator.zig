@@ -26,7 +26,7 @@ var tmp_gen = std.BufMap.init(a);
 
 // Each embedded template file allows colorstorm to loop through and replace template
 // variables with color values to produce a full template.
-pub const templates = std.ComptimeStringMap([]const u8, .{
+pub const templates = std.StaticStringMap([]const u8).initComptime(.{
     .{ @tagName(cli.Gen.vim), @embedFile("templates/template.vim") },
     .{ @tagName(cli.Gen.atom), @embedFile("templates/colors.less") },
     .{ @tagName(cli.Gen.vscode), @embedFile("templates/template.json") },
@@ -35,7 +35,7 @@ pub const templates = std.ComptimeStringMap([]const u8, .{
 });
 
 // The base output path to use for each theme
-const out_path = std.ComptimeStringMap([]const u8, .{
+const out_path = std.StaticStringMap([]const u8).initComptime(.{
     .{ @tagName(cli.Gen.vim), "vim/colors" },
     .{ @tagName(cli.Gen.atom), "atom/themes" },
     .{ @tagName(cli.Gen.vscode), "vscode/themes" },
@@ -45,7 +45,7 @@ const out_path = std.ComptimeStringMap([]const u8, .{
 
 // The output "extension" to use. In the case of atom, the "extension" is just colors.less,
 // since that is what the editor expects when loading a new theme.
-const out_ext = std.ComptimeStringMap([]const u8, .{
+const out_ext = std.StaticStringMap([]const u8).initComptime(.{
     .{ @tagName(cli.Gen.vim), ".vim" },
     .{ @tagName(cli.Gen.atom), "colors.less" },
     .{ @tagName(cli.Gen.vscode), ".json" },
@@ -53,7 +53,7 @@ const out_ext = std.ComptimeStringMap([]const u8, .{
     .{ @tagName(cli.Gen.sublime), ".tmTheme" },
 });
 
-const template_end = std.ComptimeStringMap(u8, .{
+const template_end = std.StaticStringMap(u8).initComptime(.{
     .{ @tagName(cli.Gen.vim), '"' },
     .{ @tagName(cli.Gen.atom), ';' },
     .{ @tagName(cli.Gen.vscode), '}' },
@@ -76,13 +76,9 @@ pub fn parse_themes(f: std.fs.File) ![]Theme {
         try writer.writeAll(line);
     }
 
-    var stream = std.json.TokenStream.init(list.items);
-
-    const themes = try std.json.parse(
-        []Theme,
-        &stream,
-        .{ .allocator = a },
-    );
+    const parsed = try std.json.parseFromSlice([]Theme, a, list.items, .{});
+    defer parsed.deinit();
+    const themes = parsed.value;
 
     return themes;
 }
@@ -95,11 +91,11 @@ fn replace(name: []const u8, val: []const u8, gen_type: []const u8) !void {
     // This is done first since RGB percentage variable names are the same
     // as regular variable names, just prefixed with "R|G|B".
     if (std.mem.startsWith(u8, val, "#")) {
-        var c_percents = utils.hex_to_percent(val);
+        const c_percents = utils.hex_to_percent(val);
         var iter = std.mem.split(u8, c_percents, " ");
         for ("RGB") |c| {
-            var c_val = iter.next().?;
-            var c_var = try std.fmt.allocPrint(
+            const c_val = iter.next().?;
+            const c_var = try std.fmt.allocPrint(
                 a,
                 "{u}{s}",
                 .{ c, name },
@@ -172,7 +168,7 @@ fn generate(gen_type: []const u8, themes: []Theme, outdir: []const u8) !void {
         // Ensure full output path exists before writing finished theme
         try std.fs.cwd().makePath(fmt_out_path);
 
-        var theme_output = tmp_gen.get(gen_type).?;
+        const theme_output = tmp_gen.get(gen_type).?;
         var theme_len = theme_output.len;
         while (theme_output[theme_len - 1] != template_end.get(gen_type).?) {
             theme_len -= 1;
@@ -180,14 +176,14 @@ fn generate(gen_type: []const u8, themes: []Theme, outdir: []const u8) !void {
 
         try stdout.print("   {s}\n", .{fmt_out_file});
 
-        try std.fs.cwd().writeFile(fmt_out_file, tmp_gen.get(gen_type).?[0..theme_len]);
+        try std.fs.cwd().writeFile(.{ .sub_path = fmt_out_file, .data = tmp_gen.get(gen_type).?[0..theme_len] });
     }
 }
 
 /// Creates themes based on the provided input file. Can be used to create themes for a
 /// specific editor, or all supported editors/platforms if none is specified.
 pub fn create_themes(input: std.fs.File, outdir: []const u8, gen_type: []const u8) !void {
-    var themes: []Theme = try parse_themes(input);
+    const themes: []Theme = try parse_themes(input);
 
     if (std.mem.eql(u8, @tagName(cli.Gen.all), gen_type)) {
         // Loop through all supported platforms and create themes for each

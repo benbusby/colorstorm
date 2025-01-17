@@ -5,11 +5,11 @@ const allocator = std.heap.page_allocator;
 /// Returns a [3]u8 corresponding to RGB percentages
 /// derived from a hex color string (i.e. "#ffffff")
 pub fn hex_to_percent(hex_color: []const u8) []const u8 {
-    var result_i = hex_to_dec(hex_color);
+    const result_i = hex_to_dec(hex_color);
     var result_f = [3]f32{ 0.0, 0.0, 0.0 };
 
-    for (result_i) |val, i| {
-        result_f[i] = @intToFloat(f32, val) / 255;
+    for (result_i, 0..) |val, i| {
+        result_f[i] = @as(f32, @floatFromInt(val)) / 255;
     }
 
     const result_str = std.fmt.allocPrint(
@@ -26,7 +26,7 @@ pub fn hex_to_percent(hex_color: []const u8) []const u8 {
 pub fn hex_to_dec(hex_color: []const u8) [3]i32 {
     var result = [3]i32{ 0, 0, 0 };
 
-    for (result) |_, index| {
+    for (result, 0..) |_, index| {
         // Split hex color into separate R/G/B components
         //std.debug.print("{d}\n", .{index});
         const string = std.fmt.allocPrint(
@@ -44,8 +44,8 @@ pub fn hex_to_dec(hex_color: []const u8) [3]i32 {
 }
 
 test "hex color to decimal" {
-    var hex: []const u8 = "#ff00aa";
-    var hex_dec = hex_to_dec(hex);
+    const hex: []const u8 = "#ff00aa";
+    const hex_dec = hex_to_dec(hex);
 
     try std.testing.expect(hex_dec[0] == 255);
     try std.testing.expect(hex_dec[1] == 0);
@@ -53,9 +53,9 @@ test "hex color to decimal" {
 }
 
 test "hex color to percentage" {
-    var hex: []const u8 = "#ffffff";
-    var hex_percent = hex_to_percent(hex);
-    var expected: []const u8 = "1.0000000";
+    const hex: []const u8 = "#ffffff";
+    const hex_percent = hex_to_percent(hex);
+    const expected: []const u8 = "1.0000000";
 
     var iter = std.mem.split(u8, hex_percent, " ");
     while (iter.next()) |c_val| {

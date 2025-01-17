@@ -28,7 +28,7 @@ pub fn parse_flag(argument: []const u8) Flag {
         if (std.mem.eql(u8, argument, flag_prefix_long ++ f.name) or
             std.mem.eql(u8, argument, flag_prefix_short ++ [_]u8{f.name[0]}))
         {
-            return @intToEnum(Flag, f.value);
+            return @enumFromInt(f.value);
         }
     }
 
@@ -50,23 +50,23 @@ pub fn get_flag_val(comptime flag: Flag) ?[]const u8 {
 }
 
 test "using long and short versions of flag" {
-    var input_long: []const u8 = "--input";
-    var input_short: []const u8 = "-i";
-    var input_flag_long = parse_flag(input_long);
-    var input_flag_short = parse_flag(input_short);
+    const input_long: []const u8 = "--input";
+    const input_short: []const u8 = "-i";
+    const input_flag_long = parse_flag(input_long);
+    const input_flag_short = parse_flag(input_short);
 
     try std.testing.expect(input_flag_long == input_flag_short);
 }
 
 test "check fallback flag value for invalid arguments" {
-    var bad_input: []const u8 = "--invalid";
-    var bad_flag = parse_flag(bad_input);
+    const bad_input: []const u8 = "--invalid";
+    const bad_flag = parse_flag(bad_input);
 
     try std.testing.expect(bad_flag == Flag.na);
 }
 
 test "set and get flag value" {
-    var gen_flag: []const u8 = "vim";
+    const gen_flag: []const u8 = "vim";
     try set_flag_val(Flag.gen, gen_flag);
 
     try std.testing.expect(std.mem.eql(u8, get_flag_val(Flag.gen).?, gen_flag));
