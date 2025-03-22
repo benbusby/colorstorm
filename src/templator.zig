@@ -77,7 +77,9 @@ pub fn parse_themes(f: std.fs.File) ![]Theme {
     }
 
     const parsed = try std.json.parseFromSlice([]Theme, a, list.items, .{});
-    defer parsed.deinit();
+    // WARN: this deinit leads to use-after-free
+    // TODO: this should probably be fixed in a better way than just not doing it
+    // defer parsed.deinit();
     const themes = parsed.value;
 
     return themes;
