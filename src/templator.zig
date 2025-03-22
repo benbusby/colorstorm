@@ -119,7 +119,7 @@ fn replace(name: []const u8, val: []const u8, gen_type: []const u8) !void {
 /// depends on the output directory set by the user (or "colorstorm-out" if not provided) as well as
 /// the `out_path` mapping defined above. Theme output location is intended to help alleviate issues
 /// with structuring editor/emulator specific submodules that rely on specific structures to work
-/// properly (primarly atom, see below).
+/// properly (primarily atom, see below).
 fn generate(gen_type: []const u8, themes: []Theme, outdir: []const u8) !void {
     const stdout = std.io.getStdOut().writer();
     try stdout.print("-- {s}\n", .{gen_type});
