@@ -57,7 +57,7 @@ test "hex color to percentage" {
     const hex_percent = hex_to_percent(hex);
     const expected: []const u8 = "1.0000000";
 
-    var iter = std.mem.splitAny(u8, hex_percent, " ");
+    var iter = std.mem.splitSequence(u8, hex_percent, " ");
     while (iter.next()) |c_val| {
         try std.testing.expect(std.mem.eql(u8, expected, c_val));
     }
