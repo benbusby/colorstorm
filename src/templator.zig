@@ -77,7 +77,9 @@ pub fn parse_themes(f: std.fs.File) ![]Theme {
     }
 
     const parsed = try std.json.parseFromSlice([]Theme, a, list.items, .{});
-    defer parsed.deinit();
+    // WARN: this deinit leads to use-after-free
+    // TODO: this should probably be fixed in a better way than just not doing it
+    // defer parsed.deinit();
     const themes = parsed.value;
 
     return themes;
@@ -92,7 +94,7 @@ fn replace(name: []const u8, val: []const u8, gen_type: []const u8) !void {
     // as regular variable names, just prefixed with "R|G|B".
     if (std.mem.startsWith(u8, val, "#")) {
         const c_percents = utils.hex_to_percent(val);
-        var iter = std.mem.split(u8, c_percents, " ");
+        var iter = std.mem.splitSequence(u8, c_percents, " ");
         for ("RGB") |c| {
             const c_val = iter.next().?;
             const c_var = try std.fmt.allocPrint(
@@ -119,7 +121,7 @@ fn replace(name: []const u8, val: []const u8, gen_type: []const u8) !void {
 /// depends on the output directory set by the user (or "colorstorm-out" if not provided) as well as
 /// the `out_path` mapping defined above. Theme output location is intended to help alleviate issues
 /// with structuring editor/emulator specific submodules that rely on specific structures to work
-/// properly (primarly atom, see below).
+/// properly (primarily atom, see below).
 fn generate(gen_type: []const u8, themes: []Theme, outdir: []const u8) !void {
     const stdout = std.io.getStdOut().writer();
     try stdout.print("-- {s}\n", .{gen_type});

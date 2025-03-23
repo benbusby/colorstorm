@@ -20,7 +20,7 @@ earthbound-themes
 
 colorstorm
 colorstorm-out/
-zig-cache/
+.zig-cache/
 zig-out/
 out/
 /release/
