@@ -1,22 +1,29 @@
 package main
 
 import (
+	"bytes"
+	"compress/gzip"
+	"encoding/json"
+	"errors"
 	"fmt"
 	"github.com/charmbracelet/lipgloss"
 	"golang.org/x/image/draw"
 	"image"
 	_ "image/jpeg"
 	_ "image/png"
+	"io"
 	"math"
 	"os"
 	"strings"
+	"unicode/utf8"
 )
 
 const colorPreview = "   "
 
-type ReferenceMosaic struct {
-	Image      string
-	ColorTable string
+type Mosaic struct {
+	Image   string   `json:"-"`
+	GzImage []byte   `json:"gzImage"`
+	Colors  []string `json:"colors"`
 }
 
 type Pixel struct {
@@ -32,7 +39,7 @@ func (p Pixel) toHex() string {
 	return fmt.Sprintf("#%02X%02X%02X", p.R, p.G, p.B)
 }
 
-func generateColorTable(colors []string) string {
+func formatColorTable(colors []string) string {
 	output := ""
 	maxColorsPerRow := 6
 	numColors := 0
@@ -131,7 +138,7 @@ func getTargetDimensions(src image.Image, maxWidth, maxHeight int) (int, int) {
 	}
 }
 
-func getPixels(raw []uint8, width int) [][]Pixel {
+func getPixels(raw []uint8, width, quantize int) [][]Pixel {
 	var (
 		result [][]Pixel
 		row    []Pixel
@@ -145,10 +152,10 @@ func getPixels(raw []uint8, width int) [][]Pixel {
 		}
 
 		px := Pixel{
-			R: roundPixelRGBA(raw[idx]),
-			G: roundPixelRGBA(raw[idx+1]),
-			B: roundPixelRGBA(raw[idx+2]),
-			A: roundPixelRGBA(raw[idx+3]),
+			R: roundPixelRGBA(raw[idx], quantize),
+			G: roundPixelRGBA(raw[idx+1], quantize),
+			B: roundPixelRGBA(raw[idx+2], quantize),
+			A: roundPixelRGBA(raw[idx+3], quantize),
 		}
 
 		row = append(row, px)
@@ -158,18 +165,81 @@ func getPixels(raw []uint8, width int) [][]Pixel {
 	return result
 }
 
-func roundPixelRGBA(val uint8) uint8 {
-	return uint8(math.Round(float64(val)/float64(50)) * float64(50))
+func roundPixelRGBA(val uint8, quantize int) uint8 {
+	if quantize == 1 {
+		return val
+	}
+	dsFloat := float64(quantize)
+	newVal := math.Round(float64(val)/dsFloat) * dsFloat
+	return uint8(newVal)
 }
 
-// generateReferenceMosaic returns an image that has been rendered into a series
+func SerializeMosaic(m Mosaic) ([]byte, error) {
+	if len(m.Image) == 0 || !utf8.ValidString(m.Image) {
+		return []byte{}, nil
+	}
+
+	var b bytes.Buffer
+	gz := gzip.NewWriter(&b)
+	if _, err := gz.Write([]byte(m.Image)); err != nil {
+		return nil, err
+	}
+
+	if err := gz.Close(); err != nil {
+		return nil, err
+	}
+
+	m.GzImage = b.Bytes()
+	mosaicJson, err := json.Marshal(m)
+	if err != nil {
+		return nil, err
+	}
+
+	return mosaicJson, nil
+}
+
+func DeserializeMosaic(mosaicJson []byte) (Mosaic, error) {
+	if len(mosaicJson) == 0 {
+		return Mosaic{}, nil
+	}
+
+	var m Mosaic
+	err := json.Unmarshal(mosaicJson, &m)
+	if err != nil {
+		return Mosaic{}, err
+	}
+
+	reader := bytes.NewReader(m.GzImage)
+	gzReader, err := gzip.NewReader(reader)
+	if err != nil {
+		return Mosaic{}, err
+	}
+
+	output, err := io.ReadAll(gzReader)
+	if err != nil {
+		return Mosaic{}, err
+	}
+
+	if !utf8.Valid(output) {
+		return Mosaic{}, errors.New("invalid gzipped image bytes")
+	}
+
+	m.Image = string(output)
+	return m, nil
+}
+
+// GenerateQuantizedMosaic returns an image that has been rendered into a series
 // of colored ASCII half-blocks, as well as the list of colors used in the image.
-func generateReferenceMosaic(imgPath string, width, height int) (ReferenceMosaic, error) {
+func GenerateQuantizedMosaic(imgPath string, width, height, quantize int) (Mosaic, error) {
 	var result []string
+
+	if quantize < 1 || quantize > 255 {
+		quantize = 1
+	}
 
 	img, err := openImage(imgPath)
 	if err != nil {
-		return ReferenceMosaic{}, err
+		return Mosaic{}, err
 	}
 
 	// Height can be doubled here since the output uses two "pixels" per row
@@ -179,7 +249,7 @@ func generateReferenceMosaic(imgPath string, width, height int) (ReferenceMosaic
 	rgba := image.NewRGBA(dr)
 	draw.Draw(rgba, dr, res, dr.Min, draw.Src)
 
-	pixels := getPixels(rgba.Pix, w)
+	pixels := getPixels(rgba.Pix, w, quantize)
 	row := 0
 	colors := make(map[string]struct{})
 
@@ -211,8 +281,12 @@ func generateReferenceMosaic(imgPath string, width, height int) (ReferenceMosaic
 	}
 
 	output := strings.Join(result, "\n")
-	return ReferenceMosaic{
-		Image:      output,
-		ColorTable: generateColorTable(keyColors),
+	return Mosaic{
+		Image:  output,
+		Colors: keyColors,
 	}, nil
+}
+
+func GenerateMosaic(imgPath string, width, height int) (Mosaic, error) {
+	return GenerateQuantizedMosaic(imgPath, width, height, 50)
 }

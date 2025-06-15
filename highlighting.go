@@ -8,14 +8,36 @@ import (
 const (
 	spaceChar       = " " // lipgloss seems to strip out regular trailing whitespace
 	maxPreviewWidth = 58
+	sampleText      = `
+ === Python ===
+ {keyword}def{/keyword} {function}return_pi_or_nan{/function}(return_pi: {type}bool{/type}) -> {type}float{/type}:
+     {function}print{/function}({string}"Hello world!"{/string})
+     {comment}# This is a comment{/comment}
+     pi: {type}float{/type} = {number}3.14159{/number}
+     {keyword}if{/keyword} return_pi:
+         {keyword}return{/keyword} pi
+     {keyword}return{/keyword} {constant}numpy{/constant}.nan
+
+ === Go ===
+ {keyword}func{/keyword} {function}returnPiOrNaN{/function}(returnPi {type}bool{/type}) {type}float64{/type} {
+         {constant}fmt{/constant}.{function}Println{/function}({string}"Hello world!"{/string})
+         {comment}// This is a comment{/comment}
+         pi := {number}3.14159{/number}
+         {keyword}if{/keyword} returnPi {
+                 {keyword}return{/keyword} pi
+         }
+
+         {keyword}return{/keyword} {constant}math{/constant}.{function}NaN(){/function}    
+ }
+`
 )
 
-func parseSyntaxHighlighting(code string, theme Theme) string {
+func parseSyntaxHighlighting(code string, theme *Theme) string {
 	var result strings.Builder
 	lines := strings.Split(code, "\n")
 	baseStyle := lipgloss.NewStyle().
-		Foreground(lipgloss.Color(theme.Foreground)).
-		Background(lipgloss.Color(theme.Background))
+		Foreground(lipgloss.Color(*theme.Foreground)).
+		Background(lipgloss.Color(*theme.Background))
 
 	for _, line := range lines {
 		i := 0
@@ -46,7 +68,7 @@ func parseSyntaxHighlighting(code string, theme Theme) string {
 
 				style := lipgloss.NewStyle().
 					Foreground(lipgloss.Color(theme.getColor(tag))).
-					Background(lipgloss.Color(theme.Background))
+					Background(lipgloss.Color(*theme.Background))
 				previewLine.WriteString(style.Render(content))
 				rawLine.WriteString(content)
 
