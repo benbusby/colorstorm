@@ -127,25 +127,25 @@ func (t *Theme) GetHexColor(idx int) *string {
 	return nil
 }
 
-func (t *Theme) SetHexColor(idx int, newVal *string) {
+func (t *Theme) SetHexColor(idx int, newVal string) {
 	switch idx {
 	case BackgroundIndex:
-		t.Background = newVal
+		t.Background = &newVal
 	case ForegroundIndex:
-		t.Foreground = newVal
+		t.Foreground = &newVal
 	case FunctionIndex:
-		t.Function = newVal
+		t.Function = &newVal
 	case ConstantIndex:
-		t.Constant = newVal
+		t.Constant = &newVal
 	case KeywordIndex:
-		t.Keyword = newVal
+		t.Keyword = &newVal
 	case CommentIndex:
-		t.Comment = newVal
+		t.Comment = &newVal
 	case NumberIndex:
-		t.Number = newVal
+		t.Number = &newVal
 	case StringIndex:
-		t.String = newVal
+		t.String = &newVal
 	case TypeIndex:
-		t.Type = newVal
+		t.Type = &newVal
 	}
 }
