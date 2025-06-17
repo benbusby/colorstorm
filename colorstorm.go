@@ -21,7 +21,7 @@ const (
 )
 
 var (
-	theme      = newTheme()
+	theme      = newDefaultTheme()
 	mainAction int
 
 	colorFormSelected int

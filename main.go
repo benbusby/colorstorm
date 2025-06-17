@@ -44,6 +44,8 @@ func main() {
 			log.Fatalln("Error generating mosaic", err)
 			return
 		}
+	} else {
+		theme = newRandomTheme()
 	}
 
 	_, height, _ := term.GetSize(0)

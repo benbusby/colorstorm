@@ -106,7 +106,7 @@ func (t *Theme) getColor(key string) string {
 	return "#ff0000"
 }
 
-func newTheme() *Theme {
+func newDefaultTheme() *Theme {
 	bg := "#1e001e"
 	fg := "#d4d4d4"
 	functionColor := "#dcdcaa"
@@ -126,6 +126,51 @@ func newTheme() *Theme {
 		Number:     &numberColor,
 		String:     &stringColor,
 		Type:       &typeColor,
+	}
+}
+
+func newRandomTheme() *Theme {
+	palette, err := colorful.WarmPalette(7)
+	if err != nil {
+		panic(err)
+	}
+
+	var bg, fg colorful.Color
+	maxV := 0.0
+
+	// Find the brightest color in the palette
+	for _, color := range palette {
+		_, _, v := color.Hsv()
+		if v > maxV {
+			maxV = v
+			bg = color
+		}
+	}
+
+	h, s, v := bg.Hsv()
+	bg = colorful.Hsv(h, s, v*0.15)
+	fg = colorful.Hsv(h, s*0.5, 1.0)
+
+	bgHex := bg.Hex()
+	fgHex := fg.Hex()
+	fnHex := changeColorBrightness(palette[0], 2.0).Hex()
+	constHex := changeColorBrightness(palette[1], 2.0).Hex()
+	keywordHex := changeColorBrightness(palette[2], 2.0).Hex()
+	commentHex := changeColorBrightness(palette[3], 0.9).Hex()
+	numberHex := changeColorBrightness(palette[4], 2.0).Hex()
+	stringHex := changeColorBrightness(palette[5], 2.0).Hex()
+	typeHex := changeColorBrightness(palette[6], 2.0).Hex()
+
+	return &Theme{
+		Background: &bgHex,
+		Foreground: &fgHex,
+		Function:   &fnHex,
+		Constant:   &constHex,
+		Keyword:    &keywordHex,
+		Comment:    &commentHex,
+		Number:     &numberHex,
+		String:     &stringHex,
+		Type:       &typeHex,
 	}
 }
 
