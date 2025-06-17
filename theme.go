@@ -3,6 +3,7 @@ package main
 import (
 	"errors"
 	"fmt"
+	"github.com/lucasb-eyer/go-colorful"
 	"strings"
 )
 
@@ -49,16 +50,18 @@ type FinalizedTheme struct {
 	BackgroundAlt1 string
 	BackgroundAlt2 string
 
-	Foreground string
-	Function   string
-	Constant   string
-	Keyword    string
-	Comment    string
-	Number     string
-	String     string
-	Type       string
+	Foreground    string
+	ForegroundAlt string
 
-	LightTheme bool
+	Function string
+	Constant string
+	Keyword  string
+	Comment  string
+	Number   string
+	String   string
+	Type     string
+
+	DarkOrLight string
 }
 
 type Theme struct {
@@ -223,6 +226,48 @@ func (t *Theme) Validate() error {
 	return nil
 }
 
-func (t *Theme) Finalize() FinalizedTheme {
-	return FinalizedTheme{}
+func (t *Theme) Finalize(values GeneratorFormValues) FinalizedTheme {
+	var (
+		fgAlt,
+		bgAlt1,
+		bgAlt2 colorful.Color
+	)
+
+	final := FinalizedTheme{
+		ID:         sanitizeName(t.Name),
+		Name:       t.Name,
+		Author:     values.Author,
+		Background: *t.Background,
+		Foreground: *t.Foreground,
+		Function:   *t.Function,
+		Constant:   *t.Constant,
+		Keyword:    *t.Keyword,
+		Comment:    *t.Comment,
+		Number:     *t.Number,
+		String:     *t.String,
+		Type:       *t.Type,
+	}
+
+	bgCol, _ := colorful.Hex(*t.Background)
+	bgH, bgS, bgV := bgCol.Hsv()
+	fgCol, _ := colorful.Hex(*t.Foreground)
+	fgH, fgS, fgV := fgCol.Hsv()
+
+	if values.IsLight {
+		fgAlt = colorful.Hsv(fgH, fgS, fgV+0.1)
+		bgAlt1 = colorful.Hsv(bgH, bgS, bgV-0.05)
+		bgAlt2 = colorful.Hsv(bgH, bgS, bgV-0.1)
+		final.DarkOrLight = "light"
+	} else {
+		fgAlt = colorful.Hsv(fgH, fgS, fgV-0.1)
+		bgAlt1 = colorful.Hsv(bgH, bgS, bgV+0.05)
+		bgAlt2 = colorful.Hsv(bgH, bgS, bgV+0.1)
+		final.DarkOrLight = "dark"
+	}
+
+	final.ForegroundAlt = fgAlt.Hex()
+	final.BackgroundAlt1 = bgAlt1.Hex()
+	final.BackgroundAlt2 = bgAlt2.Hex()
+
+	return final
 }

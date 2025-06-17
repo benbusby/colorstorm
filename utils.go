@@ -1,6 +1,10 @@
 package main
 
-import "math"
+import (
+	"math"
+	"regexp"
+	"strings"
+)
 
 func v2ci(v uint8) uint8 {
 	if v < 48 {
@@ -28,7 +32,6 @@ func rgbToX256(r, g, b uint8) uint8 {
 	ib := v2ci(b)
 	colorIndex := 36*ir + 6*ig + ib
 
-	// Calculate the nearest 0-based gray index at 232 .. 255
 	var grayIndex uint8
 	average := (r + g + b) / 3
 	if average > 238 {
@@ -37,14 +40,12 @@ func rgbToX256(r, g, b uint8) uint8 {
 		grayIndex = (average - 3) / 10
 	}
 
-	// Calculate the represented colors back from the index
 	i2cv := []uint8{0, 0x5F, 0x87, 0xAF, 0xD7, 0xFF}
 	cr := i2cv[ir]
 	cg := i2cv[ig]
 	cb := i2cv[ib]
 	gv := 8 + 10*grayIndex
 
-	// Return the one which is nearer to the original input rgb value
 	colorErr := distSquare(cr, cg, cb, r, g, b)
 	grayErr := distSquare(gv, gv, gv, r, g, b)
 
@@ -53,4 +54,15 @@ func rgbToX256(r, g, b uint8) uint8 {
 	} else {
 		return 232 + grayIndex
 	}
+}
+
+// sanitizeName removes whitespace and special characters to create a string
+// value that can be used as a file name and a theme name for editors like Vim
+func sanitizeName(name string) string {
+	newName := strings.ReplaceAll(name, " ", "_")
+
+	re := regexp.MustCompile(`[\\/:*?!#$%^&().,'"<>|]`)
+	newName = re.ReplaceAllString(newName, "")
+
+	return strings.ToLower(newName)
 }

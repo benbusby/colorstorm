@@ -8,6 +8,7 @@ import (
 	"github.com/charmbracelet/x/term"
 	"log"
 	"os"
+	"strings"
 )
 
 func main() {
@@ -57,5 +58,13 @@ func main() {
 
 	if m.saveFileAction != nil && *m.saveFileAction {
 		fmt.Printf("Theme file saved to: %s\n", fileName)
+	} else if len(m.output) > 0 {
+		msg := fmt.Sprintf("Output:\n- %s", strings.Join(m.output, "\n- "))
+		fmt.Println(msg)
+	}
+
+	if len(m.outputErrors) > 0 {
+		msg := fmt.Sprintf("Error:%s", strings.Join(m.outputErrors, "\n! "))
+		fmt.Println(msg)
 	}
 }

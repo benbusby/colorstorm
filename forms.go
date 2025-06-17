@@ -1,8 +1,8 @@
 package main
 
 import (
+	"errors"
 	"fmt"
-	"github.com/benbusby/colorstorm/templates"
 	"github.com/charmbracelet/huh"
 	"github.com/charmbracelet/lipgloss"
 	"github.com/lucasb-eyer/go-colorful"
@@ -18,9 +18,10 @@ const (
 	editorSelectKey = "editor_select"
 )
 
-type FinalizedValues struct {
+type GeneratorFormValues struct {
 	Author    string
-	Editors   []string
+	Editors   []editorKey
+	IsLight   bool
 	Confirmed bool
 }
 
@@ -176,22 +177,34 @@ func createColorForm(colorName string, hexColor *string) (*huh.Form, *bool) {
 	return form, &saveColor
 }
 
-func createGeneratorForm() (*huh.Form, *FinalizedValues) {
-	final := FinalizedValues{Confirmed: true}
+func createGeneratorForm() (*huh.Form, *GeneratorFormValues) {
+	final := GeneratorFormValues{Confirmed: true}
 
 	form := huh.NewForm(
 		huh.NewGroup(
 			huh.NewInput().
 				Title("Author Name").
 				Value(&final.Author),
-			huh.NewMultiSelect[string]().
+			huh.NewSelect[bool]().
+				Options(
+					huh.NewOption("Dark Theme", false),
+					huh.NewOption("Light Theme", true)).
+				Value(&final.IsLight),
+			huh.NewMultiSelect[editorKey]().
 				Title("Editors").
 				Options(
-					huh.NewOption("Vim", templates.VimKey),
-					huh.NewOption("VSCode", templates.VSCodeKey),
-					huh.NewOption("Sublime", templates.SublimeKey),
+					huh.NewOption("Vim", VimKey),
+					huh.NewOption("VSCode", VSCodeKey),
+					huh.NewOption("Sublime", SublimeKey),
 				).
 				Key(editorSelectKey).
+				Validate(func(keys []editorKey) error {
+					if len(keys) == 0 {
+						return errors.New("must select at least one editor")
+					}
+
+					return nil
+				}).
 				Value(&final.Editors),
 			huh.NewSelect[bool]().
 				Options(

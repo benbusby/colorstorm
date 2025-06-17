@@ -71,11 +71,14 @@ type Model struct {
 	saveFileAction *bool
 
 	generatorForm   *huh.Form
-	generatorValues *FinalizedValues
+	generatorValues *GeneratorFormValues
 
 	lowTermHeight  bool
 	showColorTable bool
 	showReference  bool
+
+	output       []string
+	outputErrors []string
 }
 
 func NewStyles(lg *lipgloss.Renderer) *Styles {
@@ -151,7 +154,7 @@ func (m *Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		case "shift+left", "left", "shift+right", "right":
 			if m.colorForm != nil && m.colorForm.GetFocusedField().GetKey() == colorDetailFieldKey {
 				// Handle arrow key modification of color fields
-				newColor := m.updateFocusedColorField(msg.String())
+				newColor := updateFocusedColorField(msg.String())
 				theme.SetHexColor(mainAction, newColor)
 				colorFormSelected = 1
 				m.colorForm, m.saveColorAction = createColorForm(
@@ -212,7 +215,7 @@ func (m *Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	return m, tea.Batch(cmds...)
 }
 
-func (m *Model) updateFocusedColorField(msg string) string {
+func updateFocusedColorField(msg string) string {
 	val := 1
 
 	if strings.HasPrefix(msg, "shift") {
@@ -286,47 +289,82 @@ func (m *Model) updateForms() []tea.Cmd {
 			return []tea.Cmd{m.colorForm.Init(), tea.WindowSize()}
 		}
 	} else if m.colorForm != nil && m.colorForm.State == huh.StateCompleted {
-		if !*m.saveColorAction {
-			// Revert back to original hex color
-			theme.SetHexColor(mainAction, colorBackup)
-		}
-
-		colorFormSelected = 0
-		m.form = createForm(m.lg)
-		m.colorForm = nil
-		return []tea.Cmd{m.form.Init(), tea.WindowSize(), m.form.NextField()}
+		return m.updateColorForm()
 	} else if m.saveForm != nil && m.saveForm.State == huh.StateCompleted {
-		if *m.saveFileAction {
-			refBytes, _ := SerializeMosaic(m.ref)
-			theme.Reference = refBytes
-
-			themeBytes, err := json.Marshal(theme)
-			if err != nil {
-				log.Println("Error serializing theme", err)
-			}
-
-			err = os.WriteFile(fileName, themeBytes, 0666)
-			if err != nil {
-				log.Println("Error writing file", err)
-			}
-
-			return []tea.Cmd{tea.Quit}
-		} else {
-			m.form = createForm(m.lg)
-			m.saveForm = nil
-			return []tea.Cmd{m.form.Init(), tea.WindowSize(), m.form.NextField()}
-		}
+		return m.updateSaveForm()
 	} else if m.generatorForm != nil && m.generatorForm.State == huh.StateCompleted {
-		if m.generatorValues.Confirmed {
-
-		} else {
-			m.form = createForm(m.lg)
-			m.generatorForm = nil
-			return []tea.Cmd{m.form.Init(), tea.WindowSize()}
-		}
+		return m.updateGeneratorForm()
 	}
 
 	return []tea.Cmd{}
+}
+
+func (m *Model) updateGeneratorForm() []tea.Cmd {
+	if m.generatorValues.Confirmed {
+		final := theme.Finalize(*m.generatorValues)
+		for _, k := range m.generatorValues.Editors {
+			generatorFn, ok := generatorMap[k]
+			if !ok {
+				continue
+			}
+
+			themeFile, err := generatorFn(final)
+			if err != nil {
+				m.outputErrors = append(
+					m.outputErrors,
+					err.Error())
+				continue
+			}
+
+			err = os.WriteFile(themeFile.FileName, themeFile.Contents, 0644)
+			if err != nil {
+				m.outputErrors = append(m.outputErrors, err.Error())
+			} else {
+				msg := fmt.Sprintf("%s: %s", k, themeFile.FileName)
+				m.output = append(m.output, msg)
+			}
+		}
+		return []tea.Cmd{tea.Quit}
+	} else {
+		m.form = createForm(m.lg)
+		m.generatorForm = nil
+		return []tea.Cmd{m.form.Init(), tea.WindowSize()}
+	}
+}
+
+func (m *Model) updateColorForm() []tea.Cmd {
+	if !*m.saveColorAction {
+		// Revert back to original hex color
+		theme.SetHexColor(mainAction, colorBackup)
+	}
+
+	colorFormSelected = 0
+	m.form = createForm(m.lg)
+	m.colorForm = nil
+	return []tea.Cmd{m.form.Init(), tea.WindowSize(), m.form.NextField()}
+}
+
+func (m *Model) updateSaveForm() []tea.Cmd {
+	if *m.saveFileAction {
+		refBytes, _ := SerializeMosaic(m.ref)
+		theme.Reference = refBytes
+
+		themeBytes, err := json.Marshal(theme)
+		if err != nil {
+			log.Println("Error serializing theme", err)
+		}
+
+		err = os.WriteFile(fileName, themeBytes, 0644)
+		if err != nil {
+			log.Println("Error writing file", err)
+		}
+
+		return []tea.Cmd{tea.Quit}
+	} else {
+		m.form = createForm(m.lg)
+		m.saveForm = nil
+		return []tea.Cmd{m.form.Init(), tea.WindowSize(), m.form.NextField()}
+	}
 }
 
 func (m *Model) View() string {
