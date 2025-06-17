@@ -7,6 +7,17 @@ import (
 	"github.com/lucasb-eyer/go-colorful"
 )
 
+const (
+	saveDraftAction     = -1
+	generateThemeAction = -2
+
+	saveColorEditAction   = -1
+	cancelColorEditAction = -2
+
+	saveFileAction   = -1
+	cancelFileAction = -2
+)
+
 func generateColorLabel(lg *lipgloss.Renderer, hex, label string) string {
 	style := lg.NewStyle()
 	color, err := colorful.Hex(hex)
@@ -76,7 +87,8 @@ func createForm(lg *lipgloss.Renderer) *huh.Form {
 	return form
 }
 
-func createSaveForm() *huh.Form {
+func createSaveForm() (*huh.Form, *int) {
+	var saveAction int
 	return huh.NewForm(huh.NewGroup(
 		huh.NewInput().Title("Save As...").Placeholder("my_theme.json").Value(&fileName),
 		huh.NewSelect[int]().
@@ -87,10 +99,11 @@ func createSaveForm() *huh.Form {
 		WithWidth(25).
 		WithShowHelp(false).
 		WithShowErrors(false).
-		WithTheme(huh.ThemeCatppuccin())
+		WithTheme(huh.ThemeCatppuccin()), &saveAction
 }
 
-func createColorForm(colorName string, hexColor *string) *huh.Form {
+func createColorForm(colorName string, hexColor *string) (*huh.Form, *int) {
+	var colorAction int
 	color, err := colorful.Hex(*hexColor)
 	if err == nil {
 		h, s, v := color.Hsv()
@@ -137,7 +150,7 @@ func createColorForm(colorName string, hexColor *string) *huh.Form {
 				Options(
 					huh.NewOption("Save Changes", saveColorEditAction),
 					huh.NewOption("Cancel", cancelColorEditAction)).
-				Value(&editAction),
+				Value(&colorAction),
 		)).
 		WithWidth(25).
 		WithShowHelp(false).
@@ -154,5 +167,5 @@ func createColorForm(colorName string, hexColor *string) *huh.Form {
 		}
 	}
 
-	return form
+	return form, &colorAction
 }

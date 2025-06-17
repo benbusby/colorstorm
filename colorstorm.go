@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/charmbracelet/bubbles/key"
 	"github.com/lucasb-eyer/go-colorful"
 	"log"
@@ -20,22 +21,11 @@ const (
 
 	colorDetailHexKey   = "color_hex"
 	colorDetailFieldKey = "color_detail"
-
-	saveDraftAction     = -1
-	generateThemeAction = -2
-
-	saveColorEditAction   = -1
-	cancelColorEditAction = -2
-
-	saveFileAction   = -1
-	cancelFileAction = -2
 )
 
 var (
 	theme      = newTheme()
 	mainAction int
-	editAction int
-	saveAction int
 
 	colorFormSelected int
 	colorFormField    int
@@ -63,22 +53,24 @@ type Styles struct {
 	Base,
 	HeaderText,
 	Preview,
-	PreviewHeader,
-	Highlight,
-	ErrorHeaderText,
-	Help lipgloss.Style
+	PreviewHeader lipgloss.Style
 }
 
 type Model struct {
-	lg        *lipgloss.Renderer
-	styles    *Styles
-	form      *huh.Form
-	width     int
-	ref       Mosaic
-	extraHelp []key.Binding
+	lg     *lipgloss.Renderer
+	styles *Styles
+	form   *huh.Form
+	width  int
+	ref    Mosaic
 
-	colorForm *huh.Form
-	saveForm  *huh.Form
+	refVisibilityHelp key.Binding
+	refModeHelp       key.Binding
+
+	colorForm   *huh.Form
+	colorAction *int
+
+	saveForm   *huh.Form
+	saveAction *int
 
 	lowTermHeight  bool
 	showColorTable bool
@@ -97,11 +89,6 @@ func NewStyles(lg *lipgloss.Renderer) *Styles {
 		MarginTop(1)
 	s.PreviewHeader = lg.NewStyle().
 		Bold(true)
-	s.Highlight = lg.NewStyle().
-		Foreground(lipgloss.Color("212"))
-	s.ErrorHeaderText = s.HeaderText
-	s.Help = lg.NewStyle().
-		Foreground(lipgloss.Color("240"))
 	return &s
 }
 
@@ -120,19 +107,13 @@ func NewModel(refMosaic Mosaic, lowTermHeight bool) Model {
 	m.styles = NewStyles(m.lg)
 	m.form = createForm(m.lg)
 
-	if len(refMosaic.Image) > 0 {
-		m.extraHelp = []key.Binding{
-			key.NewBinding(
-				key.WithKeys("`"),
-				key.WithHelp("`", "show/hide ref")),
-		}
+	m.refVisibilityHelp = key.NewBinding(
+		key.WithKeys("`"),
+		key.WithHelp("`", "show/hide ref"))
 
-		if lowTermHeight {
-			m.extraHelp = append(m.extraHelp, key.NewBinding(
-				key.WithKeys("~"),
-				key.WithHelp("~", "toggle ref mode")))
-		}
-	}
+	m.refModeHelp = key.NewBinding(
+		key.WithKeys("~"),
+		key.WithHelp("~", "toggle ref mode"))
 
 	return m
 }
@@ -147,6 +128,16 @@ func (m *Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		m.width = min(msg.Width, appWidth) -
 			m.styles.Base.GetHorizontalFrameSize()
 	case tea.KeyMsg:
+		if msg.String() != "~" &&
+			msg.String() != "`" &&
+			msg.String() != "ctrl+c" &&
+			m.showReference &&
+			m.lowTermHeight {
+			// Ignore keyboard input when viewing reference in a
+			// small terminal window
+			return m, nil
+		}
+
 		switch msg.String() {
 		case "~":
 			m.showColorTable = !m.showColorTable
@@ -162,7 +153,7 @@ func (m *Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				newColor := m.updateFocusedColorField(msg.String())
 				theme.SetHexColor(mainAction, newColor)
 				colorFormSelected = 1
-				m.colorForm = createColorForm(
+				m.colorForm, m.colorAction = createColorForm(
 					theme.GetColorName(mainAction),
 					theme.GetHexColor(mainAction))
 			}
@@ -174,7 +165,7 @@ func (m *Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				if len(*theme.Background) == 7 && m.colorForm.GetFocusedField().GetKey() == colorDetailHexKey {
 					colorFormSelected = 1
 					hasEditedHex = true
-					m.colorForm = createColorForm(
+					m.colorForm, m.colorAction = createColorForm(
 						theme.GetColorName(mainAction),
 						theme.GetHexColor(mainAction))
 					return m, nil
@@ -268,20 +259,20 @@ func (m *Model) updateForms() []tea.Cmd {
 	if m.form.State == huh.StateCompleted {
 		if mainAction == saveDraftAction {
 			m.form = createForm(m.lg)
-			m.saveForm = createSaveForm()
+			m.saveForm, m.saveAction = createSaveForm()
 			return []tea.Cmd{m.saveForm.Init(), tea.WindowSize()}
 		} else if mainAction == generateThemeAction {
 			return []tea.Cmd{tea.Quit}
 		} else if m.colorForm == nil {
 			m.form = createForm(m.lg)
-			m.colorForm = createColorForm(
+			m.colorForm, m.colorAction = createColorForm(
 				theme.GetColorName(mainAction),
 				theme.GetHexColor(mainAction))
 			colorBackup = *theme.GetHexColor(mainAction)
 			return []tea.Cmd{m.colorForm.Init(), tea.WindowSize()}
 		}
 	} else if m.colorForm != nil && m.colorForm.State == huh.StateCompleted {
-		if editAction == cancelColorEditAction {
+		if *m.colorAction == cancelColorEditAction {
 			// Revert back to original hex color
 			theme.SetHexColor(mainAction, colorBackup)
 		}
@@ -291,7 +282,7 @@ func (m *Model) updateForms() []tea.Cmd {
 		m.colorForm = nil
 		return []tea.Cmd{m.form.Init(), tea.WindowSize(), m.form.NextField()}
 	} else if m.saveForm != nil && m.saveForm.State == huh.StateCompleted {
-		if saveAction == saveFileAction {
+		if *m.saveAction == saveFileAction {
 			refBytes, _ := SerializeMosaic(m.ref)
 			theme.Reference = refBytes
 
@@ -320,8 +311,7 @@ func (m *Model) View() string {
 	s := m.styles
 
 	header := m.appBoundaryView("COLORSTORM")
-	keyBinds := append(m.form.KeyBinds(), m.extraHelp...)
-	footer := m.form.Help().ShortHelpView(keyBinds)
+	footer := m.appBoundaryView(m.helpView())
 
 	var colorTable string
 	if m.showColorTable {
@@ -382,12 +372,23 @@ func (m *Model) View() string {
 	return s.Base.Render(header + "\n" + body + "\n" + footer)
 }
 
-func (m *Model) errorView() string {
-	var s string
-	for _, err := range m.form.Errors() {
-		s += err.Error()
+func (m *Model) helpView() string {
+	var footer string
+	helpElements := []key.Binding{m.refVisibilityHelp}
+	if m.showReference {
+		helpElements = append(helpElements, m.refModeHelp)
 	}
-	return s
+
+	for _, binding := range helpElements {
+		helpKey := fmt.Sprintf("[%s] %s ",
+			huh.ThemeCatppuccin().Help.ShortKey.Render(
+				strings.Join(binding.Keys(), ",")),
+			huh.ThemeCatppuccin().Help.ShortDesc.Render(
+				binding.Help().Desc))
+		footer += helpKey
+	}
+
+	return footer
 }
 
 func (m *Model) appBoundaryView(text string) string {
@@ -395,15 +396,6 @@ func (m *Model) appBoundaryView(text string) string {
 		m.width,
 		lipgloss.Left,
 		m.styles.HeaderText.Render(text),
-		lipgloss.WithWhitespaceChars("/"),
-	)
-}
-
-func (m *Model) appErrorBoundaryView(text string) string {
-	return lipgloss.PlaceHorizontal(
-		m.width,
-		lipgloss.Left,
-		m.styles.ErrorHeaderText.Render(text),
 		lipgloss.WithWhitespaceChars("/"),
 	)
 }

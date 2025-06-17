@@ -55,7 +55,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	if saveAction == saveFileAction {
+	if m.saveAction != nil && *m.saveAction == saveFileAction {
 		fmt.Printf("Theme file saved to: %s\n", fileName)
 	}
 }
