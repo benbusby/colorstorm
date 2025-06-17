@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/benbusby/colorstorm/templates"
 	"github.com/charmbracelet/huh"
 	"github.com/charmbracelet/lipgloss"
 	"github.com/lucasb-eyer/go-colorful"
@@ -11,12 +12,17 @@ const (
 	saveDraftAction     = -1
 	generateThemeAction = -2
 
-	saveColorEditAction   = -1
-	cancelColorEditAction = -2
+	colorDetailHexKey   = "color_hex"
+	colorDetailFieldKey = "color_detail"
 
-	saveFileAction   = -1
-	cancelFileAction = -2
+	editorSelectKey = "editor_select"
 )
+
+type FinalizedValues struct {
+	Author    string
+	Editors   []string
+	Confirmed bool
+}
 
 func generateColorLabel(lg *lipgloss.Renderer, hex, label string) string {
 	style := lg.NewStyle()
@@ -87,30 +93,30 @@ func createForm(lg *lipgloss.Renderer) *huh.Form {
 	return form
 }
 
-func createSaveForm() (*huh.Form, *int) {
-	var saveAction int
+func createSaveForm() (*huh.Form, *bool) {
+	saveFile := true
 	return huh.NewForm(huh.NewGroup(
 		huh.NewInput().Title("Save As...").Placeholder("my_theme.json").Value(&fileName),
-		huh.NewSelect[int]().
+		huh.NewSelect[bool]().
 			Options(
-				huh.NewOption("Save File", saveFileAction),
-				huh.NewOption("Cancel", cancelFileAction)).
-			Value(&saveAction))).
+				huh.NewOption("Cancel", false),
+				huh.NewOption("Save File", true)).
+			Value(&saveFile))).
 		WithWidth(25).
 		WithShowHelp(false).
 		WithShowErrors(false).
-		WithTheme(huh.ThemeCatppuccin()), &saveAction
+		WithTheme(huh.ThemeCatppuccin()), &saveFile
 }
 
-func createColorForm(colorName string, hexColor *string) (*huh.Form, *int) {
-	var colorAction int
+func createColorForm(colorName string, hexColor *string) (*huh.Form, *bool) {
+	saveColor := true
 	color, err := colorful.Hex(*hexColor)
 	if err == nil {
 		h, s, v := color.Hsv()
-		if !colorEdit.init || hasEditedHex {
+		if !colorEdit.init || updateSV {
 			colorEdit.S = uint8(roundFloat(s, 2) * 100)
 			colorEdit.V = uint8(roundFloat(v, 2) * 100)
-			hasEditedHex = false
+			updateSV = false
 		}
 
 		colorEdit.Hex = hexColor
@@ -146,11 +152,11 @@ func createColorForm(colorName string, hexColor *string) (*huh.Form, *int) {
 		huh.NewGroup(
 			input,
 			colorDetails,
-			huh.NewSelect[int]().
+			huh.NewSelect[bool]().
 				Options(
-					huh.NewOption("Save Changes", saveColorEditAction),
-					huh.NewOption("Cancel", cancelColorEditAction)).
-				Value(&colorAction),
+					huh.NewOption("Cancel", false),
+					huh.NewOption("Save Changes", true)).
+				Value(&saveColor),
 		)).
 		WithWidth(25).
 		WithShowHelp(false).
@@ -167,5 +173,37 @@ func createColorForm(colorName string, hexColor *string) (*huh.Form, *int) {
 		}
 	}
 
-	return form, &colorAction
+	return form, &saveColor
+}
+
+func createGeneratorForm() (*huh.Form, *FinalizedValues) {
+	final := FinalizedValues{Confirmed: true}
+
+	form := huh.NewForm(
+		huh.NewGroup(
+			huh.NewInput().
+				Title("Author Name").
+				Value(&final.Author),
+			huh.NewMultiSelect[string]().
+				Title("Editors").
+				Options(
+					huh.NewOption("Vim", templates.VimKey),
+					huh.NewOption("VSCode", templates.VSCodeKey),
+					huh.NewOption("Sublime", templates.SublimeKey),
+				).
+				Key(editorSelectKey).
+				Value(&final.Editors),
+			huh.NewSelect[bool]().
+				Options(
+					huh.NewOption("Cancel", false),
+					huh.NewOption("Generate", true),
+				).
+				Value(&final.Confirmed),
+		)).
+		WithWidth(25).
+		WithShowHelp(false).
+		WithShowErrors(false).
+		WithTheme(huh.ThemeCatppuccin())
+
+	return form, &final
 }

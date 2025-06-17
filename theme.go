@@ -1,5 +1,11 @@
 package main
 
+import (
+	"errors"
+	"fmt"
+	"strings"
+)
+
 const (
 	BackgroundIndex int = iota
 	ForegroundIndex
@@ -10,7 +16,50 @@ const (
 	NumberIndex
 	StringIndex
 	TypeIndex
+
+	BackgroundKey = "background"
+	ForegroundKey = "foreground"
+	FunctionKey   = "function"
+	ConstantKey   = "constant"
+	KeywordKey    = "keyword"
+	CommentKey    = "comment"
+	NumberKey     = "number"
+	StringKey     = "string"
+	TypeKey       = "type"
 )
+
+var keyList = []string{
+	BackgroundKey,
+	ForegroundKey,
+	FunctionKey,
+	ConstantKey,
+	KeywordKey,
+	CommentKey,
+	NumberKey,
+	StringKey,
+	TypeKey,
+}
+
+type FinalizedTheme struct {
+	ID     string
+	Name   string
+	Author string
+
+	Background     string
+	BackgroundAlt1 string
+	BackgroundAlt2 string
+
+	Foreground string
+	Function   string
+	Constant   string
+	Keyword    string
+	Comment    string
+	Number     string
+	String     string
+	Type       string
+
+	LightTheme bool
+}
 
 type Theme struct {
 	Name string `json:"name"`
@@ -30,23 +79,23 @@ type Theme struct {
 
 func (t *Theme) getColor(key string) string {
 	switch key {
-	case "background":
+	case BackgroundKey:
 		return *t.Background
-	case "foreground":
+	case ForegroundKey:
 		return *t.Foreground
-	case "function":
+	case FunctionKey:
 		return *t.Function
-	case "constant":
+	case ConstantKey:
 		return *t.Constant
-	case "keyword":
+	case KeywordKey:
 		return *t.Keyword
-	case "comment":
+	case CommentKey:
 		return *t.Comment
-	case "number":
+	case NumberKey:
 		return *t.Number
-	case "string":
+	case StringKey:
 		return *t.String
-	case "type":
+	case TypeKey:
 		return *t.Type
 	}
 
@@ -148,4 +197,32 @@ func (t *Theme) SetHexColor(idx int, newVal string) {
 	case TypeIndex:
 		t.Type = &newVal
 	}
+}
+
+func (t *Theme) Validate() error {
+	var errorList []string
+	if len(t.Name) == 0 {
+		errorList = append(errorList, "name cannot be empty")
+	} else if len(t.Name) > 20 {
+		errorList = append(errorList, "name must be < 20 characters")
+	}
+
+	for _, key := range keyList {
+		color := t.getColor(key)
+		if len(color) == 0 || color[0] != '#' {
+			msg := fmt.Sprintf("missing or invalid '%s' color", key)
+			errorList = append(errorList, msg)
+		}
+	}
+
+	if len(errorList) > 0 {
+		errorMsg := strings.Join(errorList, " * ")
+		return errors.New(errorMsg)
+	}
+
+	return nil
+}
+
+func (t *Theme) Finalize() FinalizedTheme {
+	return FinalizedTheme{}
 }

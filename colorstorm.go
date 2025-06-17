@@ -18,9 +18,6 @@ const (
 	appWidth     = 90
 	appHeight    = 28
 	previewWidth = 60
-
-	colorDetailHexKey   = "color_hex"
-	colorDetailFieldKey = "color_detail"
 )
 
 var (
@@ -33,7 +30,7 @@ var (
 	colorEdit   = &Color{}
 	colorBackup string
 
-	hasEditedHex bool
+	updateSV bool
 
 	fileName string
 )
@@ -62,15 +59,19 @@ type Model struct {
 	form   *huh.Form
 	width  int
 	ref    Mosaic
+	error  string
 
 	refVisibilityHelp key.Binding
 	refModeHelp       key.Binding
 
-	colorForm   *huh.Form
-	colorAction *int
+	colorForm       *huh.Form
+	saveColorAction *bool
 
-	saveForm   *huh.Form
-	saveAction *int
+	saveForm       *huh.Form
+	saveFileAction *bool
+
+	generatorForm   *huh.Form
+	generatorValues *FinalizedValues
 
 	lowTermHeight  bool
 	showColorTable bool
@@ -153,7 +154,7 @@ func (m *Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				newColor := m.updateFocusedColorField(msg.String())
 				theme.SetHexColor(mainAction, newColor)
 				colorFormSelected = 1
-				m.colorForm, m.colorAction = createColorForm(
+				m.colorForm, m.saveColorAction = createColorForm(
 					theme.GetColorName(mainAction),
 					theme.GetHexColor(mainAction))
 			}
@@ -164,8 +165,8 @@ func (m *Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				// need to be regenerated before focus
 				if len(*theme.Background) == 7 && m.colorForm.GetFocusedField().GetKey() == colorDetailHexKey {
 					colorFormSelected = 1
-					hasEditedHex = true
-					m.colorForm, m.colorAction = createColorForm(
+					updateSV = true
+					m.colorForm, m.saveColorAction = createColorForm(
 						theme.GetColorName(mainAction),
 						theme.GetHexColor(mainAction))
 					return m, nil
@@ -186,6 +187,8 @@ func (m *Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		form, cmd = m.colorForm.Update(msg)
 	} else if m.saveForm != nil {
 		form, cmd = m.saveForm.Update(msg)
+	} else if m.generatorForm != nil {
+		form, cmd = m.generatorForm.Update(msg)
 	} else {
 		form, cmd = m.form.Update(msg)
 	}
@@ -195,6 +198,8 @@ func (m *Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			m.colorForm = f
 		} else if m.saveForm != nil {
 			m.saveForm = f
+		} else if m.generatorForm != nil {
+			m.generatorForm = f
 		} else {
 			m.form = f
 		}
@@ -248,8 +253,8 @@ func (m *Model) updateFocusedColorField(msg string) string {
 	}
 
 	if colorFormField < 4 {
-		// Don't update
-		hasEditedHex = true
+		// Saturation and value need to be updated for R/G/B/H changes
+		updateSV = true
 	}
 
 	return c.Hex()
@@ -257,22 +262,31 @@ func (m *Model) updateFocusedColorField(msg string) string {
 
 func (m *Model) updateForms() []tea.Cmd {
 	if m.form.State == huh.StateCompleted {
+		m.error = ""
 		if mainAction == saveDraftAction {
 			m.form = createForm(m.lg)
-			m.saveForm, m.saveAction = createSaveForm()
+			m.saveForm, m.saveFileAction = createSaveForm()
 			return []tea.Cmd{m.saveForm.Init(), tea.WindowSize()}
 		} else if mainAction == generateThemeAction {
-			return []tea.Cmd{tea.Quit}
+			m.form = createForm(m.lg)
+			err := theme.Validate()
+			if err != nil {
+				m.error = err.Error()
+				return []tea.Cmd{m.form.Init(), tea.WindowSize()}
+			}
+
+			m.generatorForm, m.generatorValues = createGeneratorForm()
+			return []tea.Cmd{m.generatorForm.Init(), tea.WindowSize()}
 		} else if m.colorForm == nil {
 			m.form = createForm(m.lg)
-			m.colorForm, m.colorAction = createColorForm(
+			m.colorForm, m.saveColorAction = createColorForm(
 				theme.GetColorName(mainAction),
 				theme.GetHexColor(mainAction))
 			colorBackup = *theme.GetHexColor(mainAction)
 			return []tea.Cmd{m.colorForm.Init(), tea.WindowSize()}
 		}
 	} else if m.colorForm != nil && m.colorForm.State == huh.StateCompleted {
-		if *m.colorAction == cancelColorEditAction {
+		if !*m.saveColorAction {
 			// Revert back to original hex color
 			theme.SetHexColor(mainAction, colorBackup)
 		}
@@ -282,7 +296,7 @@ func (m *Model) updateForms() []tea.Cmd {
 		m.colorForm = nil
 		return []tea.Cmd{m.form.Init(), tea.WindowSize(), m.form.NextField()}
 	} else if m.saveForm != nil && m.saveForm.State == huh.StateCompleted {
-		if *m.saveAction == saveFileAction {
+		if *m.saveFileAction {
 			refBytes, _ := SerializeMosaic(m.ref)
 			theme.Reference = refBytes
 
@@ -301,6 +315,14 @@ func (m *Model) updateForms() []tea.Cmd {
 			m.form = createForm(m.lg)
 			m.saveForm = nil
 			return []tea.Cmd{m.form.Init(), tea.WindowSize(), m.form.NextField()}
+		}
+	} else if m.generatorForm != nil && m.generatorForm.State == huh.StateCompleted {
+		if m.generatorValues.Confirmed {
+
+		} else {
+			m.form = createForm(m.lg)
+			m.generatorForm = nil
+			return []tea.Cmd{m.form.Init(), tea.WindowSize()}
 		}
 	}
 
@@ -336,6 +358,8 @@ func (m *Model) View() string {
 		formView = strings.TrimSuffix(m.colorForm.View(), "\n")
 	} else if m.saveForm != nil {
 		formView = strings.TrimSuffix(m.saveForm.View(), "\n")
+	} else if m.generatorForm != nil {
+		formView = strings.TrimSuffix(m.generatorForm.View(), "\n")
 	} else {
 		formView = strings.TrimSuffix(m.form.View(), "\n")
 	}
@@ -373,10 +397,20 @@ func (m *Model) View() string {
 }
 
 func (m *Model) helpView() string {
+	if len(m.error) > 0 {
+		return huh.ThemeCatppuccin().Focused.ErrorMessage.Render(m.error)
+	}
+
 	var footer string
 	helpElements := []key.Binding{m.refVisibilityHelp}
 	if m.showReference {
 		helpElements = append(helpElements, m.refModeHelp)
+	}
+
+	if m.generatorForm != nil && m.generatorForm.GetFocusedField().GetKey() == editorSelectKey {
+		helpElements = append(helpElements, key.NewBinding(
+			key.WithKeys("space"),
+			key.WithHelp("space", "select / deselect")))
 	}
 
 	for _, binding := range helpElements {
