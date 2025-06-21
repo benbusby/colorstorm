@@ -193,7 +193,7 @@ func createGeneratorForm() (*huh.Form, *GeneratorFormValues) {
 			huh.NewMultiSelect[editorKey]().
 				Title("Editors").
 				Options(
-					huh.NewOption("Vim", VimKey),
+					huh.NewOption("Vim / NeoVim", VimKey),
 					huh.NewOption("VSCode", VSCodeKey),
 					huh.NewOption("Sublime", SublimeKey),
 				).

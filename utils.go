@@ -26,8 +26,15 @@ func roundFloat(val float64, precision uint) float64 {
 	return math.Round(val*ratio) / ratio
 }
 
+func hexToRGB(hex string) (uint8, uint8, uint8) {
+	c, _ := colorful.Hex(hex)
+	r, g, b, _ := c.RGBA()
+	return uint8(r), uint8(g), uint8(b)
+}
+
 // Adapted from https://github.com/tmux/tmux/pull/432/files
-func rgbToX256(r, g, b uint8) uint8 {
+func rgbToX256(hex string) uint8 {
+	r, g, b := hexToRGB(hex)
 	ir := v2ci(r)
 	ig := v2ci(g)
 	ib := v2ci(b)
@@ -60,7 +67,8 @@ func rgbToX256(r, g, b uint8) uint8 {
 // sanitizeName removes whitespace and special characters to create a string
 // value that can be used as a file name and a theme name for editors like Vim
 func sanitizeName(name string) string {
-	newName := strings.ReplaceAll(name, " ", "_")
+	newName := strings.ReplaceAll(name, " - ", "_")
+	newName = strings.ReplaceAll(newName, " ", "_")
 
 	re := regexp.MustCompile(`[\\/:*?!#$%^&().,'"<>|]`)
 	newName = re.ReplaceAllString(newName, "")

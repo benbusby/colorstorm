@@ -61,6 +61,19 @@ type FinalizedTheme struct {
 	String   string
 	Type     string
 
+	BackgroundX256     uint8
+	BackgroundAlt1X256 uint8
+	BackgroundAlt2X256 uint8
+	ForegroundX256     uint8
+	ForegroundAltX256  uint8
+	FunctionX256       uint8
+	ConstantX256       uint8
+	KeywordX256        uint8
+	CommentX256        uint8
+	NumberX256         uint8
+	StringX256         uint8
+	TypeX256           uint8
+
 	DarkOrLight string
 }
 
@@ -251,8 +264,6 @@ func (t *Theme) Validate() error {
 	var errorList []string
 	if len(t.Name) == 0 {
 		errorList = append(errorList, "name cannot be empty")
-	} else if len(t.Name) > 20 {
-		errorList = append(errorList, "name must be < 20 characters")
 	}
 
 	for _, key := range keyList {
@@ -291,6 +302,16 @@ func (t *Theme) Finalize(values GeneratorFormValues) FinalizedTheme {
 		Number:     *t.Number,
 		String:     *t.String,
 		Type:       *t.Type,
+
+		BackgroundX256: rgbToX256(*t.Background),
+		ForegroundX256: rgbToX256(*t.Foreground),
+		FunctionX256:   rgbToX256(*t.Function),
+		ConstantX256:   rgbToX256(*t.Constant),
+		KeywordX256:    rgbToX256(*t.Keyword),
+		CommentX256:    rgbToX256(*t.Comment),
+		NumberX256:     rgbToX256(*t.Number),
+		StringX256:     rgbToX256(*t.String),
+		TypeX256:       rgbToX256(*t.Type),
 	}
 
 	bgCol, _ := colorful.Hex(*t.Background)
@@ -313,6 +334,10 @@ func (t *Theme) Finalize(values GeneratorFormValues) FinalizedTheme {
 	final.ForegroundAlt = fgAlt.Hex()
 	final.BackgroundAlt1 = bgAlt1.Hex()
 	final.BackgroundAlt2 = bgAlt2.Hex()
+
+	final.ForegroundAltX256 = rgbToX256(fgAlt.Hex())
+	final.BackgroundAlt1X256 = rgbToX256(bgAlt1.Hex())
+	final.BackgroundAlt2X256 = rgbToX256(bgAlt2.Hex())
 
 	return final
 }
