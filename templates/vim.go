@@ -87,18 +87,18 @@ if has('nvim')
     hi! link  @lsp.type.class Type
     hi! link  @lsp.type.decorator Function
     hi! link  @lsp.type.enum Type
-    hi! link  @lsp.type.enumMember DraculaPurple
+    hi! link  @lsp.type.enumMember Constant
     hi! link  @lsp.type.function Function
     hi! link  @lsp.type.interface Type
     hi! link  @lsp.type.macro Type
     hi! link  @lsp.type.method Function
     hi! link  @lsp.type.namespace Type
     hi! link  @lsp.type.parameter Keyword
-    hi! link  @lsp.type.property DraculaOrange
+    hi! link  @lsp.type.property Constant
     hi! link  @lsp.type.struct Type
     hi! link  @lsp.type.type Type
-    hi! link  @lsp.type.typeParameter DraculaPink
-    hi! link  @lsp.type.variable DraculaFg
+    hi! link  @lsp.type.typeParameter Constant
+    hi! link  @lsp.type.variable Constant
   endif
 
   if has('nvim-0.8.1')

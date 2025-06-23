@@ -6,6 +6,7 @@ import (
 	"github.com/charmbracelet/huh"
 	"github.com/charmbracelet/lipgloss"
 	"github.com/lucasb-eyer/go-colorful"
+	"github.com/muesli/gamut"
 )
 
 const (
@@ -27,19 +28,13 @@ type GeneratorFormValues struct {
 
 func generateColorLabel(lg *lipgloss.Renderer, hex, label string) string {
 	style := lg.NewStyle()
-	color, err := colorful.Hex(hex)
-	if err != nil {
-		return "error!"
-	}
-
-	foreground := lipgloss.Color("#fff")
+	foreground := gamut.Contrast(lipgloss.Color(hex))
 	background := lipgloss.Color(hex)
-	_, _, lightness := color.Hsv()
-	if lightness > 0.5 {
-		foreground = "#000"
-	}
 
-	return style.Foreground(foreground).Background(background).Render(label)
+	return style.
+		Foreground(lipgloss.Color(gamut.ToHex(foreground))).
+		Background(background).
+		Render(label)
 }
 
 func createForm(lg *lipgloss.Renderer) *huh.Form {

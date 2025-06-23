@@ -6,6 +6,7 @@ import (
 	"fmt"
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/x/term"
+	"github.com/muesli/gamut"
 	"log"
 	"os"
 	"strings"
@@ -17,13 +18,17 @@ func main() {
 		refMosaic Mosaic
 	)
 
-	draftImport := flag.String("i", "", "import saved theme json")
-	refImg := flag.String("r", "", "jpg or png reference image")
+	themeFile := flag.String("f", "", "load theme json file")
+	refImg := flag.String("i", "", "jpg or png reference image")
 	quantize := flag.Int("q", 50, "color quantization amount [0-255]")
+	lightTheme := flag.Bool("l", false, "create a light theme")
+	initNoColor := flag.Bool("x", false, "initialize without any colors")
+	monochrome := flag.Bool("m", false, "generate monochrome theme")
+	seedColor := flag.String("c", "", "seed color (hex)")
 	flag.Parse()
 
-	if len(*draftImport) > 0 {
-		f, err := os.ReadFile(*draftImport)
+	if len(*themeFile) > 0 {
+		f, err := os.ReadFile(*themeFile)
 		if err != nil {
 			log.Fatalln("Error importing theme", err)
 		}
@@ -45,7 +50,15 @@ func main() {
 			return
 		}
 	} else {
-		theme = newRandomTheme()
+		if *initNoColor {
+			theme = newNoColorTheme(*lightTheme)
+		} else if *monochrome && len(*seedColor) > 0 {
+			theme = newMonoTheme(*lightTheme, gamut.Hex(*seedColor))
+		} else if *monochrome {
+			theme = newRandomMonoTheme(*lightTheme)
+		} else {
+			theme = newRandomTheme(*lightTheme)
+		}
 	}
 
 	_, height, _ := term.GetSize(0)

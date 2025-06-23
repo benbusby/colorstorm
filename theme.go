@@ -4,6 +4,9 @@ import (
 	"errors"
 	"fmt"
 	"github.com/lucasb-eyer/go-colorful"
+	"github.com/muesli/gamut"
+	"image/color"
+	"math/rand/v2"
 	"strings"
 )
 
@@ -27,6 +30,9 @@ const (
 	NumberKey     = "number"
 	StringKey     = "string"
 	TypeKey       = "type"
+
+	blackHex = "#000000"
+	whiteHex = "#ffffff"
 )
 
 var keyList = []string{
@@ -142,37 +148,122 @@ func newDefaultTheme() *Theme {
 	}
 }
 
-func newRandomTheme() *Theme {
-	palette, err := colorful.WarmPalette(7)
+func newNoColorTheme(light bool) *Theme {
+	var (
+		bg, fg string
+	)
+
+	if light {
+		bg = whiteHex
+		fg = blackHex
+	} else {
+		bg = blackHex
+		fg = whiteHex
+	}
+
+	functionColor := fg
+	constantColor := fg
+	keywordColor := fg
+	commentColor := fg
+	numberColor := fg
+	stringColor := fg
+	typeColor := fg
+	return &Theme{
+		Background: &bg,
+		Foreground: &fg,
+		Function:   &functionColor,
+		Constant:   &constantColor,
+		Keyword:    &keywordColor,
+		Comment:    &commentColor,
+		Number:     &numberColor,
+		String:     &stringColor,
+		Type:       &typeColor,
+	}
+}
+
+func newRandomMonoTheme(light bool) *Theme {
+	colors, _ := gamut.Generate(16, gamut.HappyGenerator{})
+	monoColor := colors[rand.IntN(len(colors))]
+	return newMonoTheme(light, monoColor)
+}
+
+func newMonoTheme(light bool, initColor color.Color) *Theme {
+	var (
+		palette         []color.Color
+		bg, fg, comment color.Color
+	)
+
+	if light {
+		bg = gamut.Tints(initColor, 4)[2]
+		palette = gamut.Shades(initColor, 8)
+		fg = palette[6]
+		comment = gamut.Darker(bg, 0.7)
+	} else {
+		initColor = gamut.Lighter(initColor, 0.5)
+		bg = gamut.Shades(initColor, 4)[2]
+		palette = gamut.Tints(initColor, 8)
+		fg = palette[6]
+		comment = gamut.Lighter(bg, 0.7)
+	}
+
+	bgHex := gamut.ToHex(bg)
+	fgHex := gamut.ToHex(fg)
+	fnHex := gamut.ToHex(palette[0])
+	constHex := gamut.ToHex(palette[1])
+	keywordHex := gamut.ToHex(palette[2])
+	commentHex := gamut.ToHex(comment)
+	numberHex := gamut.ToHex(palette[3])
+	stringHex := gamut.ToHex(palette[4])
+	typeHex := gamut.ToHex(palette[5])
+
+	return &Theme{
+		Background: &bgHex,
+		Foreground: &fgHex,
+		Function:   &fnHex,
+		Constant:   &constHex,
+		Keyword:    &keywordHex,
+		Comment:    &commentHex,
+		Number:     &numberHex,
+		String:     &stringHex,
+		Type:       &typeHex,
+	}
+}
+
+func newRandomTheme(light bool) *Theme {
+	palette, err := gamut.Generate(7, gamut.PastelGenerator{})
 	if err != nil {
 		panic(err)
 	}
 
-	var bg, fg colorful.Color
-	maxV := 0.0
+	var bg, fg, comment color.Color
+	anchor := palette[rand.IntN(len(palette))]
 
-	// Find the brightest color in the palette
-	for _, color := range palette {
-		_, _, v := color.Hsv()
-		if v > maxV {
-			maxV = v
-			bg = color
-		}
+	if light {
+		bg = gamut.Lighter(anchor, 0.25)
+		fg = gamut.Darker(anchor, 0.45)
+		comment = gamut.Darker(anchor, 0.2)
+	} else {
+		bg = gamut.Darker(anchor, 0.9)
+		fg = gamut.Lighter(anchor, 0.2)
+		comment = gamut.Darker(anchor, 0.4)
 	}
 
-	h, s, v := bg.Hsv()
-	bg = colorful.Hsv(h, s, v*0.15)
-	fg = colorful.Hsv(h, s*0.5, 1.0)
+	modFn := gamut.Lighter
+	modVal := 0.2
+	if light {
+		modFn = gamut.Darker
+		modVal = 0.6
+	}
 
-	bgHex := bg.Hex()
-	fgHex := fg.Hex()
-	fnHex := changeColorBrightness(palette[0], 2.0).Hex()
-	constHex := changeColorBrightness(palette[1], 2.0).Hex()
-	keywordHex := changeColorBrightness(palette[2], 2.0).Hex()
-	commentHex := changeColorBrightness(palette[3], 0.9).Hex()
-	numberHex := changeColorBrightness(palette[4], 2.0).Hex()
-	stringHex := changeColorBrightness(palette[5], 2.0).Hex()
-	typeHex := changeColorBrightness(palette[6], 2.0).Hex()
+	bgHex := gamut.ToHex(bg)
+	fgHex := gamut.ToHex(fg)
+	fnHex := gamut.ToHex(modFn(palette[0], modVal))
+	constHex := gamut.ToHex(modFn(palette[1], modVal))
+	keywordHex := gamut.ToHex(modFn(palette[2], modVal))
+	commentHex := gamut.ToHex(comment)
+	numberHex := gamut.ToHex(modFn(palette[4], modVal))
+	stringHex := gamut.ToHex(modFn(palette[5], modVal))
+	typeHex := gamut.ToHex(modFn(palette[6], modVal))
 
 	return &Theme{
 		Background: &bgHex,

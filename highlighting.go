@@ -28,8 +28,7 @@ const (
          }
 
          {keyword}return{/keyword} {constant}math{/constant}.{function}NaN(){/function}    
- }
-`
+ }`
 )
 
 func parseSyntaxHighlighting(code string, theme *Theme) string {
