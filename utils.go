@@ -37,7 +37,7 @@ func hexToRGB(hex string) (uint8, uint8, uint8) {
 }
 
 // Adapted from https://github.com/tmux/tmux/pull/432/files
-func rgbToX256(hex string) uint8 {
+func hexToX256(hex string) uint8 {
 	r, g, b := hexToRGB(hex)
 	ir := v2ci(r)
 	ig := v2ci(g)
@@ -78,11 +78,6 @@ func sanitizeName(name string) string {
 	newName = re.ReplaceAllString(newName, "")
 
 	return strings.ToLower(newName)
-}
-
-func changeColorBrightness(c colorful.Color, amount float64) colorful.Color {
-	h, s, v := c.Hsv()
-	return colorful.Hsv(h, s, min(v*amount, 1.0))
 }
 
 func isMovementKey(key string) bool {

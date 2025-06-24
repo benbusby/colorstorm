@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/charmbracelet/lipgloss"
+	"github.com/muesli/termenv"
 	"strings"
 )
 
@@ -34,7 +35,12 @@ const (
 func parseSyntaxHighlighting(code string, theme *Theme) string {
 	var result strings.Builder
 	lines := strings.Split(code, "\n")
+
+	r := lipgloss.Renderer{}
+	r.SetColorProfile(termenv.TrueColor)
+
 	baseStyle := lipgloss.NewStyle().
+		Renderer(&r).
 		Foreground(lipgloss.Color(*theme.Foreground)).
 		Background(lipgloss.Color(*theme.Background))
 
@@ -66,6 +72,7 @@ func parseSyntaxHighlighting(code string, theme *Theme) string {
 				content := line[tagEnd+1 : closingTagPos]
 
 				style := lipgloss.NewStyle().
+					Renderer(&r).
 					Foreground(lipgloss.Color(theme.getColor(tag))).
 					Background(lipgloss.Color(*theme.Background))
 				previewLine.WriteString(style.Render(content))

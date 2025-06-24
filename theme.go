@@ -358,8 +358,8 @@ func (t *Theme) Validate() error {
 	}
 
 	for _, key := range keyList {
-		color := t.getColor(key)
-		if len(color) == 0 || color[0] != '#' {
+		tColor := t.getColor(key)
+		if len(tColor) == 0 || tColor[0] != '#' {
 			msg := fmt.Sprintf("missing or invalid '%s' color", key)
 			errorList = append(errorList, msg)
 		}
@@ -394,15 +394,15 @@ func (t *Theme) Finalize(values GeneratorFormValues) FinalizedTheme {
 		String:     *t.String,
 		Type:       *t.Type,
 
-		BackgroundX256: rgbToX256(*t.Background),
-		ForegroundX256: rgbToX256(*t.Foreground),
-		FunctionX256:   rgbToX256(*t.Function),
-		ConstantX256:   rgbToX256(*t.Constant),
-		KeywordX256:    rgbToX256(*t.Keyword),
-		CommentX256:    rgbToX256(*t.Comment),
-		NumberX256:     rgbToX256(*t.Number),
-		StringX256:     rgbToX256(*t.String),
-		TypeX256:       rgbToX256(*t.Type),
+		BackgroundX256: hexToX256(*t.Background),
+		ForegroundX256: hexToX256(*t.Foreground),
+		FunctionX256:   hexToX256(*t.Function),
+		ConstantX256:   hexToX256(*t.Constant),
+		KeywordX256:    hexToX256(*t.Keyword),
+		CommentX256:    hexToX256(*t.Comment),
+		NumberX256:     hexToX256(*t.Number),
+		StringX256:     hexToX256(*t.String),
+		TypeX256:       hexToX256(*t.Type),
 	}
 
 	bgCol, _ := colorful.Hex(*t.Background)
@@ -426,9 +426,9 @@ func (t *Theme) Finalize(values GeneratorFormValues) FinalizedTheme {
 	final.BackgroundAlt1 = bgAlt1.Hex()
 	final.BackgroundAlt2 = bgAlt2.Hex()
 
-	final.ForegroundAltX256 = rgbToX256(fgAlt.Hex())
-	final.BackgroundAlt1X256 = rgbToX256(bgAlt1.Hex())
-	final.BackgroundAlt2X256 = rgbToX256(bgAlt2.Hex())
+	final.ForegroundAltX256 = hexToX256(fgAlt.Hex())
+	final.BackgroundAlt1X256 = hexToX256(bgAlt1.Hex())
+	final.BackgroundAlt2X256 = hexToX256(bgAlt2.Hex())
 
 	return final
 }
