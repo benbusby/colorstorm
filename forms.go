@@ -13,6 +13,7 @@ const (
 	saveDraftAction     = -1
 	generateThemeAction = -2
 
+	themeActionKey      = "theme_action"
 	colorDetailHexKey   = "color_hex"
 	colorDetailFieldKey = "color_detail"
 
@@ -72,7 +73,7 @@ func createForm(lg *lipgloss.Renderer) *huh.Form {
 			huh.NewOption(typeLabel, TypeIndex),
 			huh.NewOption("Save Draft", saveDraftAction),
 			huh.NewOption("Generate Theme", generateThemeAction),
-		).Value(&mainAction)
+		).Value(&mainAction).Key(themeActionKey)
 
 	form := huh.NewForm(huh.NewGroup(themeName, themeSelect)).
 		WithWidth(25).

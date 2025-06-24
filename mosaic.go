@@ -2,28 +2,29 @@ package main
 
 import (
 	"bytes"
-	"compress/gzip"
-	"encoding/json"
-	"errors"
+	"encoding/gob"
 	"fmt"
 	"github.com/charmbracelet/lipgloss"
 	"golang.org/x/image/draw"
 	"image"
 	_ "image/jpeg"
 	_ "image/png"
-	"io"
+	"log"
 	"math"
 	"os"
+	"slices"
 	"strings"
-	"unicode/utf8"
 )
 
 const colorPreview = "   "
 
 type Mosaic struct {
-	Image   string   `json:"-"`
-	GzImage []byte   `json:"gzImage"`
-	Colors  []string `json:"colors"`
+	Image  string    `json:"-"`
+	Pixels [][]Pixel `json:"-"`
+	Colors []string  `json:"colors"`
+
+	GzImage  []byte `json:"gzImage"`
+	GzPixels []byte `json:"gzPixels"`
 }
 
 type Pixel struct {
@@ -138,6 +139,8 @@ func getTargetDimensions(src image.Image, maxWidth, maxHeight int) (int, int) {
 	}
 }
 
+// getPixels returns a 2D array of Pixel structs that contain each pixel's
+// RGBA values.
 func getPixels(raw []uint8, width, quantize int) [][]Pixel {
 	var (
 		result [][]Pixel
@@ -152,10 +155,10 @@ func getPixels(raw []uint8, width, quantize int) [][]Pixel {
 		}
 
 		px := Pixel{
-			R: roundPixelRGBA(raw[idx], quantize),
-			G: roundPixelRGBA(raw[idx+1], quantize),
-			B: roundPixelRGBA(raw[idx+2], quantize),
-			A: roundPixelRGBA(raw[idx+3], quantize),
+			R: quantizePixelRGBA(raw[idx], quantize),
+			G: quantizePixelRGBA(raw[idx+1], quantize),
+			B: quantizePixelRGBA(raw[idx+2], quantize),
+			A: quantizePixelRGBA(raw[idx+3], quantize),
 		}
 
 		row = append(row, px)
@@ -165,67 +168,36 @@ func getPixels(raw []uint8, width, quantize int) [][]Pixel {
 	return result
 }
 
-func roundPixelRGBA(val uint8, quantize int) uint8 {
-	if quantize == 1 {
+func quantizePixelRGBA(val uint8, amount int) uint8 {
+	if amount == 1 {
 		return val
 	}
-	dsFloat := float64(quantize)
-	newVal := math.Round(float64(val)/dsFloat) * dsFloat
+
+	amountF64 := float64(amount)
+	newVal := math.Round(float64(val)/amountF64) * amountF64
 	return uint8(newVal)
 }
 
-func SerializeMosaic(m Mosaic) ([]byte, error) {
-	if len(m.Image) == 0 || !utf8.ValidString(m.Image) {
-		return []byte{}, nil
-	}
-
-	var b bytes.Buffer
-	gz := gzip.NewWriter(&b)
-	if _, err := gz.Write([]byte(m.Image)); err != nil {
-		return nil, err
-	}
-
-	if err := gz.Close(); err != nil {
-		return nil, err
-	}
-
-	m.GzImage = b.Bytes()
-	mosaicJson, err := json.Marshal(m)
+func SerializeMosaic(m Mosaic) []byte {
+	buf := bytes.Buffer{}
+	enc := gob.NewEncoder(&buf)
+	err := enc.Encode(m)
 	if err != nil {
-		return nil, err
+		log.Fatal(err)
 	}
 
-	return mosaicJson, nil
+	return compress(buf.Bytes())
 }
 
-func DeserializeMosaic(mosaicJson []byte) (Mosaic, error) {
-	if len(mosaicJson) == 0 {
-		return Mosaic{}, nil
-	}
-
+func DeserializeMosaic(comp []byte) Mosaic {
+	b := decompress(comp)
 	var m Mosaic
-	err := json.Unmarshal(mosaicJson, &m)
+	dec := gob.NewDecoder(bytes.NewReader(b))
+	err := dec.Decode(&m)
 	if err != nil {
-		return Mosaic{}, err
+		log.Fatal(err)
 	}
-
-	reader := bytes.NewReader(m.GzImage)
-	gzReader, err := gzip.NewReader(reader)
-	if err != nil {
-		return Mosaic{}, err
-	}
-
-	output, err := io.ReadAll(gzReader)
-	if err != nil {
-		return Mosaic{}, err
-	}
-
-	if !utf8.Valid(output) {
-		return Mosaic{}, errors.New("invalid gzipped image bytes")
-	}
-
-	m.Image = string(output)
-	return m, nil
+	return m
 }
 
 // GenerateQuantizedMosaic returns an image that has been rendered into a series
@@ -251,7 +223,7 @@ func GenerateQuantizedMosaic(imgPath string, width, height, quantize int) (Mosai
 
 	pixels := getPixels(rgba.Pix, w, quantize)
 	row := 0
-	colors := make(map[string]struct{})
+	colors := make(map[string]int)
 
 	for row < len(pixels) {
 		line := ""
@@ -265,8 +237,8 @@ func GenerateQuantizedMosaic(imgPath string, width, height, quantize int) (Mosai
 
 			imageLine, topHex, bottomHex := getPixelPair(top, bottom)
 			line += imageLine
-			colors[topHex] = struct{}{}
-			colors[bottomHex] = struct{}{}
+			colors[topHex] = colors[topHex] + 1
+			colors[bottomHex] = colors[bottomHex] + 1
 		}
 		result = append(result, line)
 		row += 2
@@ -280,13 +252,73 @@ func GenerateQuantizedMosaic(imgPath string, width, height, quantize int) (Mosai
 		i++
 	}
 
+	slices.Sort(keyColors)
 	output := strings.Join(result, "\n")
-	return Mosaic{
+	m := Mosaic{
 		Image:  output,
 		Colors: keyColors,
-	}, nil
+		Pixels: pixels,
+	}
+
+	return m, nil
 }
 
 func GenerateMosaic(imgPath string, width, height int) (Mosaic, error) {
 	return GenerateQuantizedMosaic(imgPath, width, height, 50)
+}
+
+func (m Mosaic) HighlightPixel(x, y int) (string, string) {
+	var (
+		result []string
+		target string
+	)
+
+	hlColor := Pixel{R: 255, G: 255, B: 255, A: 255}
+
+	row := 0
+	for row < len(m.Pixels) {
+		line := ""
+		for i, p := range m.Pixels[row] {
+			top := p
+			bottom := Pixel{null: true}
+
+			if len(m.Pixels) > row+1 {
+				bottom = m.Pixels[row+1][i]
+			}
+
+			if row == x-1 && i == y {
+				top = hlColor
+			} else if row+1 == x-1 && i == y {
+				bottom = hlColor
+			} else if row == x+1 && i == y {
+				top = hlColor
+			} else if row+1 == x+1 && i == y {
+				bottom = hlColor
+			}
+
+			if row == x && i == y-1 {
+				top = hlColor
+			} else if row+1 == x && i == y-1 {
+				bottom = hlColor
+			} else if row == x && i == y+1 {
+				top = hlColor
+			} else if row+1 == x && i == y+1 {
+				bottom = hlColor
+			}
+
+			imageLine, topHex, bottomHex := getPixelPair(top, bottom)
+
+			if x == row && y == i {
+				target = topHex
+			} else if x == row+1 && y == i {
+				target = bottomHex
+			}
+
+			line += imageLine
+		}
+		result = append(result, line)
+		row += 2
+	}
+
+	return strings.Join(result, "\n"), target
 }

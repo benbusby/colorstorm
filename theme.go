@@ -412,13 +412,13 @@ func (t *Theme) Finalize(values GeneratorFormValues) FinalizedTheme {
 
 	if values.IsLight {
 		fgAlt = colorful.Hsv(fgH, fgS, fgV+0.1)
-		bgAlt1 = colorful.Hsv(bgH, bgS, bgV-0.05)
-		bgAlt2 = colorful.Hsv(bgH, bgS, bgV-0.1)
+		bgAlt1 = colorful.Hsv(bgH, bgS, bgV-0.03)
+		bgAlt2 = colorful.Hsv(bgH, bgS, bgV-0.06)
 		final.DarkOrLight = "light"
 	} else {
 		fgAlt = colorful.Hsv(fgH, fgS, fgV-0.1)
-		bgAlt1 = colorful.Hsv(bgH, bgS, bgV+0.05)
-		bgAlt2 = colorful.Hsv(bgH, bgS, bgV+0.1)
+		bgAlt1 = colorful.Hsv(bgH, bgS, bgV+0.03)
+		bgAlt2 = colorful.Hsv(bgH, bgS, bgV+0.06)
 		final.DarkOrLight = "dark"
 	}
 

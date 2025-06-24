@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/charmbracelet/bubbles/key"
 	"github.com/lucasb-eyer/go-colorful"
+	"github.com/muesli/gamut"
 	"log"
 	"os"
 	"strings"
@@ -63,6 +64,7 @@ type Model struct {
 
 	refVisibilityHelp key.Binding
 	refModeHelp       key.Binding
+	pickerHelp        key.Binding
 
 	colorForm       *huh.Form
 	saveColorAction *bool
@@ -76,6 +78,12 @@ type Model struct {
 	lowTermHeight  bool
 	showColorTable bool
 	showReference  bool
+
+	showColorPicker  bool
+	highlightedColor string
+	backupColor      string
+	colorPickerX     int
+	colorPickerY     int
 
 	output       []string
 	outputErrors []string
@@ -119,6 +127,10 @@ func NewModel(refMosaic Mosaic, lowTermHeight bool) Model {
 		key.WithKeys("~"),
 		key.WithHelp("~", "toggle ref mode"))
 
+	m.pickerHelp = key.NewBinding(
+		key.WithKeys("p"),
+		key.WithHelp("p", "color picker"))
+
 	return m
 }
 
@@ -132,9 +144,16 @@ func (m *Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		m.width = min(msg.Width, appWidth) -
 			m.styles.Base.GetHorizontalFrameSize()
 	case tea.KeyMsg:
+		if m.showColorPicker &&
+			!isMovementKey(msg.String()) &&
+			!isExitKey(msg.String()) &&
+			msg.String() != "enter" {
+			return m, nil
+		}
+
 		if msg.String() != "~" &&
 			msg.String() != "`" &&
-			msg.String() != "ctrl+c" &&
+			!isExitKey(msg.String()) &&
 			m.showReference &&
 			m.lowTermHeight {
 			// Ignore keyboard input when viewing reference in a
@@ -143,6 +162,19 @@ func (m *Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		}
 
 		switch msg.String() {
+		case "p":
+			if len(m.ref.Image) > 0 &&
+				mainAction >= BackgroundIndex &&
+				m.form.GetFocusedField().GetKey() == themeActionKey {
+				m.showColorPicker = true
+				m.backupColor = *theme.GetHexColor(mainAction)
+				_, m.highlightedColor = m.ref.HighlightPixel(
+					m.colorPickerX,
+					m.colorPickerY)
+				theme.SetHexColor(mainAction, m.highlightedColor)
+				m.form = createForm(m.lg)
+				return m, tea.Batch(m.form.Init(), m.form.NextField())
+			}
 		case "~":
 			m.showColorTable = !m.showColorTable
 			return m, nil
@@ -150,9 +182,25 @@ func (m *Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			m.showReference = !m.showReference
 			return m, nil
 		case "esc", "q", "ctrl+c":
+			if m.showColorPicker {
+				m.showColorPicker = false
+				theme.SetHexColor(mainAction, m.backupColor)
+				m.form = createForm(m.lg)
+				return m, tea.Batch(m.form.Init(), m.form.NextField())
+			}
 			return m, tea.Quit
-		case "shift+left", "left", "shift+right", "right":
-			if m.colorForm != nil && m.colorForm.GetFocusedField().GetKey() == colorDetailFieldKey {
+		case "shift+left", "left", "shift+right", "right", "shift+up", "up", "shift+down", "down":
+			if m.showColorPicker {
+				// Update color picker coordinates
+				m.colorPickerX, m.colorPickerY = updatePickerCoords(
+					msg.String(),
+					m.colorPickerX,
+					m.colorPickerY)
+				_, m.highlightedColor = m.ref.HighlightPixel(m.colorPickerX, m.colorPickerY)
+				theme.SetHexColor(mainAction, m.highlightedColor)
+				m.form = createForm(m.lg)
+				return m, tea.Batch(m.form.Init(), m.form.NextField())
+			} else if m.colorForm != nil && m.colorForm.GetFocusedField().GetKey() == colorDetailFieldKey {
 				// Handle arrow key modification of color fields
 				newColor := updateFocusedColorField(msg.String())
 				theme.SetHexColor(mainAction, newColor)
@@ -162,10 +210,14 @@ func (m *Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 					theme.GetHexColor(mainAction))
 			}
 		case "tab", "enter":
-			if m.colorForm != nil {
-				// Handle event where the user updates the hex color
-				// string, which means the computed RGB/HSL values
-				// need to be regenerated before focus
+			if m.showColorPicker && msg.String() == "enter" {
+				// Select the currently highlighted color from
+				// the color picker
+				theme.SetHexColor(mainAction, m.highlightedColor)
+				m.showColorPicker = false
+				return m, nil
+			} else if m.colorForm != nil {
+				// Update RGB/HSV values
 				if len(*theme.Background) == 7 && m.colorForm.GetFocusedField().GetKey() == colorDetailHexKey {
 					colorFormSelected = 1
 					updateSV = true
@@ -215,8 +267,34 @@ func (m *Model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	return m, tea.Batch(cmds...)
 }
 
+func updatePickerCoords(msg string, x, y int) (int, int) {
+	xMod := 0
+	yMod := 0
+
+	if strings.HasSuffix(msg, "left") {
+		yMod = -1
+	} else if strings.HasSuffix(msg, "right") {
+		yMod = 1
+	} else if strings.HasSuffix(msg, "up") {
+		xMod = -1
+	} else if strings.HasSuffix(msg, "down") {
+		xMod = 1
+	}
+
+	if strings.HasPrefix(msg, "shift") {
+		xMod *= 10
+		yMod *= 10
+	}
+
+	return max(x+xMod, 0), max(y+yMod, 0)
+}
+
 func updateFocusedColorField(msg string) string {
-	val := 1
+	val := 0
+
+	if strings.HasSuffix(msg, "left") || strings.HasSuffix(msg, "right") {
+		val = 1
+	}
 
 	if strings.HasPrefix(msg, "shift") {
 		val *= 10
@@ -346,7 +424,7 @@ func (m *Model) updateColorForm() []tea.Cmd {
 
 func (m *Model) updateSaveForm() []tea.Cmd {
 	if *m.saveFileAction {
-		refBytes, _ := SerializeMosaic(m.ref)
+		refBytes := SerializeMosaic(m.ref)
 		theme.Reference = refBytes
 
 		themeBytes, err := json.Marshal(theme)
@@ -378,16 +456,23 @@ func (m *Model) View() string {
 		colorTable = formatColorTable(m.ref.Colors)
 	}
 
-	if m.lowTermHeight && m.showReference {
-		if m.showColorTable {
-			return s.Base.Render(
-				header + "\n" +
-					colorTable + "\n" + footer)
+	if m.lowTermHeight && (m.showReference || m.showColorPicker) {
+		var body string
+		if m.showColorPicker {
+			hlRef, hex := m.ref.HighlightPixel(m.colorPickerX, m.colorPickerY)
+			fg := lipgloss.Color(gamut.ToHex(gamut.Contrast(gamut.Hex(hex))))
+			bg := lipgloss.Color(hex)
+			body = hlRef + "\n" + m.lg.NewStyle().
+				Foreground(fg).
+				Background(bg).
+				Render(fmt.Sprintf("Color: %s", hex))
+		} else if m.showColorTable {
+			body = colorTable
 		} else {
-			return s.Base.Render(
-				header + "\n" +
-					m.ref.Image + "\n" + footer)
+			body = m.ref.Image
 		}
+
+		return s.Base.Render(header + "\n" + body + "\n" + footer)
 	}
 
 	// Form
@@ -419,7 +504,15 @@ func (m *Model) View() string {
 	// Reference
 	var reference string
 	if len(m.ref.Image) > 0 && m.showReference {
-		if m.showColorTable {
+		if m.showColorPicker {
+			hlRef, hex := m.ref.HighlightPixel(m.colorPickerX, m.colorPickerY)
+			fg := lipgloss.Color(gamut.ToHex(gamut.Contrast(gamut.Hex(hex))))
+			bg := lipgloss.Color(hex)
+			reference = hlRef + "\n" + m.lg.NewStyle().
+				Foreground(fg).
+				Background(bg).
+				Render(fmt.Sprintf("Color: %s", hex))
+		} else if m.showColorTable {
 			reference = colorTable
 		} else {
 			reference = m.ref.Image
@@ -439,10 +532,20 @@ func (m *Model) helpView() string {
 		return huh.ThemeCatppuccin().Focused.ErrorMessage.Render(m.error)
 	}
 
-	var footer string
-	helpElements := []key.Binding{m.refVisibilityHelp}
-	if m.showReference {
-		helpElements = append(helpElements, m.refModeHelp)
+	var (
+		footer       string
+		helpElements []key.Binding
+	)
+
+	if len(m.ref.Image) > 0 {
+		helpElements = []key.Binding{m.refVisibilityHelp}
+		if m.showReference {
+			helpElements = append(helpElements, m.refModeHelp)
+		}
+
+		if mainAction >= BackgroundIndex && m.form.GetFocusedField().GetKey() == themeActionKey {
+			helpElements = append(helpElements, m.pickerHelp)
+		}
 	}
 
 	if m.generatorForm != nil && m.generatorForm.GetFocusedField().GetKey() == editorSelectKey {

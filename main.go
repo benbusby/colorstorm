@@ -39,16 +39,16 @@ func main() {
 		}
 
 		if len(theme.Reference) > 0 {
-			refMosaic, err = DeserializeMosaic(theme.Reference)
+			refMosaic = DeserializeMosaic(theme.Reference)
 		}
-	}
-
-	if len(*refImg) > 0 {
+	} else if len(*refImg) > 0 {
 		refMosaic, err = GenerateQuantizedMosaic(*refImg, appWidth, appHeight, *quantize)
 		if err != nil {
 			log.Fatalln("Error generating mosaic", err)
 			return
 		}
+
+		theme = newNoColorTheme(*lightTheme)
 	} else {
 		if *initNoColor {
 			theme = newNoColorTheme(*lightTheme)

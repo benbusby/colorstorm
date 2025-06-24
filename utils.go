@@ -1,7 +1,11 @@
 package main
 
 import (
+	"bytes"
+	"compress/gzip"
 	"github.com/lucasb-eyer/go-colorful"
+	"io"
+	"log"
 	"math"
 	"regexp"
 	"strings"
@@ -79,4 +83,31 @@ func sanitizeName(name string) string {
 func changeColorBrightness(c colorful.Color, amount float64) colorful.Color {
 	h, s, v := c.Hsv()
 	return colorful.Hsv(h, s, min(v*amount, 1.0))
+}
+
+func isMovementKey(key string) bool {
+	return strings.Contains(key, "up") || strings.Contains(key, "down") ||
+		strings.Contains(key, "left") || strings.Contains(key, "right")
+}
+
+func isExitKey(key string) bool {
+	return key == "esc" || key == "ctrl+c" || key == "q"
+}
+
+func compress(s []byte) []byte {
+	buf := bytes.Buffer{}
+	zipped := gzip.NewWriter(&buf)
+	zipped.Write(s)
+	zipped.Close()
+	return buf.Bytes()
+}
+
+func decompress(s []byte) []byte {
+	gz, _ := gzip.NewReader(bytes.NewReader(s))
+	data, err := io.ReadAll(gz)
+	if err != nil {
+		log.Fatal(err)
+	}
+	gz.Close()
+	return data
 }
