@@ -19,8 +19,9 @@ func main() {
 	)
 
 	themeFile := flag.String("f", "", "load theme json file")
+
 	refImg := flag.String("i", "", "jpg or png reference image")
-	quantize := flag.Int("q", 50, "color quantization amount [0-255]")
+	quantize := flag.Int("q", 0, "color quantization amount [0-255]")
 	lightTheme := flag.Bool("l", false, "create a light theme")
 	initNoColor := flag.Bool("x", false, "initialize without any colors")
 	monochrome := flag.Bool("m", false, "generate monochrome theme")
@@ -42,7 +43,7 @@ func main() {
 			refMosaic = DeserializeMosaic(theme.Reference)
 		}
 	} else if len(*refImg) > 0 {
-		refMosaic, err = GenerateQuantizedMosaic(*refImg, appWidth, appHeight, *quantize)
+		refMosaic, err = GenerateQuantizedMosaic(*refImg, appWidth-5, appHeight, *quantize)
 		if err != nil {
 			log.Fatalln("Error generating mosaic", err)
 			return
@@ -62,7 +63,7 @@ func main() {
 	}
 
 	_, height, _ := term.GetSize(0)
-	lowTermHeight := height < appHeight*2
+	lowTermHeight := height < appHeight+(refMosaic.Height/2)
 
 	m := NewModel(refMosaic, lowTermHeight)
 	_, err = tea.NewProgram(&m, tea.WithAltScreen()).Run()

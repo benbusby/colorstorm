@@ -18,7 +18,7 @@ import (
 const (
 	appWidth     = 90
 	appHeight    = 28
-	previewWidth = 60
+	previewWidth = 65
 )
 
 var (
@@ -466,10 +466,11 @@ func (m *Model) View() string {
 				Foreground(fg).
 				Background(bg).
 				Render(fmt.Sprintf("Color: %s", hex))
-		} else if m.showColorTable {
-			body = colorTable
 		} else {
 			body = m.ref.Image
+			if m.showColorTable {
+				body += "\n" + colorTable
+			}
 		}
 
 		return s.Base.Render(header + "\n" + body + "\n" + footer)
@@ -512,10 +513,11 @@ func (m *Model) View() string {
 				Foreground(fg).
 				Background(bg).
 				Render(fmt.Sprintf("Color: %s", hex))
-		} else if m.showColorTable {
-			reference = colorTable
 		} else {
 			reference = m.ref.Image
+			if m.showColorTable {
+				reference += "\n" + colorTable
+			}
 		}
 	}
 

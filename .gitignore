@@ -2,6 +2,7 @@ colorstorm
 *.json
 *.vim
 *.tmTheme
+out/
 
 # Go test demo image
 test.png

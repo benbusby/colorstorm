@@ -8,23 +8,41 @@
 [![GitHub release](https://img.shields.io/github/release/benbusby/colorstorm.svg)](https://github.com/benbusby/colorstorm/releases/)
 [![build](https://github.com/benbusby/colorstorm/workflows/build/badge.svg)](https://github.com/benbusby/colorstorm/actions)
 
-> [!NOTE]
-> This project is being re-written as a command line TUI, and is currently a work-in-progress.
-
-<p align="center">
-  <img width="300" src="https://raw.githubusercontent.com/benbusby/colorstorm/main/img/tui.png">
-</p>
-
 ___
 
+![img/colorstorm_example.png](img/colorstorm_example.png)
+
 Contents
+1. [Features](#features)
 1. [Install](#install)
 1. [Usage](#usage)
-1. [Screenshots](#screenshots)
+1. [Demos](#demos)
+    - [Generate Dark Theme](#generate-dark-theme)
+    - [Generate Light Theme](#generate-light-theme)
+    - [Generate Monochromatic Theme](#generate-monochromatic-theme)
+    - [Using a Reference Image](#using-a-reference-image)
+    - [Using the Color Picker](#using-the-color-picker)
+1. [Examples](#examples)
+
+## Features
+
+- Full TUI for creating themes for Vim / Neovim, VSCode, and Sublime
+- Different built-in color theme generators:
+    - Random
+    - Monochromatic
+    - No color (black and white)
+- Define and edit colors using hex, RGB, and/or HSV
+- Import images to use as a reference
+- Color picker for sampling colors from an image directly
+- Light and dark theme creation support
+- Export draft theme files (including reference image if applicable) to a single portable JSON file
 
 ## Install
 
-TODO
+### Binaries
+
+Pre-compiled binaries are available for Windows, macOS, and Linux [
+on the releases page](https://github.com/benbusby/colorstorm/releases).
 
 ### From Source
 
@@ -35,7 +53,34 @@ TODO
 ## Usage
 
 ```bash
-$ colorstorm [optional jpg/png reference image]
+colorstorm
+  -c string
+    	seed color (hex)
+  -f string
+    	load theme json file
+  -i string
+    	jpg or png reference image
+  -l	create a light theme
+  -m	generate monochrome theme
+  -q int
+    	color quantization amount [0-255] (default 0)
+  -x	initialize without any colors
+```
+
+#### Inside Colorstorm
+```
+Default:
+Tab/Arrow Keys/Enter -- navigation
+
+If an image was imported:
+`   -- toggle image visibility
+~   -- toggle image mode (visual vs list of colors)
+p   -- initiate color picker
+
+Color picker shortcuts:
+Arrow keys -- move picker location
+Enter      -- confirm color selection
+Escape     -- cancel color picker
 ```
 
 #### Supported Editors
@@ -43,9 +88,72 @@ $ colorstorm [optional jpg/png reference image]
 - VSCode
 - Sublime
 
-## Screenshots
+## Demos
 
-- [Earthbound Themes](https://github.com/benbusby/earthbound-themes)
+### Generate Dark Theme
+
+`$ colorstorm`
+
+This command will generate a random editable **dark** color theme. Re-running the
+command will result in a different theme each time.
+
+![demos/demo.tape.gif](demos/demo.tape.gif)
+
+### Generate Light Theme
+
+`$ colorstorm -l`
+
+This command will generate a random editable **light** color theme. Re-running the
+command will result in a different theme each time.
+
+![demos/demo_light.tape.gif](demos/demo_light.tape.gif)
+
+### Generate Monochromatic Theme
+
+`$ colorstorm -m`
+
+This command will generate a random **monochromatic** color theme. Re-running the
+command will result in a different theme each time.
+
+![demos/demo_mono.tape.gif](demos/demo_mono.tape.gif)
+
+### Using a Reference Image
+
+You can pass a reference image to colorstorm, which will convert it into a set of
+colored ASCII half-block characters and render it above the theme editor.
+
+When an image is provided, you can toggle between viewing the image and the list of
+colors in the image using the `~` key.
+
+#### Demo Image:
+
+![demos/img/aragon16.png](demos/img/aragon16.png)
+
+`$ colorstorm -i <path to image>`
+
+![demos/demo_img.tape.gif](demos/demo_img.tape.gif)
+
+### Using the Color Picker
+
+When passing a reference image to colorstorm, you can use the built-in color picker
+to select colors directly from the image to use in your theme.
+
+When a theme field is focused (i.e. Background, Foreground, etc), press `p` to enable
+the color picker. A white crosshair will appear on the image, and you can use the arrow
+keys to move the crosshair around the image. The focused color will update with whatever
+color is under the cursor in real time.
+
+#### Demo Image:
+
+![demos/img/borkfest.png](demos/img/borkfest.png)
+
+`$ colorstorm -i <path to image>`
+
+![demos/demo_picker.tape.gif](demos/demo_picker.tape.gif)
+
+## Examples
+
+### [Earthbound Themes](https://marketplace.visualstudio.com/items?itemName=benbusby.earthbound-themes)
 
 [![Vim Installs](https://img.shields.io/static/v1?label=vim&message=a%20lot&color=green&logo=vim)](https://www.vim.org/scripts/script.php?script_id=5920)
 [![VSCode Installs](https://img.shields.io/visual-studio-marketplace/i/benbusby.earthbound-themes?label=vscode&color=4444ff&logo=visual-studio-code)](https://marketplace.visualstudio.com/items?itemName=benbusby.earthbound-themes)

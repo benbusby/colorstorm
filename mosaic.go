@@ -4,8 +4,6 @@ import (
 	"bytes"
 	"encoding/gob"
 	"fmt"
-	"github.com/charmbracelet/lipgloss"
-	"golang.org/x/image/draw"
 	"image"
 	_ "image/jpeg"
 	_ "image/png"
@@ -14,12 +12,17 @@ import (
 	"os"
 	"slices"
 	"strings"
+
+	"github.com/charmbracelet/lipgloss"
+	"golang.org/x/image/draw"
 )
 
 const colorPreview = "   "
 
 type Mosaic struct {
 	Image  string    `json:"-"`
+	Width  int       `json:"width"`
+	Height int       `json:"height"`
 	Pixels [][]Pixel `json:"-"`
 	Colors []string  `json:"colors"`
 
@@ -258,6 +261,8 @@ func GenerateQuantizedMosaic(imgPath string, width, height, quantize int) (Mosai
 		Image:  output,
 		Colors: keyColors,
 		Pixels: pixels,
+		Width:  w,
+		Height: h,
 	}
 
 	return m, nil
